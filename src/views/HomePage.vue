@@ -1,5 +1,5 @@
 <template>
-  <ion-page >
+  <ion-page>
     <loading-spinner v-show="$store.state.loader" />
     <ion-content v-show="!$store.state.loader">
       <!-- header section -->
@@ -72,13 +72,12 @@
           </router-link>
         </ion-text>
       </div>
-      <swiper class="cats"  :slides-per-view="2.5"
-    :space-between="10">
+      <swiper class="cats" :slides-per-view="2.5" :space-between="10">
         <swiper-slide class="px-2" v-for="item in allCategories" :key="item.id">
           <router-link :to="`/tabs/SubCategory/${item.id}`">
             <ion-card class="shadow-none w-full">
               <img
-              :src="`https://www.mod-bina.com/uploads/${item?.image}`"
+                :src="`http://localhost:5000/uploads/${item?.image}`"
                 loading="lazy"
                 height="100"
                 class="rounded-xl h-56 w-full"
@@ -86,15 +85,13 @@
 
               <ion-card-content>
                 <ion-text class="text-center">
-                  <span class="font-semibold"> {{item?.name}}</span>
+                  <span class="font-semibold"> {{ item?.name }}</span>
                 </ion-text>
               </ion-card-content>
             </ion-card>
           </router-link>
         </swiper-slide>
-
       </swiper>
-
 
       <!-- best sales -->
       <div class="flex px-4 justify-between items-center">
@@ -107,23 +104,23 @@
           </router-link>
         </ion-text>
       </div>
-      <swiper class="p-2 leatest"     :slides-per-view="1.5"
-    :space-between="10"
->
+      <swiper class="p-2 leatest" :slides-per-view="1.5" :space-between="10">
         <swiper-slide class="p-2" :key="item?.id" v-for="item in allProducts">
           <div class="border border-gray-300 rounded-xl p-6 relative">
             <router-link :to="`/tabs/ProducPage/${item?.id}`">
               <img
                 class="w-full h-36"
-                :src="`https://www.mod-bina.com/uploads/${item?.image?.image}`"
+                :src="`http://localhost:5000/uploads/${item?.image?.image}`"
                 loading="lazy"
               />
             </router-link>
 
             <div class="text-right">
-              <span class="block font-semibold"> {{item?.name}}</span>
-              <span class="block"> {{item?.user?.name}}</span>
-              <span class="text-blue-500 font-semibold block pt-2">{{item?.price}}$</span>
+              <span class="block font-semibold"> {{ item?.name }}</span>
+              <span class="block"> {{ item?.user?.name }}</span>
+              <span class="text-blue-500 font-semibold block pt-2"
+                >{{ item?.price }}$</span
+              >
             </div>
 
             <svg
@@ -151,12 +148,11 @@
 import {
   IonPage,
   IonContent,
-
   IonCard,
   IonCardContent,
   IonText,
 } from "@ionic/vue";
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
 
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 import { mapGetters } from "vuex";
@@ -170,21 +166,22 @@ export default {
     IonCard,
     IonCardContent,
     IonText,
-    LoadingSpinner,Swiper, SwiperSlide
+    LoadingSpinner,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
       Loading: true,
-      categories : [],
-      products :[]
+      categories: [],
+      products: [],
     };
   },
 
-  mounted(){
-        this.categories = this.allSubCategories
-    this.products = this.allProducts
-    this.loading()
-
+  mounted() {
+    this.categories = this.allSubCategories;
+    this.products = this.allProducts;
+    this.loading();
   },
   computed: mapGetters(["allProducts", "allCategories", "allSubCategories"]),
   methods: {
@@ -192,9 +189,8 @@ export default {
       this.toast("top", "success", "تم اضافه العنصر الي المفضله");
     },
   },
-  inject: ["toast","loading"],
+  inject: ["toast", "loading"],
 };
 </script>
 
-<style>
-</style>
+<style></style>

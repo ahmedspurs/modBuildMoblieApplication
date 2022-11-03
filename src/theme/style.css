@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=El+Messiri&display=swap");
+@import url("https://unpkg.com/swiper/swiper-bundle.min.css");
+* {
+  font-family: "El Messiri", sans-serif;
+  direction: rtl;
+}
+ion-header::after {
+  background: none !important;
+}
+.leatest .swiper-slide img {
+  height: 250px;
+}
+.cats .swiper-slide img,
+.cats img {
+  height: 100px;
+}

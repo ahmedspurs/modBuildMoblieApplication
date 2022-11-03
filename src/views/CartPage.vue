@@ -6,7 +6,7 @@
        1- min and max methods for control the quantaty of product in cart
        2- rem methos for remove product from cart
      -->
-     <loading-spinner v-if="$store.state.loader" />
+    <loading-spinner v-if="$store.state.loader" />
     <ion-header v-if="!$store.state.loader">
       <ion-toolbar>
         <h1
@@ -45,7 +45,7 @@
             <div class="w-3/4">
               <img
                 class="w-24 h-24"
-                :src="'https://www.mod-bina.com/uploads/' + item.image"
+                :src="'http://localhost:5000/uploads/' + item.image"
                 loading="lazy"
               />
             </div>
@@ -159,7 +159,7 @@
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                       }}
-                    SAR</span
+                      SAR</span
                     >
                   </ion-text>
                 </div>
@@ -213,9 +213,9 @@ export default {
     };
   },
 
-mounted(){
-  this.loading()
-},
+  mounted() {
+    this.loading();
+  },
   computed: mapGetters(["cartEmpty"]),
   inject: ["veirfy", "loading"],
   methods: {

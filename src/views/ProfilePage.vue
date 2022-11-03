@@ -1,7 +1,7 @@
 <template>
   <ion-page>
-    <loading-spinner v-if="$store.state.loader"  />
-    <ion-header v-if="!$store.state.loader" >
+    <loading-spinner v-if="$store.state.loader" />
+    <ion-header v-if="!$store.state.loader">
       <div class="flex items-cnter justify-between px-4">
         <h2>الملف الشخصي</h2>
         <div class="flex items-center">
@@ -24,7 +24,7 @@
         </div>
       </div>
     </ion-header>
-    <ion-content  v-if="!$store.state.loader" class="">
+    <ion-content v-if="!$store.state.loader" class="">
       <div class="flex flex-col justify-center items-center pt-4">
         <img
           src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
@@ -101,8 +101,8 @@
 
 <script>
 import { IonPage, IonHeader, IonContent } from "@ionic/vue";
-import LoadingSpinner from '../components/LoadingSpinner.vue';
-import axios from "axios"
+import LoadingSpinner from "../components/LoadingSpinner.vue";
+import axios from "axios";
 export default {
   name: "ProfilePage",
   components: {
@@ -111,11 +111,10 @@ export default {
     IonContent,
     LoadingSpinner,
   },
-  mounted(){
-    this.loading()
+  mounted() {
+    this.loading();
   },
   methods: {
-
     async logout() {
       const token = localStorage.getItem("mod_user_token");
       const config = {
@@ -125,12 +124,12 @@ export default {
 
       try {
         const res = await axios.get(
-          "https://www.mod-bina.com/api/v1/auth/logout",
+          "http://localhost:5000/api/v1/auth/logout",
           config
         );
         if (!res.data.success) {
           this.$store.state.loader = false;
-      this.toast("top", "danger", "عفوا حدث خطاء ما");
+          this.toast("top", "danger", "عفوا حدث خطاء ما");
           return;
         }
 
@@ -138,16 +137,15 @@ export default {
         localStorage.clear();
         await this.$router.push("/LoginPage");
         location.reload();
-      this.toast("top", "danger", "تم تسجيل الخروج بنجاح");
+        this.toast("top", "danger", "تم تسجيل الخروج بنجاح");
       } catch (error) {
         this.$store.state.loader = false;
-      this.toast("top", "danger", "عفوا حدث خطاء ما");
+        this.toast("top", "danger", "عفوا حدث خطاء ما");
       }
     },
   },
-  inject: ["toast","loading"],
+  inject: ["toast", "loading"],
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -25,22 +25,19 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader">
-      <div class="grid grid-cols-2 gap-4 p-4" >
+      <div class="grid grid-cols-2 gap-4 p-4">
         <div class="card" :key="item.id" v-for="item in allCategories">
           <ion-card class="shadow-none">
-          <router-link :to="`/tabs/SubCategory/${item.id}`">
-            <img
-              :src="`https://www.mod-bina.com/uploads/${item.image}`"
+            <router-link :to="`/tabs/SubCategory/${item.id}`">
+              <img
+                :src="`http://localhost:5000/uploads/${item.image}`"
                 loading="lazy"
-              class="h-36 w-full"
-
-            />
-              </router-link>
-            <h2 class="text-center">{{item.name}}</h2>
+                class="h-36 w-full"
+              />
+            </router-link>
+            <h2 class="text-center">{{ item.name }}</h2>
           </ion-card>
         </div>
-
-       
       </div>
     </ion-content>
   </ion-page>
@@ -48,9 +45,9 @@
 
 <script>
 import { IonPage, IonContent, IonHeader, IonCard } from "@ionic/vue";
-import {mapGetters} from "vuex"
+import { mapGetters } from "vuex";
 import { ref } from "vue";
-import LoadingSpinner from '../components/LoadingSpinner.vue';
+import LoadingSpinner from "../components/LoadingSpinner.vue";
 
 export default {
   name: "CategoryPage",
@@ -61,19 +58,18 @@ export default {
     IonCard,
     LoadingSpinner,
   },
-  mounted(){
-    this.loading()
+  mounted() {
+    this.loading();
   },
-  computed : mapGetters(["allCategories"]),
+  computed: mapGetters(["allCategories"]),
   setup() {
     const accordionGroup = ref();
     return {
       accordionGroup,
     };
   },
-  inject:["loading"]
+  inject: ["loading"],
 };
 </script>
 
-<style>
-</style>
+<style></style>

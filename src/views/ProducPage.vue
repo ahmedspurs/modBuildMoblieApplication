@@ -6,10 +6,9 @@
       <div class="img z-10 relative">
         <swiper class="p-2 leatest">
           <swiper-slide class="p-2 relative">
-
             <img
               class="w-full h-1/2 rounded-b-2xl"
-              :src="'https://www.mod-bina.com/uploads/' + product?.image?.image"
+              :src="'http://localhost:5000/uploads/' + product?.image?.image"
               loading="lazy"
             />
 
@@ -130,7 +129,7 @@ export default {
         id: product.id,
         name: product.name,
         price: product.price,
-        image : product.image.image,
+        image: product.image.image,
         qty: 1,
       };
       await this.$store.dispatch("addToCart", cart);
@@ -140,7 +139,7 @@ export default {
     },
     async getProduct() {
       const id = this.$route.params.id;
-      const url = ` https://www.mod-bina.com/api/v1/products/${id}`;
+      const url = ` http://localhost:5000/api/v1/products/${id}`;
       const res = await axios.get(url);
       this.product = res.data;
     },
@@ -149,5 +148,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

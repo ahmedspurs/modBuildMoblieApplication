@@ -75,7 +75,7 @@
             <router-link :to="`/tabs/ProducPage/${item?.id}`">
               <img
                 class=""
-                :src="`http://localhost:5000/uploads/${item?.image?.image}`"
+                :src="`https://www.mod-bina.com/uploads/${item?.image?.image}`"
                 loading="lazy"
               />
             </router-link>
@@ -88,20 +88,7 @@
               >
             </div>
 
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8 absolute top-2 right-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
-            </svg>
+        
           </div>
         </div>
       </div>
@@ -128,7 +115,7 @@ export default {
   },
   created() {
     this.products = this.allProducts.filter(
-      (word) => word.id == this.$route.params.id
+      (word) => word.sub_section_id == this.$route.params.id
     );
   },
 };

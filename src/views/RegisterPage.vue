@@ -3,20 +3,55 @@
     <ion-content>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div
-          class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-full lg:py-0"
+          class="
+            flex flex-col
+            items-center
+            justify-center
+            px-6
+            py-8
+            mx-auto
+            h-full
+            lg:py-0
+          "
         >
           <a
             href="#"
-            class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+            class="
+              flex
+              items-center
+              mb-6
+              text-2xl
+              font-semibold
+              text-gray-900
+              dark:text-white
+            "
           >
-            مواد بناء
+            مود بناء
           </a>
           <div
-            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+            class="
+              w-full
+              bg-white
+              rounded-lg
+              shadow
+              dark:border
+              md:mt-0
+              sm:max-w-md
+              xl:p-0
+              dark:bg-gray-800 dark:border-gray-700
+            "
           >
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1
-                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+                class="
+                  text-xl
+                  font-bold
+                  leading-tight
+                  tracking-tight
+                  text-gray-900
+                  md:text-2xl
+                  dark:text-white
+                "
               >
                 انشئ حساب
               </h1>
@@ -28,7 +63,14 @@
                 <div>
                   <label
                     for="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
                     >الاسم</label
                   >
                   <input
@@ -36,8 +78,24 @@
                     name="name"
                     v-model="name"
                     id="name"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="احد عادل"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                    placeholder=" اسمك"
                   />
                 </div>
 
@@ -45,7 +103,14 @@
                 <div>
                   <label
                     for="email"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
                     >الايميل</label
                   >
                   <input
@@ -53,7 +118,23 @@
                     name="email"
                     v-model="email"
                     id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
                     placeholder="name@company.com"
                   />
                 </div>
@@ -62,7 +143,14 @@
                 <div>
                   <label
                     for="country"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
                   >
                     الدوله
                   </label>
@@ -71,7 +159,23 @@
                     name="country"
                     v-model="country"
                     id="country"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
                     placeholder="Saudi Arabia"
                   />
                 </div>
@@ -81,15 +185,38 @@
                 <div>
                   <label
                     for="tel"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >ؤقم الهاتف</label
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                    >رقم الهاتف</label
                   >
                   <input
-                    type="te;"
+                    type="tel"
                     name="tel"
                     v-model="tel"
                     id="tel"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
                     placeholder="+1423456789"
                   />
                 </div>
@@ -99,7 +226,14 @@
                 <div>
                   <label
                     for="address"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
                     >العنوان</label
                   >
                   <input
@@ -107,14 +241,37 @@
                     name="address"
                     v-model="address"
                     id="address"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
                     placeholder="Al-Ryadh"
                   />
                 </div>
                 <div>
                   <label
                     for="password"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
                     >كلمه السر</label
                   >
                   <input
@@ -123,7 +280,23 @@
                     id="password"
                     v-model="password"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
                   />
                 </div>
 
@@ -132,10 +305,31 @@
                 <div class="flex justify-center items-center w-full">
                   <label
                     for="dropzone-file"
-                    class="flex flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    class="
+                      flex flex-col
+                      justify-center
+                      items-center
+                      w-full
+                      h-32
+                      bg-gray-50
+                      rounded-lg
+                      border-2 border-gray-300 border-dashed
+                      cursor-pointer
+                      dark:hover:bg-bray-800 dark:bg-gray-700
+                      hover:bg-gray-100
+                      dark:border-gray-600
+                      dark:hover:border-gray-500
+                      dark:hover:bg-gray-600
+                    "
                   >
                     <div
-                      class="flex flex-col justify-center items-center pt-5 pb-6"
+                      class="
+                        flex flex-col
+                        justify-center
+                        items-center
+                        pt-5
+                        pb-6
+                      "
                     >
                       <svg
                         class="mb-3 w-10 h-10 text-gray-400"
@@ -172,7 +366,18 @@
                       id="terms"
                       aria-describedby="terms"
                       type="checkbox"
-                      class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                      class="
+                        w-4
+                        h-4
+                        border border-gray-300
+                        rounded
+                        bg-gray-50
+                        focus:ring-3 focus:ring-blue-300
+                        dark:bg-gray-700
+                        dark:border-gray-600
+                        dark:focus:ring-blue-600
+                        dark:ring-offset-gray-800
+                      "
                     />
                   </div>
                   <div class="ml-3 text-sm">
@@ -185,7 +390,22 @@
                 </div>
                 <button
                   type="submit"
-                  class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="
+                    w-full
+                    text-white
+                    bg-blue-600
+                    hover:bg-blue-700
+                    focus:ring-4 focus:outline-none focus:ring-blue-300
+                    font-medium
+                    rounded-lg
+                    text-sm
+                    px-5
+                    py-2.5
+                    text-center
+                    dark:bg-blue-600
+                    dark:hover:bg-blue-700
+                    dark:focus:ring-blue-800
+                  "
                 >
                   تسجيل حساب جديد
                 </button>
@@ -193,7 +413,12 @@
                   لديك حساب بالفعل ؟
                   <router-link
                     to="/LoginPage"
-                    class="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                    class="
+                      font-medium
+                      text-blue-600
+                      hover:underline
+                      dark:text-blue-500
+                    "
                     >تسجيل الدخول</router-link
                   >
                 </p>
@@ -236,22 +461,22 @@ export default {
       //   role: "user",
       // };
       if (
-        this.name == "" &&
-        this.email == "" &&
-        this.password == "" &&
-        this.country == "" &&
-        this.address == "" &&
+        this.name == "" ||
+        this.email == "" ||
+        this.password == "" ||
+        this.country == "" ||
+        this.address == "" ||
         this.tel == ""
       ) {
-        this.failed();
+        this.toast("top", "danger", "الرجاء ملء كل الحقول");
       } else if (this.tel.toString().length < 9) {
-        this.wrong("رقم الهاتف يجب ان يكون اكثر من 9 ارقام");
+        this.toast("top", "danger", "رقم الهاتف يجب ان يكون اكثر من 9 ارقام");
       } else {
         const formData = new FormData(this.$refs.form);
         formData.append("role", "user");
         try {
           const res = await axios.post(
-            "http://localhost:5000/api/v1/auth/register",
+            "https://www.mod-bina.com/api/v1/auth/register",
             formData
           );
           console.log(res.data);
@@ -263,8 +488,8 @@ export default {
             this.address = "";
             this.tel = "";
             this.toast("top", "success", "      تم تسجيل حسابك بنجاح  ");
-
-            this.$router.push("/LoginPage");
+            await this.$router.push("/LoginPage");
+            location.reload()
           } else if (res.data.error == "user with this email, already exist") {
             this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
           }
@@ -283,14 +508,11 @@ export default {
         }
       }
 
-      if (this.tel.toString().length < 9) {
-        this.wrong("رقم الهاتف يجب ان يكون اكثر من 9 ارقام");
-      }
 
       // perform async actions
     },
-    inject: ["toast"],
   },
+  inject: ["toast"],
 };
 </script>
 <style></style>

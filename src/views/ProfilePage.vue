@@ -25,14 +25,15 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader" class="">
+
       <div class="flex flex-col justify-center items-center pt-4">
         <img
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                :src="'https://www.mod-bina.com/uploads/' + userData?.data?.image"
           loading="lazy"
           class="w-56 h-56 rounded-full"
         />
-        <span class="block py-1 pt-2 text-xl font-semibold"> احمد عادل </span>
-        <span class="block py-1 text-xl"> @ahmedspurs </span>
+        <span class="block py-1 pt-2 text-xl font-semibold"> {{userData?.data?.name}}</span>
+        <span class="block py-1 text-xl"> {{userData?.data?.email}} </span>
       </div>
       <div class="px-2 py-4">
         <router-link to="/tabs/EditProfile">
@@ -103,6 +104,7 @@
 import { IonPage, IonHeader, IonContent } from "@ionic/vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import axios from "axios";
+import { mapGetters } from 'vuex';
 export default {
   name: "ProfilePage",
   components: {
@@ -113,7 +115,9 @@ export default {
   },
   mounted() {
     this.loading();
+    this.$store.dispatch("getUser")
   },
+  computed : mapGetters(["userData"]),
   methods: {
     async logout() {
       const token = localStorage.getItem("mod_user_token");
@@ -124,7 +128,7 @@ export default {
 
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/v1/auth/logout",
+          "https://www.mod-bina.com/api/v1/auth/logout",
           config
         );
         if (!res.data.success) {

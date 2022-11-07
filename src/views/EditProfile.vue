@@ -26,7 +26,7 @@
     <ion-content>
       <div class="flex flex-col justify-center items-center pt-4">
         <img
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                :src="'https://www.mod-bina.com/uploads/' + userData?.data?.image"
           loading="lazy"
           class="w-56 h-56 rounded-full"
         />
@@ -49,129 +49,275 @@
         </span>
       </div>
 
-      <!-- inputs -->
-      <div class="contact pb-8">
-        <ion-card class="shadow-none">
-          <ion-card-content>
-            <form class="w-full">
-              <div class="floating-input mb-5 relative">
-                <input
-                  type="text"
-                  id="name"
-                  class="
-                    border border-gray-200
-                    focus:outline-none
-                    rounded-md
-                    focus:border-gray-500 focus:shadow-sm
-                    w-full
-                    p-3
-                    h-16
-                  "
-                  placeholder=" "
-                  autocomplete="off"
-                  value="ahmed adil"
-                />
-                <label
-                  for="email"
-                  class="
-                    absolute
-                    top-0
-                    right-0
-                    px-3
-                    py-5
-                    h-full
-                    pointer-events-none
-                    transform
-                    origin-left
-                    transition-all
-                    duration-100
-                    ease-in-out
-                  "
-                  >الاسم</label
-                >
-              </div>
-              <div class="floating-input mb-5 relative">
-                <input
-                  type="email"
-                  id="email"
-                  class="
-                    border border-gray-200
-                    focus:outline-none
-                    rounded-md
-                    focus:border-gray-500 focus:shadow-sm
-                    w-full
-                    p-3
-                    h-16
-                  "
-                  placeholder=" "
-                  autocomplete="off"
-                  value="amnnn80@gmail.com"
-                />
-                <label
-                  for="email"
-                  class="
-                    absolute
-                    top-0
-                    right-0
-                    px-3
-                    py-5
-                    h-full
-                    pointer-events-none
-                    transform
-                    origin-left
-                    transition-all
-                    duration-100
-                    ease-in-out
-                  "
-                  >الايميل</label
-                >
-              </div>
+         <form
+                ref="form"
+                class="space-y-4 md:space-y-6 p-4"
+                @submit.prevent="editProfile"
+              >
+                <div>
+                  <label
+                    for="name"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                    >الاسم</label
+                  >
+                  <input
+                    type="text"
+                    name="name"
+                    v-model="userData.data.name"
+                    id="name"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                    placeholder="احد عادل"
+                  />
+                </div>
 
-              <div class="floating-input mb-5 relative">
-                <input
-                  type="number"
-                  id="phone"
+                <!-- email section -->
+                <div>
+                  <label
+                    for="email"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                    >الايميل</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    v-model="userData.data.email"
+                    id="email"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                    placeholder="name@company.com"
+                  />
+                </div>
+
+                <!-- country section -->
+                <div>
+                  <label
+                    for="country"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                  >
+                    الدوله
+                  </label>
+                  <input
+                    type="text"
+                    name="country"
+                    v-model="userData.data.country"
+                    id="country"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                    placeholder="Saudi Arabia"
+                  />
+                </div>
+
+                <!-- tel section -->
+
+                <div>
+                  <label
+                    for="tel"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                    >رقم الهاتف</label
+                  >
+                  <input
+                    type="te;"
+                    name="tel"
+                    v-model="userData.data.tel"
+                    id="tel"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                    placeholder="+1423456789"
+                  />
+                </div>
+
+                <!-- address section -->
+
+                <div>
+                  <label
+                    for="address"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                    >العنوان</label
+                  >
+                  <input
+                    type="text"
+                    name="address"
+                    v-model="userData.data.address"
+                    id="address"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                    placeholder="Al-Ryadh"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="
+                      block
+                      mb-2
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      dark:text-white
+                    "
+                    >كلمه السر</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    v-model="userData.data.password"
+                    placeholder="••••••••"
+                    class="
+                      bg-gray-50
+                      border border-gray-300
+                      text-gray-900
+                      sm:text-sm
+                      rounded-lg
+                      focus:ring-blue-600 focus:border-blue-600
+                      block
+                      w-full
+                      p-2.5
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
+                      dark:text-white
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
+                    "
+                  />
+                </div>
+
+               
+                <button
+                  type="submit"
                   class="
-                    border border-gray-200
-                    focus:outline-none
-                    rounded-md
-                    focus:border-gray-500 focus:shadow-sm
                     w-full
-                    p-3
-                    h-16
+                    text-white
+                    bg-blue-600
+                    hover:bg-blue-700
+                    focus:ring-4 focus:outline-none focus:ring-blue-300
+                    font-medium
+                    rounded-lg
+                    text-sm
+                    px-5
+                    py-2.5
+                    text-center
+                    dark:bg-blue-600
+                    dark:hover:bg-blue-700
+                    dark:focus:ring-blue-800
                   "
-                  placeholder=" "
-                  autocomplete="off"
-                  value="0125803725"
-                />
-                <label
-                  for="phone"
-                  class="
-                    absolute
-                    top-0
-                    right-0
-                    px-3
-                    py-5
-                    h-full
-                    pointer-events-none
-                    transform
-                    origin-left
-                    transition-all
-                    duration-100
-                    ease-in-out
-                  "
-                  >رقم الهاتف</label
                 >
-              </div>
-              <div class="checkout">
-                <ion-button expand="block" @click="editProfile">
-                  تعديل الملف الشخصي</ion-button
-                >
-              </div>
-            </form>
-          </ion-card-content>
-        </ion-card>
-      </div>
+                تعديل الملف الشخصي
+                </button>
+               
+              </form>
     </ion-content>
   </ion-page>
 </template>
@@ -181,25 +327,23 @@ import {
   IonPage,
   IonHeader,
   IonContent,
-  IonCard,
-  IonCardContent,
-  IonButton,
+
 } from "@ionic/vue";
+import { mapGetters } from 'vuex';
 export default {
   name: "EditProfile",
   components: {
     IonPage,
     IonHeader,
     IonContent,
-    IonCard,
-    IonCardContent,
-    IonButton,
+
   },
   methods: {
     editProfile() {
       this.toast("top", "success", "تم تعديل الملف الشخصي بنجاح");
     },
   },
+  computed : mapGetters(["userData"]),
   inject: ["toast"],
 };
 </script>

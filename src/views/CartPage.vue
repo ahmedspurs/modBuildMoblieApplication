@@ -45,7 +45,7 @@
             <div class="w-3/4">
               <img
                 class="w-24 h-24"
-                :src="'http://localhost:5000/uploads/' + item.image"
+                :src="'https://www.mod-bina.com/uploads/' + item.image"
                 loading="lazy"
               />
             </div>
@@ -58,7 +58,7 @@
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }}
-                <span class="text-sm"> ج.س </span>
+                <span class="text-sm">SAR</span>
               </span>
 
               <div class="flex items-center justify-between">

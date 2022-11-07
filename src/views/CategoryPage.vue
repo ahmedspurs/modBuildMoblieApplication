@@ -30,7 +30,7 @@
           <ion-card class="shadow-none">
             <router-link :to="`/tabs/SubCategory/${item.id}`">
               <img
-                :src="`http://localhost:5000/uploads/${item.image}`"
+                :src="`https://www.mod-bina.com/uploads/${item.image}`"
                 loading="lazy"
                 class="h-36 w-full"
               />

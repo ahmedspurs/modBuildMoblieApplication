@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=El+Messiri&display=swap");
 @import url("https://unpkg.com/swiper/swiper-bundle.min.css");
+.iti__flag {background-image: url("./flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("./flags@2x.png");}
+}
 * {
   font-family: "El Messiri", sans-serif;
   direction: rtl;

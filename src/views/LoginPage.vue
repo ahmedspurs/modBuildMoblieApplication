@@ -8,7 +8,7 @@
           href="#"
           class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          مواد بناء
+          مود بناء
         </a>
         <div
           class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
@@ -74,7 +74,7 @@
 
 <script>
 import axios from "axios";
-import { IonPage } from "@ionic/vue";
+import { IonPage , useBackButton } from "@ionic/vue";
 
 export default {
   components: { IonPage },
@@ -84,7 +84,11 @@ export default {
       password: "",
     };
   },
-
+  setup() {
+    useBackButton(1, () => {
+      console.log("backPresssed");
+    });
+  },
   methods: {
     async login() {
       if (this.email == "" && this.password == "") {
@@ -93,7 +97,7 @@ export default {
         try {
           const userData = { email: this.email, password: this.password };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/auth/login",
+            "https://www.mod-bina.com/api/v1/auth/login",
             userData
           );
           console.log(res.data);

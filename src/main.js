@@ -31,7 +31,7 @@ import "./theme/variables.css";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-
+import 'intl-tel-input/build/css/intlTelInput.css';
 const app = createApp(App)
   .use(IonicVue)
   .use(router)

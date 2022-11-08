@@ -5,6 +5,7 @@ const state = {
   session_url: " https://www.mod-bina.com/api/v1/auth/me",
   register_url: " https://www.mod-bina.com/api/v1/auth/register",
   logout_url: " https://www.mod-bina.com/api/v1/auth/logout",
+  update_url: " https://www.mod-bina.com/api/v1/users",
   token: null,
   config: {
     headers: {
@@ -60,7 +61,7 @@ const actions = {
     try {
       const { id, user } = payload;
       const response = await axios.put(
-        `${state.session_url}/${id}`,
+        `${state.update_url}/${id}`,
         user,
         state.config
       );

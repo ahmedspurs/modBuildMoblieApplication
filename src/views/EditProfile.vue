@@ -26,7 +26,7 @@
     <ion-content>
       <div class="flex flex-col justify-center items-center pt-4">
         <img
-                :src="'https://www.mod-bina.com/uploads/' + userData?.data?.image"
+          :src="'https://www.mod-bina.com/uploads/' + userData?.data?.image"
           loading="lazy"
           class="w-56 h-56 rounded-full"
         />
@@ -45,305 +45,167 @@
               d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
             />
           </svg>
-          <span>تغيير الصورة</span>
+          <span @click="uploadImage()">تغيير الصورة</span>
         </span>
       </div>
 
-         <form
-                ref="form"
-                class="space-y-4 md:space-y-6 p-4"
-                @submit.prevent="editProfile"
-              >
-                <div>
-                  <label
-                    for="name"
-                    class="
-                      block
-                      mb-2
-                      text-sm
-                      font-medium
-                      text-gray-900
-                      dark:text-white
-                    "
-                    >الاسم</label
-                  >
-                  <input
-                    type="text"
-                    name="name"
-                    v-model="userData.data.name"
-                    id="name"
-                    class="
-                      bg-gray-50
-                      border border-gray-300
-                      text-gray-900
-                      sm:text-sm
-                      rounded-lg
-                      focus:ring-blue-600 focus:border-blue-600
-                      block
-                      w-full
-                      p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
-                    "
-                    placeholder="احد عادل"
-                  />
-                </div>
+      <form
+        ref="form"
+        class="space-y-4 md:space-y-6 p-4"
+        @submit.prevent="editProfile"
+      >
+        <input
+          type="file"
+          name="photos"
+          style="visibility: hidden"
+          id="uploadImage"
+        />
+        <div>
+          <label
+            for="name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >الاسم</label
+          >
+          <input
+            type="text"
+            name="name"
+            v-model="userData.data.name"
+            id="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="احد عادل"
+          />
+        </div>
 
-                <!-- email section -->
-                <div>
-                  <label
-                    for="email"
-                    class="
-                      block
-                      mb-2
-                      text-sm
-                      font-medium
-                      text-gray-900
-                      dark:text-white
-                    "
-                    >الايميل</label
-                  >
-                  <input
-                    type="email"
-                    name="email"
-                    v-model="userData.data.email"
-                    id="email"
-                    class="
-                      bg-gray-50
-                      border border-gray-300
-                      text-gray-900
-                      sm:text-sm
-                      rounded-lg
-                      focus:ring-blue-600 focus:border-blue-600
-                      block
-                      w-full
-                      p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
-                    "
-                    placeholder="name@company.com"
-                  />
-                </div>
+        <!-- email section -->
+        <div>
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >الايميل</label
+          >
+          <input
+            type="email"
+            name="email"
+            v-model="userData.data.email"
+            id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="name@company.com"
+          />
+        </div>
 
-                <!-- country section -->
-                <div>
-                  <label
-                    for="country"
-                    class="
-                      block
-                      mb-2
-                      text-sm
-                      font-medium
-                      text-gray-900
-                      dark:text-white
-                    "
-                  >
-                    الدوله
-                  </label>
-                  <input
-                    type="text"
-                    name="country"
-                    v-model="userData.data.country"
-                    id="country"
-                    class="
-                      bg-gray-50
-                      border border-gray-300
-                      text-gray-900
-                      sm:text-sm
-                      rounded-lg
-                      focus:ring-blue-600 focus:border-blue-600
-                      block
-                      w-full
-                      p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
-                    "
-                    placeholder="Saudi Arabia"
-                  />
-                </div>
+        <!-- country section -->
+        <div>
+          <label
+            for="country"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            الدوله
+          </label>
+          <input
+            type="text"
+            name="country"
+            v-model="userData.data.country"
+            id="country"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Saudi Arabia"
+          />
+        </div>
 
-                <!-- tel section -->
+        <!-- tel section -->
 
-                <div>
-                  <label
-                    for="tel"
-                    class="
-                      block
-                      mb-2
-                      text-sm
-                      font-medium
-                      text-gray-900
-                      dark:text-white
-                    "
-                    >رقم الهاتف</label
-                  >
-                  <input
-                    type="te;"
-                    name="tel"
-                    v-model="userData.data.tel"
-                    id="tel"
-                    class="
-                      bg-gray-50
-                      border border-gray-300
-                      text-gray-900
-                      sm:text-sm
-                      rounded-lg
-                      focus:ring-blue-600 focus:border-blue-600
-                      block
-                      w-full
-                      p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
-                    "
-                    placeholder="+1423456789"
-                  />
-                </div>
+        <div>
+          <label
+            for="tel"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >رقم الهاتف</label
+          >
+          <input
+            type="te;"
+            name="tel"
+            v-model="userData.data.tel"
+            id="tel"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="+1423456789"
+          />
+        </div>
 
-                <!-- address section -->
+        <!-- address section -->
 
-                <div>
-                  <label
-                    for="address"
-                    class="
-                      block
-                      mb-2
-                      text-sm
-                      font-medium
-                      text-gray-900
-                      dark:text-white
-                    "
-                    >العنوان</label
-                  >
-                  <input
-                    type="text"
-                    name="address"
-                    v-model="userData.data.address"
-                    id="address"
-                    class="
-                      bg-gray-50
-                      border border-gray-300
-                      text-gray-900
-                      sm:text-sm
-                      rounded-lg
-                      focus:ring-blue-600 focus:border-blue-600
-                      block
-                      w-full
-                      p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
-                    "
-                    placeholder="Al-Ryadh"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="password"
-                    class="
-                      block
-                      mb-2
-                      text-sm
-                      font-medium
-                      text-gray-900
-                      dark:text-white
-                    "
-                    >كلمه السر</label
-                  >
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    v-model="userData.data.password"
-                    placeholder="••••••••"
-                    class="
-                      bg-gray-50
-                      border border-gray-300
-                      text-gray-900
-                      sm:text-sm
-                      rounded-lg
-                      focus:ring-blue-600 focus:border-blue-600
-                      block
-                      w-full
-                      p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
-                    "
-                  />
-                </div>
+        <div>
+          <label
+            for="address"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >العنوان</label
+          >
+          <input
+            type="text"
+            name="address"
+            v-model="userData.data.address"
+            id="address"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Al-Ryadh"
+          />
+        </div>
+        <div>
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >كلمه السر</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            v-model="userData.data.password"
+            placeholder="••••••••"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
 
-               
-                <button
-                  type="submit"
-                  class="
-                    w-full
-                    text-white
-                    bg-blue-600
-                    hover:bg-blue-700
-                    focus:ring-4 focus:outline-none focus:ring-blue-300
-                    font-medium
-                    rounded-lg
-                    text-sm
-                    px-5
-                    py-2.5
-                    text-center
-                    dark:bg-blue-600
-                    dark:hover:bg-blue-700
-                    dark:focus:ring-blue-800
-                  "
-                >
-                تعديل الملف الشخصي
-                </button>
-               
-              </form>
+        <button
+          type="submit"
+          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          تعديل الملف الشخصي
+        </button>
+      </form>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import {
-  IonPage,
-  IonHeader,
-  IonContent,
-
-} from "@ionic/vue";
-import { mapGetters } from 'vuex';
+import { IonPage, IonHeader, IonContent } from "@ionic/vue";
+import { mapGetters } from "vuex";
 export default {
   name: "EditProfile",
   components: {
     IonPage,
     IonHeader,
     IonContent,
-
   },
   methods: {
-    editProfile() {
-      this.toast("top", "success", "تم تعديل الملف الشخصي بنجاح");
+    uploadImage() {
+      document.querySelector("#uploadImage").click();
+    },
+    async editProfile() {
+      const formData = new FormData(this.$refs.form);
+      const id = this.userData.data.id;
+      const payload = {
+        user: formData,
+        id,
+      };
+      try {
+        console.log(this.userData);
+        if (await this.$store.dispatch("updateUser", payload)) {
+          console.log("user updated");
+          this.toast("top", "success", "تم تعديل الملف الشخصي بنجاح");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
-  computed : mapGetters(["userData"]),
+  computed: mapGetters(["userData"]),
   inject: ["toast"],
 };
 </script>

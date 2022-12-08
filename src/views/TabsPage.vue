@@ -47,25 +47,16 @@
 
         </ion-tab-button>
         <!-- contact us  tab -->
-        <ion-tab-button tab="ContactPage" href="/tabs/ContactPage">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-8 w-8"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-            />
-          </svg>
+        <ion-tab-button tab="ContactPage" href="/tabs/SallersPage">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+</svg>
+
 
         </ion-tab-button>
         <!-- profile tab -->
-        <ion-tab-button tab="ProfilePage" href="/tabs/ProfilePage">
+        <ion-tab-button tab="ProfilePage" @click="push()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-8 w-8"
@@ -106,5 +97,14 @@ export default defineComponent({
     IonPage,
     IonRouterOutlet,
   },
+  methods:{
+    push() {
+      if (localStorage.getItem("mod_user_token")) {
+        this.$router.push("/tabs/ProfilePage");
+      } else if (localStorage.getItem("mod_user_token") == null) {
+        this.$router.push("/tabs/LoginPage");
+      }
+    },
+  }
 });
 </script>

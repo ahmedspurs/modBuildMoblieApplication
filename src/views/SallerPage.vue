@@ -3,7 +3,7 @@
     <ion-header>
       <div class="flex items-cnter justify-between px-4 py-2">
         <div class="p-4">
-          <router-link to="/tabs/CategoryPage">
+          <router-link to="/tabs/SallersPage">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 text-black"
@@ -21,7 +21,7 @@
           </router-link>
         </div>
         <h2>
-          {{ product?.sub_sections?.name }}
+          {{ products[0]?.user?.name }}
         </h2>
         <div class="flex items-center">
           <div class="p-3">
@@ -68,8 +68,8 @@
           <input
             type="text"
             class="rounded-l-2xl w-full outline-none shadow-xl"
-            placeholder="بحث"
             v-model="search"
+            placeholder="بحث"
           />
         </div>
       </div>
@@ -111,23 +111,23 @@ export default {
     IonHeader,
     IonContent,
   },
-  computed: {
+  computed:{
     ...mapGetters(["allProducts"]),
-filtered() {
+    filtered() {
       return this.products.filter((item) => {
         return item.name.includes(this.search);
       });
     },
-  },
+  } ,
   data() {
     return {
       products: [],
-      search:""
+      search : ""
     };
   },
-  created() {
+  mounted() {
     this.products = this.allProducts.filter(
-      (word) => word.sub_section_id == this.$route.params.id
+      (word) => word.user_id == this.$route.params.id
     );
   },
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const state = {
   subCategories: [],
-  session_url: " https://www.mod-bina.com/api/v1/SubSections",
+  session_url: " https://mod-bina.com/api/v1/SubSections",
   addError: [],
   config: {
     headers: {

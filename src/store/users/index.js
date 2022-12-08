@@ -2,10 +2,10 @@ import axios from "axios";
 
 const state = {
   user: {},
-  session_url: " https://www.mod-bina.com/api/v1/auth/me",
-  register_url: " https://www.mod-bina.com/api/v1/auth/register",
-  logout_url: " https://www.mod-bina.com/api/v1/auth/logout",
-  update_url: " https://www.mod-bina.com/api/v1/users",
+  session_url: " https://mod-bina.com/api/v1/auth/me",
+  register_url: " https://mod-bina.com/api/v1/auth/register",
+  logout_url: " https://mod-bina.com/api/v1/auth/logout",
+  update_url: " https://mod-bina.com/api/v1/users",
   token: null,
   config: {
     headers: {

@@ -29,7 +29,7 @@
             <router-link :to="`/tabs/ProductsPage/${item.id}`">
 
                           <img
-              :src="`https://www.mod-bina.com/uploads/${item.image}`"
+              :src="`https://mod-bina.com/uploads/${item.image}`"
               loading="lazy"
               class="h-36 w-full"
 

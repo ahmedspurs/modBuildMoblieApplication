@@ -3,7 +3,7 @@
     <loading-spinner v-if="$store.state.loader" />
     <ion-header v-if="!$store.state.loader">
       <div class="flex items-cnter justify-between px-4">
-        <h2>الاقسام</h2>
+        <h2>المغالق</h2>
         <div class="flex items-center">
           <div class="p-3">
              <router-link to="/tabs/CartPage">
@@ -29,16 +29,16 @@
     </ion-header>
     <ion-content v-if="!$store.state.loader">
       <div class="grid grid-cols-2 gap-4 p-4">
-        <div class="card" :key="item.id" v-for="item in allCategories">
+        <div class="card" :key="item.id" v-for="item in filteredUsers">
           <ion-card class="shadow-none">
-            <router-link :to="`/tabs/SubCategory/${item.id}`">
+            <router-link :to="`/tabs/SallerPage/${item?.id}`">
               <img
-                :src="`https://mod-bina.com/uploads/${item.image}`"
+                :src="`https://mod-bina.com/uploads/${item?.image}`"
                 loading="lazy"
                 class="h-36 w-full"
               />
             </router-link>
-            <h2 class="text-center">{{ item.name }}</h2>
+            <h2 class="text-center">{{ item?.name }}</h2>
           </ion-card>
         </div>
       </div>
@@ -51,6 +51,7 @@ import { IonPage, IonContent, IonHeader, IonCard } from "@ionic/vue";
 import { mapGetters } from "vuex";
 import { ref } from "vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
+import axios from 'axios';
 
 export default {
   name: "CategoryPage",
@@ -61,15 +62,38 @@ export default {
     IonCard,
     LoadingSpinner,
   },
-  mounted() {
-    this.loading();
+  data(){
+    return{
+        users : [],
+        filteredUsers:[]
+    }
   },
-  computed: mapGetters(["allCategories"]),
+  async mounted() {
+    await this.loading();
+    await this.getUsers();
+    await this.filter()
+     
+    console.log(this.filteredUsers);
+  },
+  computed: mapGetters(["allProducts"]),
   setup() {
     const accordionGroup = ref();
     return {
       accordionGroup,
     };
+  },
+  methods:{
+    async getUsers(){
+        const url = "https://mod-bina.com/api/v1/users"
+        const response = await axios.get(url)
+        this.users = response.data
+        console.log(this.users);
+    },
+    async filter(){
+  this.filteredUsers = this.users.filter(
+      (word) => word.role == "admin"
+    );
+    }
   },
   inject: ["loading"],
 };

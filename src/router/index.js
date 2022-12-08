@@ -15,20 +15,16 @@ import LastOrder from "../views/LastOrder.vue";
 import SubCategory from "../views/SubCategory.vue";
 import LoginPage from "../views/LoginPage.vue";
 import RegisterPage from "../views/RegisterPage.vue";
+import SearchPage from "../views/SearchPage.vue";
+import SallersPage from "../views/SallersPage.vue";
+import SallerPage from "../views/SallerPage.vue";
 
 const routes = [
   {
     path: "/",
     redirect: "/tabs/HomePage"
   },
-  {
-    path: "/LoginPage",
-    component: LoginPage
-  },
-  {
-    path: "/RegisterPage",
-    component: RegisterPage
-  },
+  
   {
     path: "/tabs/",
     component: TabsPage,
@@ -36,6 +32,14 @@ const routes = [
       {
         path: "",
         redirect: "/tabs/HomePage"
+      },
+      {
+        path: "LoginPage",
+        component: LoginPage
+      },
+      {
+        path: "RegisterPage",
+        component: RegisterPage
       },
       {
         path: "HomePage",
@@ -85,9 +89,15 @@ const routes = [
         path: "ProfilePage",
         component: ProfilePage
       },
+      {
+        path: "SearchPage",
+        component: SearchPage
+      },
       
       
-      { path: "EditProfile", component: EditProfile }
+      { path: "EditProfile", component: EditProfile },
+      { path: "SallersPage", component: SallersPage },
+      { path: "SallerPage/:id", component: SallerPage },
     ]
   }
 ];

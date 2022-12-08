@@ -4,7 +4,7 @@ const state = {
   products: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   empty: true,
-  session_url: " https://www.mod-bina.com/api/v1/products",
+  session_url: " https://mod-bina.com/api/v1/products",
 };
 
 const getters = {

@@ -19,7 +19,6 @@ export default {
     IonRouterOutlet,
   },
   mounted() {
-    this.veirfy()
     this.$store.dispatch("fetchCategories");
     this.$store.dispatch("fetchProducts");
     this.$store.dispatch("getUser");
@@ -54,7 +53,7 @@ export default {
       if (localStorage.getItem("mod_user_token")) {
         console.log("loggend in");
       } else if (localStorage.getItem("mod_user_token") == null) {
-        this.$router.push("/LoginPage");
+        this.$router.push("/tabs/LoginPage");
       }
     },
   },
@@ -63,6 +62,7 @@ export default {
       toast: this.toast,
       alert: this.alert,
       loading: this.loading,
+      veirfy : this.veirfy
     };
   },
 };

@@ -46,11 +46,12 @@
 
 <!-- inputs -->
 
-   <form
+   <!-- <form
         ref="form"
         class="space-y-4 md:space-y-6 p-4"
         @submit.prevent="checkout"
-      >
+      > -->
+      <form method="post" action="https://api.moyasar.com/v1/payments.html">
         
         <div>
           <label
@@ -60,7 +61,7 @@
           >
           <input
             type="text"
-            name="name"
+            name="userName"
             id="name"
             class="
               bg-gray-50
@@ -161,7 +162,7 @@
           >
           <input
             type="text"
-            name="name"
+            name="source[number]"
             id="name"
             class="
               bg-gray-50
@@ -192,7 +193,7 @@
           >
           <input
             type="text"
-            name="name"
+            name="source[name]"
             id="name"
             class="
               bg-gray-50
@@ -222,41 +223,63 @@
             class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
             >تاريخ الانتهاء</label
           >
-          <input
-            type="text"
-            name="name"
-            id="name"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
-            placeholder=" mm / yy"
-          />
         </div>
-
+        <input
+          type="text"
+          name="source[month]"
+          id="name"
+          class="
+            bg-gray-50
+            border border-gray-300
+            text-gray-900
+            sm:text-sm
+            rounded-lg
+            focus:ring-blue-600 focus:border-blue-600
+            block
+            w-full
+            p-2.5
+            non:bg-gray-700
+            non:border-gray-600
+            non:placeholder-gray-400
+            non:text-white
+            non:focus:ring-blue-500
+            non:focus:border-blue-500
+          "
+          placeholder="mm"
+        />
+        <input
+          type="text"
+          name="source[year]"
+          id="name"
+          class="
+            bg-gray-50
+            border border-gray-300
+            text-gray-900
+            sm:text-sm
+            rounded-lg
+            focus:ring-blue-600 focus:border-blue-600
+            block
+            w-full
+            p-2.5
+            non:bg-gray-700
+            non:border-gray-600
+            non:placeholder-gray-400
+            non:text-white
+            non:focus:ring-blue-500
+            non:focus:border-blue-500
+          "
+          placeholder="yy"
+        />
 
              <div>
           <label
             for="name"
             class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
-            >CVS</label
+            >CVC</label
           >
           <input
             type="text"
-            name="name"
+            name="source[cvc]"
             id="name"
             class="
               bg-gray-50
@@ -275,7 +298,7 @@
               non:focus:ring-blue-500
               non:focus:border-blue-500
             "
-            placeholder=" cvs"
+            placeholder=" cvc"
           />
         </div>
 
@@ -309,7 +332,11 @@
             </ion-card-content>
           </ion-card>
         </div>
-
+        <input type="hidden" name="callback_url" value="https://moyasar.com/thanks">
+        <input type="hidden" name="publishable_api_key" value="pk_test_ZcsLqrJypvVT2X9HTkaTr8utDa3tuwgvf2eizdM7">
+        <input type="hidden" name="amount" value="200000">
+        <input type="hidden" name="source[type]" value="creditcard">
+        <input type="hidden" name="description" value="new order">
         <button
           type="submit"
           class="

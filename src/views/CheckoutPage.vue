@@ -51,7 +51,7 @@
         class="space-y-4 md:space-y-6 p-4"
         @submit.prevent="checkout"
       > -->
-      <form method="post" action="https://api.moyasar.com/v1/payments.html">
+      <form method="post" class="p-4" action="https://api.moyasar.com/v1/payments.html" @submit.prevent="vaildation">
         
         <div>
           <label
@@ -63,6 +63,8 @@
             type="text"
             name="userName"
             id="name"
+            v-model="name"
+
             class="
               bg-gray-50
               border border-gray-300
@@ -99,6 +101,8 @@
             type="tel"
             name="tel"
             id="tel"
+            v-model="phone"
+
             class="
               bg-gray-50
               border border-gray-300
@@ -132,6 +136,8 @@
             type="text"
             name="address"
             id="address"
+            v-model="address"
+
             class="
               bg-gray-50
               border border-gray-300
@@ -163,6 +169,8 @@
           <input
             type="text"
             name="source[number]"
+            v-model="cNam"
+
             id="name"
             class="
               bg-gray-50
@@ -181,7 +189,7 @@
               non:focus:ring-blue-500
               non:focus:border-blue-500
             "
-            placeholder=" الاسم"
+            placeholder=" رقم البطاقه"
           />
         </div>
 
@@ -195,6 +203,8 @@
             type="text"
             name="source[name]"
             id="name"
+            v-model="noc"
+            
             class="
               bg-gray-50
               border border-gray-300
@@ -220,15 +230,18 @@
              <div>
           <label
             for="name"
-            class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
+            class="block mb-2 text-sm font-medium text-gray-900 non:text-white my-2"
             >تاريخ الانتهاء</label
           >
         </div>
         <input
           type="text"
           name="source[month]"
+            v-model="month"
+
           id="name"
           class="
+          my-2
             bg-gray-50
             border border-gray-300
             text-gray-900
@@ -251,6 +264,8 @@
           type="text"
           name="source[year]"
           id="name"
+            v-model="year"
+
           class="
             bg-gray-50
             border border-gray-300
@@ -281,6 +296,7 @@
             type="text"
             name="source[cvc]"
             id="name"
+            v-model="cvc"
             class="
               bg-gray-50
               border border-gray-300
@@ -373,10 +389,47 @@ name:"CheckoutPage",
 components:{
   IonPage , IonHeader , IonContent , IonCard , IonCardContent,IonText
 },
+data(){
+  return{
+    name: "",
+    phone : "",
+    address : "",
+    cvc : "",
+    noc : "",
+    cNum : "",
+    month : "",
+    year :""
+  }
+},
 mounted(){
   this.veirfy()
 },
-inject : ["veirfy"]
+methods:{
+  vaildation(){
+    if( this.name == "" || this.phone == '' || this.address == '' || this.cvc == '' || this.noc == '' || this.cNum == '' || this.month =='' || this.year == '' ){
+      this.toast("top" , "danger" , "الرجاء ملء كل الحقول")
+    }else {
+      if(this.cvc.toString().length > 3){
+      this.toast("top" , "danger" , "cvc غير صالح")
+
+      }
+      if(this.cNum.toString().length != 14){
+      this.toast("top" , "danger" , " رقم بطاقه غير صالح ")
+
+      }
+      if(this.month.toString().length != 2){
+      this.toast("top" , "danger" , "  الرجاء ادخال شهر  صحيح")
+
+      }
+      if(this.year.toString().length > 4){
+      this.toast("top" , "danger" , "الرجاء ادخال سنه صحيحه  ")
+
+      }
+    }
+    
+  }
+},
+inject : ["veirfy","toast"]
 }
 </script>
 
@@ -396,5 +449,8 @@ inject : ["veirfy"]
 .floating-input > textarea:focus ~ label,
 .floating-input > input:not(:placeholder-shown) ~ label {
   @apply opacity-75 scale-75 -translate-y-3 translate-x-1;
+}
+label{
+  margin: 10px 0;
 }
 </style>

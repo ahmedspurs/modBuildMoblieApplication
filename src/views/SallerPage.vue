@@ -73,6 +73,9 @@
           />
         </div>
       </div>
+       <div v-if="filtered.length==0 " class="h-screen flex items-center justify-center text-center">
+        <h2>عفوا لا توجد منتجات</h2>
+      </div>
       <div class="grid grid-cols-2 gap-4 p-4 py-8">
         <div class="card" :key="item" v-for="item in filtered">
           <div class="border border-gray-300 rounded-xl p-6 relative">

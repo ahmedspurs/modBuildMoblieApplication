@@ -28,6 +28,9 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader">
+         <div v-if="allCategories.length==0 " class="h-screen flex items-center justify-center text-center">
+        <h2>عفوا لا توجد اقسام</h2>
+      </div>
       <div class="grid grid-cols-2 gap-4 p-4">
         <div class="card" :key="item.id" v-for="item in allCategories">
           <ion-card class="shadow-none">

@@ -28,6 +28,9 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader">
+       <div v-if="filteredUsers.length==0 " class="h-screen flex items-center justify-center text-center">
+        <h2>عفوا لا توجد مغالق</h2>
+      </div>
       <div class="grid grid-cols-2 gap-4 p-4">
         <div class="card" :key="item.id" v-for="item in filteredUsers">
           <ion-card class="shadow-none">

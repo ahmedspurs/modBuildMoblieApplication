@@ -48,6 +48,8 @@ export default {
       setTimeout(() => {
         this.$store.state.loader = false
       }, 1000);
+        this.$store.state.loader = true
+
 },
   veirfy() {
       if (localStorage.getItem("mod_user_token")) {

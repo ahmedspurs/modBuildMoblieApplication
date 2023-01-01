@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-   <ion-header>
+   <ion-header v-if="!$store.state.loader">
            <div class="flex items-cnter justify-between px-4 py-2">
              <div class="p-4">
              <router-link to="/tabs/CategoryPage">
@@ -23,6 +23,12 @@
         </div>
       </ion-header>
     <ion-content>
+      <loading-spinner v-if="$store.state.loader"/>
+      <div class="sub cat" v-if="!$store.state.loader">
+  <div  v-if="subCategories.length==0 " class="h-screen flex items-center justify-center text-center">
+        <h2>عفوا لا توجد اقسام</h2>
+      </div>
+
       <div class="grid grid-cols-2 gap-4 p-4" >
         <div class="card" :key="item.id" v-for="item in subCategories">
           <ion-card class="shadow-none" >
@@ -42,6 +48,8 @@
 
       
       </div>
+      </div>
+    
     </ion-content>
   </ion-page>
 </template>
@@ -50,6 +58,7 @@
 import { IonPage, IonContent, IonHeader, IonCard } from "@ionic/vue";
 import {mapGetters} from "vuex";
 import { ref } from "vue";
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 export default {
   name: "CategoryPage",
@@ -58,6 +67,7 @@ export default {
     IonContent,
     IonHeader,
     IonCard,
+    LoadingSpinner,
   },
   data(){
     return {

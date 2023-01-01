@@ -21,10 +21,14 @@ import SallerPage from "../views/SallerPage.vue";
 
 const routes = [
   {
+    path: '/payment',
+    beforeEnter() { location.href = 'https://api.moyasar.com/v1/payments.html' }
+  },
+  {
     path: "/",
     redirect: "/tabs/HomePage"
   },
-  
+
   {
     path: "/tabs/",
     component: TabsPage,
@@ -93,8 +97,8 @@ const routes = [
         path: "SearchPage",
         component: SearchPage
       },
-      
-      
+
+
       { path: "EditProfile", component: EditProfile },
       { path: "SallersPage", component: SallersPage },
       { path: "SallerPage/:id", component: SallerPage },

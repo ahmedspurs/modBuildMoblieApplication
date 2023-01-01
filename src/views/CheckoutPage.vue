@@ -51,7 +51,7 @@
         class="space-y-4 md:space-y-6 p-4"
         @submit.prevent="checkout"
       > -->
-      <form method="post" class="p-4" action="https://api.moyasar.com/v1/payments.html" @submit.prevent="vaildation">
+      <form method="post" class="p-4" @submit.prevent="vaildation">
         
         <div>
           <label
@@ -353,7 +353,8 @@
         <input type="hidden" name="amount" value="200000">
         <input type="hidden" name="source[type]" value="creditcard">
         <input type="hidden" name="description" value="new order">
-        <button
+        <router-link
+          to="/payment"
           type="submit"
           class="
             w-full
@@ -371,7 +372,7 @@
           "
         >
   اتمام الطلب
-        </button>
+        </router-link>
       </form>
     <!-- total price section -->
    

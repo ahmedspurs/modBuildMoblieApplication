@@ -1,58 +1,60 @@
 <template>
   <ion-page>
-      <ion-header>
-    <div class="flex items-cnter justify-between px-4 py-2">
-      <div class="p-4">
-         <router-link to="/tabs/CartPage">
+    <ion-header>
+      <div class="flex items-cnter justify-between px-4 py-2">
+        <div class="p-4">
+          <router-link to="/tabs/CartPage">
             <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 text-black"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-        </router-link>
-        
-      </div>
-      <h2> اتمام الطلب </h2>
-      <div class="flex items-center">
-        <div class="p-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-8 w-8"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-            />
-          </svg>
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </router-link>
+        </div>
+        <h2>اتمام الطلب</h2>
+        <div class="flex items-center">
+          <div class="p-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+          </div>
         </div>
       </div>
-    </div>
-  </ion-header>
-  <ion-content>
+    </ion-header>
+    <ion-content>
+      <!-- inputs -->
 
-<!-- inputs -->
-
-   <!-- <form
+      <!-- <form
         ref="form"
         class="space-y-4 md:space-y-6 p-4"
         @submit.prevent="checkout"
       > -->
-      <form method="post" class="p-4" @submit.prevent="vaildation">
-        
+      <form
+        id="myForm"
+        method="post"
+        class="p-4"
+        action="https://api.moyasar.com/v1/payments.html"
+      >
         <div>
           <label
             for="name"
@@ -64,7 +66,6 @@
             name="userName"
             id="name"
             v-model="name"
-
             class="
               bg-gray-50
               border border-gray-300
@@ -86,9 +87,6 @@
           />
         </div>
 
-      
-
-        
         <!-- tel section -->
 
         <div>
@@ -102,7 +100,6 @@
             name="tel"
             id="tel"
             v-model="phone"
-
             class="
               bg-gray-50
               border border-gray-300
@@ -137,7 +134,6 @@
             name="address"
             id="address"
             v-model="address"
-
             class="
               bg-gray-50
               border border-gray-300
@@ -158,9 +154,8 @@
             placeholder="Al-Ryadh"
           />
         </div>
-      
 
-           <div>
+        <div>
           <label
             for="name"
             class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
@@ -169,8 +164,7 @@
           <input
             type="text"
             name="source[number]"
-            v-model="cNam"
-
+            v-model="cNum"
             id="name"
             class="
               bg-gray-50
@@ -193,18 +187,18 @@
           />
         </div>
 
-    <div>
+        <div>
           <label
             for="name"
             class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
-            > الاسم علي البطاقه</label
+          >
+            الاسم علي البطاقه</label
           >
           <input
             type="text"
             name="source[name]"
             id="name"
             v-model="noc"
-            
             class="
               bg-gray-50
               border border-gray-300
@@ -226,22 +220,28 @@
           />
         </div>
 
-
-             <div>
+        <div>
           <label
             for="name"
-            class="block mb-2 text-sm font-medium text-gray-900 non:text-white my-2"
+            class="
+              block
+              mb-2
+              text-sm
+              font-medium
+              text-gray-900
+              non:text-white
+              my-2
+            "
             >تاريخ الانتهاء</label
           >
         </div>
         <input
           type="text"
           name="source[month]"
-            v-model="month"
-
+          v-model="month"
           id="name"
           class="
-          my-2
+            my-2
             bg-gray-50
             border border-gray-300
             text-gray-900
@@ -264,8 +264,7 @@
           type="text"
           name="source[year]"
           id="name"
-            v-model="year"
-
+          v-model="year"
           class="
             bg-gray-50
             border border-gray-300
@@ -286,7 +285,7 @@
           placeholder="yy"
         />
 
-             <div>
+        <div>
           <label
             for="name"
             class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
@@ -318,7 +317,7 @@
           />
         </div>
 
-   <div class="total-price">
+        <div class="total-price">
           <ion-card>
             <ion-card-content>
               <div class="products flex justify-between">
@@ -348,14 +347,22 @@
             </ion-card-content>
           </ion-card>
         </div>
-        <input type="hidden" name="callback_url" value="https://moyasar.com/thanks">
-        <input type="hidden" name="publishable_api_key" value="pk_test_ZcsLqrJypvVT2X9HTkaTr8utDa3tuwgvf2eizdM7">
-        <input type="hidden" name="amount" value="200000">
-        <input type="hidden" name="source[type]" value="creditcard">
-        <input type="hidden" name="description" value="new order">
-        <router-link
+        <input
+          type="hidden"
+          name="callback_url"
+          value="https://moyasar.com/thanks"
+        />
+        <input
+          type="hidden"
+          name="publishable_api_key"
+          value="pk_test_ZcsLqrJypvVT2X9HTkaTr8utDa3tuwgvf2eizdM7"
+        />
+        <input type="hidden" name="amount" value="200000" />
+        <input type="hidden" name="source[type]" value="creditcard" />
+        <input type="hidden" name="description" value="new order" />
+        <button
+          @click.prevent="vaildation"
           to="/payment"
-          type="submit"
           class="
             w-full
             text-white
@@ -371,67 +378,85 @@
             non:bg-blue-600 non:hover:bg-blue-700 non:focus:ring-blue-800
           "
         >
-  اتمام الطلب
-        </router-link>
+          اتمام الطلب
+        </button>
       </form>
-    <!-- total price section -->
-   
-
-   
-  </ion-content>
+      <!-- total price section -->
+    </ion-content>
   </ion-page>
 </template>
 
 <script>
-import {IonPage , IonHeader , IonContent , IonCard , IonCardContent,IonText} from "@ionic/vue"
+import {
+  IonPage,
+  IonHeader,
+  IonContent,
+  IonCard,
+  IonCardContent,
+  IonText,
+} from "@ionic/vue";
 
 export default {
-name:"CheckoutPage",
-components:{
-  IonPage , IonHeader , IonContent , IonCard , IonCardContent,IonText
-},
-data(){
-  return{
-    name: "",
-    phone : "",
-    address : "",
-    cvc : "",
-    noc : "",
-    cNum : "",
-    month : "",
-    year :""
-  }
-},
-mounted(){
-  this.veirfy()
-},
-methods:{
-  vaildation(){
-    if( this.name == "" || this.phone == '' || this.address == '' || this.cvc == '' || this.noc == '' || this.cNum == '' || this.month =='' || this.year == '' ){
-      this.toast("top" , "danger" , "الرجاء ملء كل الحقول")
-    }else {
-      if(this.cvc.toString().length > 3){
-      this.toast("top" , "danger" , "cvc غير صالح")
-
+  name: "CheckoutPage",
+  components: {
+    IonPage,
+    IonHeader,
+    IonContent,
+    IonCard,
+    IonCardContent,
+    IonText,
+  },
+  data() {
+    return {
+      name: "",
+      phone: "",
+      address: "",
+      cvc: "",
+      noc: "",
+      cNum: "",
+      month: "",
+      year: "",
+    };
+  },
+  mounted() {
+    this.veirfy();
+  },
+  methods: {
+    vaildation() {
+      if (
+        this.name == "" ||
+        this.phone == "" ||
+        this.address == "" ||
+        this.cvc == "" ||
+        this.noc == "" ||
+        this.cNum == "" ||
+        this.month == "" ||
+        this.year == ""
+      ) {
+        this.toast("top", "danger", "الرجاء ملء كل الحقول");
+      } else {
+        if (this.cvc.toString().length > 3) {
+          this.toast("top", "danger", "cvc غير صالح");
+          return 0;
+        }
+        if (this.cNum.toString().length != 16) {
+          this.toast("top", "danger", " رقم بطاقه غير صالح ");
+          return 0;
+        }
+        if (this.month.toString().length != 2) {
+          this.toast("top", "danger", "  الرجاء ادخال شهر  صحيح");
+          return 0;
+        }
+        if (this.year.toString().length > 4) {
+          this.toast("top", "danger", "الرجاء ادخال سنه صحيحه  ");
+          return 0;
+        }
+        document.getElementById("myForm").submit();
       }
-      if(this.cNum.toString().length != 14){
-      this.toast("top" , "danger" , " رقم بطاقه غير صالح ")
-
-      }
-      if(this.month.toString().length != 2){
-      this.toast("top" , "danger" , "  الرجاء ادخال شهر  صحيح")
-
-      }
-      if(this.year.toString().length > 4){
-      this.toast("top" , "danger" , "الرجاء ادخال سنه صحيحه  ")
-
-      }
-    }
-    
-  }
-},
-inject : ["veirfy","toast"]
-}
+    },
+  },
+  inject: ["veirfy", "toast"],
+};
 </script>
 
 <style scoped>
@@ -451,7 +476,7 @@ inject : ["veirfy","toast"]
 .floating-input > input:not(:placeholder-shown) ~ label {
   @apply opacity-75 scale-75 -translate-y-3 translate-x-1;
 }
-label{
+label {
   margin: 10px 0;
 }
 </style>

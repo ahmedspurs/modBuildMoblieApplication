@@ -317,36 +317,42 @@
           />
         </div>
 
-        <div class="total-price">
-          <ion-card>
-            <ion-card-content>
-              <div class="products flex justify-between">
+      <!-- total price section -->
+          <div class="total-price">
+            <ion-card>
+              <ion-card-content>
                 <ion-text color="dark">
-                  <b>ملخص الطبيه</b>
+                  <span class="text-[16px] font-semibold">ملخص الطلبيه</span>
                 </ion-text>
-                <ion-text color="dark">
-                  <b>3 منتجات</b>
-                </ion-text>
-              </div>
-              <div class="products flex justify-between">
-                <ion-text color="dark">
-                  <span>رسوم التوصيل</span>
-                </ion-text>
-                <ion-text color="dark">
-                  <span>50$</span>
-                </ion-text>
-              </div>
-              <div class="products flex justify-between">
-                <ion-text color="dark">
-                  <span>المجموع الكلي</span>
-                </ion-text>
-                <ion-text color="dark">
-                  <span>550.99$</span>
-                </ion-text>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </div>
+                <div class="products flex justify-between ml-9 pt-2">
+                  <ion-text color="dark">
+                    <span cla> عدد المنتجات</span>
+                  </ion-text>
+                  <ion-text color="dark">
+                    <span class="font-semibold"
+                      >{{ $store.state.products.cart.length }} منتج</span
+                    >
+                  </ion-text>
+                </div>
+
+                <div class="products flex justify-between">
+                  <ion-text color="dark">
+                    <span>المجموع الكلي </span>
+                  </ion-text>
+                  <ion-text color="dark">
+                    <span class="font-semibold"
+                      >{{
+                        totalPrice()
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                      }}
+                      SAR</span
+                    >
+                  </ion-text>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
         <input
           type="hidden"
           name="callback_url"
@@ -357,7 +363,7 @@
           name="publishable_api_key"
           value="pk_test_ZcsLqrJypvVT2X9HTkaTr8utDa3tuwgvf2eizdM7"
         />
-        <input type="hidden" name="amount" value="200000" />
+        <input type="hidden" name="amount" :value="totalPrice()" />
         <input type="hidden" name="source[type]" value="creditcard" />
         <input type="hidden" name="description" value="new order" />
         <button
@@ -453,6 +459,16 @@ export default {
         }
         document.getElementById("myForm").submit();
       }
+    },
+     totalPrice() {
+      let sum = 0;
+      this.$store.state.products.cart.forEach((item) => {
+        let element = item.price * item.qty;
+        sum += element;
+      });
+      this.total = sum;
+      console.log(sum);
+      return this.total;
     },
   },
   inject: ["veirfy", "toast"],

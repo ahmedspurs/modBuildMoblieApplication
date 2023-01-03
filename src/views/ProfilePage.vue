@@ -58,7 +58,7 @@
             </svg>
           </div>
         </router-link>
-        <router-link to="/tabs/LastOrders">
+        <!-- <router-link to="/tabs/LastOrders">
           <div class="flex bg-gray-200 rounded-xl justify-between p-2 mt-2">
             <span class="text-xl text-black"> الطلبات السابقه </span>
             <svg
@@ -76,7 +76,7 @@
               />
             </svg>
           </div>
-        </router-link>
+        </router-link> -->
            <router-link to="/tabs/ContactPage">
           <div class="flex bg-gray-200 rounded-xl justify-between p-2 mt-2">
             <span class="text-xl text-black"> تواصل معنا  </span>

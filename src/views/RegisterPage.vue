@@ -360,34 +360,7 @@
 
                 <!-- image upload -->
 
-                <div class="flex items-start">
-                  <div class="flex items-center h-5">
-                    <input
-                      id="terms"
-                      aria-describedby="terms"
-                      type="checkbox"
-                      class="
-                        w-4
-                        h-4
-                        border border-gray-300
-                        rounded
-                        bg-gray-50
-                        focus:ring-3 focus:ring-blue-300
-                        non:bg-gray-700
-                        non:border-gray-600
-                        non:focus:ring-blue-600
-                        non:ring-offset-gray-800
-                      "
-                    />
-                  </div>
-                  <div class="ml-3 text-sm">
-                    <label
-                      for="terms"
-                      class="font-light text-gray-500 non:text-gray-300"
-                      >بتسجيلك حساب جديد فأنت تقبل الشروط والاحكام
-                    </label>
-                  </div>
-                </div>
+           
                 <button
                   type="submit"
                   class="

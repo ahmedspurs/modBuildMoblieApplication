@@ -363,7 +363,7 @@
           name="publishable_api_key"
           value="pk_test_ZcsLqrJypvVT2X9HTkaTr8utDa3tuwgvf2eizdM7"
         />
-        <input type="hidden" name="amount" :value="totalPrice()" />
+        <input type="hidden" name="amount" :value="totalPrice()*100" />
         <input type="hidden" name="source[type]" value="creditcard" />
         <input type="hidden" name="description" value="new order" />
         <button

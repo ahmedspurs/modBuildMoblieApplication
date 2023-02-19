@@ -42,7 +42,7 @@
             />
             </router-link>
 
-            <h2 class="text-center">{{item?.name}}</h2>
+                  <h1 style="font-size: 18px;text-align:center;color:black"> {{ item?.name }}</h1>
           </ion-card>
         </div>
 

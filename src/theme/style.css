@@ -19,3 +19,10 @@ ion-header::after {
 .cats img {
   height: 100px;
 }
+button{
+  color: white !important;
+}
+
+ion-button{
+  color: white !important;
+}

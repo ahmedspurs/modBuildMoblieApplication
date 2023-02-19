@@ -7,7 +7,7 @@
         class="header bg-blue-500 text-white py-4 rounded-b-2xl"
         v-if="token"
       >
-        <div class="flex items-cnter justify-between px-4">
+        <div class="flex items-center justify-between px-4">
           <div class="flex items-center space-x-2">
             <router-link to="/tabs/ProfilePage">
               <svg
@@ -62,7 +62,7 @@
         v-if="!token"
       >
         <div class="flex items-center justify-between px-4">
-          <div class="flex">
+          <div class="flex items-center">
             <router-link to="/tabs/ProfilePage">
               <img
                 :src="'https://mod-bina.com/uploads/' + userData?.data?.image"
@@ -80,7 +80,7 @@
               <router-link to="/tabs/CartPage">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8"
+                  class="h-8 w-8 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -159,9 +159,10 @@
               />
 
               <ion-card-content>
-                <ion-text class="text-center">
-                  <span class="font-semibold"> {{ item?.name }}</span>
+                <ion-text  color="dark">
+                  <h1 style="font-size: 14px;text-align:center"> {{ item?.name }}</h1>
                 </ion-text>
+            
               </ion-card-content>
             </ion-card>
           </router-link>

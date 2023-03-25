@@ -2,15 +2,11 @@ import axios from "axios";
 
 const state = {
   user: {},
-  session_url: " https://www.mod-bina.com/api/v1/auth/me",
-  register_url: " https://www.mod-bina.com/api/v1/auth/register",
-  logout_url: " https://www.mod-bina.com/api/v1/auth/logout",
-  update_url: " https://www.mod-bina.com/api/v1/users",
+  session_url: "https://eng-alzubair.com/wp-json/wc/v3/customers",
   token: null,
-  config: {
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("mod_user_token"),
-    },
+  auth: {
+    username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
+    password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
   },
 };
 

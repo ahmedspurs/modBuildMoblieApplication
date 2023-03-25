@@ -6,8 +6,8 @@ const state = {
   empty: true,
   session_url: "https://eng-alzubair.com/wp-json/wc/v3/products",
   auth: {
-    username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
-    password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
+    username: "ck_cfd30277f5f54cdf6ae4ae28d91317ee1dffecdb",
+    password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
   },
 };
 

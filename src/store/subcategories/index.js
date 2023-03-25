@@ -6,8 +6,8 @@ const state = {
   catName: "",
   categoryIndex: 0,
   auth: {
-    username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
-    password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
+    username: "ck_cfd30277f5f54cdf6ae4ae28d91317ee1dffecdb",
+    password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
   },
   addError: [],
 };
@@ -23,18 +23,12 @@ const getters = {
 
 const actions = {
   async fetchSubCategories({ commit }) {
-    const response = await axios.get(
-      `${state.session_url}/categories`,
-      {
-        auth: state.auth
-      }
-    );
-    const response2 = await axios.get(
-      `${state.session_url}`,
-      {
-        auth: state.auth
-      }
-    );
+    const response = await axios.get(`${state.session_url}/categories`, {
+      auth: state.auth,
+    });
+    const response2 = await axios.get(`${state.session_url}`, {
+      auth: state.auth,
+    });
     if (response.data) {
       let mainCat = [];
       response.data.forEach((element) => {

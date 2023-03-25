@@ -102,31 +102,30 @@
       <!-- search -->
       <div class="flex justify-center items-center -mt-4">
         <router-link class="w-3/4" to="/tabs/SearchPage">
-             <div class="flex " dir="rtl">
-          <button class="bg-white p-2 rounded-r-2xl shadow-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 text-blue-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-          <input
-            type="text"
-            class="rounded-l-2xl w-full outline-none shadow-xl"
-            placeholder="بحث"
-          />
-        </div>
+          <div class="flex" dir="rtl">
+            <button class="bg-white p-2 rounded-r-2xl shadow-xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+            <input
+              type="text"
+              class="rounded-l-2xl w-full outline-none shadow-xl"
+              placeholder="بحث"
+            />
+          </div>
         </router-link>
-     
       </div>
       <!-- categoris section -->
       <div class="flex px-4 justify-between items-center">
@@ -143,26 +142,21 @@
         <swiper-slide class="px-2" v-for="item in allCategories" :key="item.id">
           <router-link :to="`/tabs/SubCategory/${item.id}`">
             <ion-card
-              class="
-                shadow-none
-                w-full
-                flex flex-col
-                justify-center
-                items-center
-              "
+              class="shadow-none w-full flex flex-col justify-center items-center"
             >
               <img
-                :src="`https://mod-bina.com/uploads/${item?.image}`"
+                :src="`${item?.image?.src}`"
                 loading="lazy"
                 height="100"
                 class="rounded-xl h-56 w-full"
               />
 
               <ion-card-content>
-                <ion-text  color="dark">
-                  <h1 style="font-size: 14px;text-align:center"> {{ item?.name }}</h1>
+                <ion-text color="dark">
+                  <h1 style="font-size: 14px; text-align: center">
+                    {{ item?.name }}
+                  </h1>
                 </ion-text>
-            
               </ion-card-content>
             </ion-card>
           </router-link>
@@ -191,7 +185,7 @@
             <router-link :to="`/tabs/ProducPage/${item?.id}`">
               <img
                 class="w-full h-36"
-                :src="`https://mod-bina.com/uploads/${item?.image?.image}`"
+                :src="`${item?.images[0]?.src}`"
                 loading="lazy"
               />
 

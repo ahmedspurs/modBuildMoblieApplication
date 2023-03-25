@@ -21,6 +21,7 @@ export default {
   mounted() {
     // this.veirfy()
     // this.$store.dispatch("fetchCategories");
+    this.$store.dispatch("fetchCategories");
     this.$store.dispatch("fetchProducts");
     // this.$store.dispatch("getUser");
     // this.$store.dispatch("fetchSubCategories");
@@ -50,12 +51,14 @@ export default {
       setTimeout(() => {
         this.$store.state.loader = false
       }, 1000);
+        this.$store.state.loader = true
+
 },
   veirfy() {
       if (localStorage.getItem("mod_user_token")) {
         console.log("loggend in");
       } else if (localStorage.getItem("mod_user_token") == null) {
-        this.$router.push("/LoginPage");
+        this.$router.push("/tabs/LoginPage");
       }
     },
   },
@@ -64,6 +67,7 @@ export default {
       toast: this.toast,
       alert: this.alert,
       loading: this.loading,
+      veirfy : this.veirfy
     };
   },
 };

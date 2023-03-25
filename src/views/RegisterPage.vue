@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content>
-      <section class="bg-gray-50 dark:bg-gray-900">
+      <section class="bg-gray-50 non:bg-gray-900">
         <div
           class="
             flex flex-col
@@ -23,7 +23,7 @@
               text-2xl
               font-semibold
               text-gray-900
-              dark:text-white
+              non:text-white
             "
           >
             مود بناء
@@ -34,11 +34,11 @@
               bg-white
               rounded-lg
               shadow
-              dark:border
+              non:border
               md:mt-0
               sm:max-w-md
               xl:p-0
-              dark:bg-gray-800 dark:border-gray-700
+              non:bg-gray-800 non:border-gray-700
             "
           >
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -50,7 +50,7 @@
                   tracking-tight
                   text-gray-900
                   md:text-2xl
-                  dark:text-white
+                  non:text-white
                 "
               >
                 انشئ حساب
@@ -69,7 +69,7 @@
                       text-sm
                       font-medium
                       text-gray-900
-                      dark:text-white
+                      non:text-white
                     "
                     >الاسم</label
                   >
@@ -88,12 +88,12 @@
                       block
                       w-full
                       p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
+                      non:bg-gray-700
+                      non:border-gray-600
+                      non:placeholder-gray-400
+                      non:text-white
+                      non:focus:ring-blue-500
+                      non:focus:border-blue-500
                     "
                     placeholder=" اسمك"
                   />
@@ -109,7 +109,7 @@
                       text-sm
                       font-medium
                       text-gray-900
-                      dark:text-white
+                      non:text-white
                     "
                     >الايميل</label
                   >
@@ -128,12 +128,12 @@
                       block
                       w-full
                       p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
+                      non:bg-gray-700
+                      non:border-gray-600
+                      non:placeholder-gray-400
+                      non:text-white
+                      non:focus:ring-blue-500
+                      non:focus:border-blue-500
                     "
                     placeholder="name@company.com"
                   />
@@ -149,7 +149,7 @@
                       text-sm
                       font-medium
                       text-gray-900
-                      dark:text-white
+                      non:text-white
                     "
                   >
                     الدوله
@@ -169,12 +169,12 @@
                       block
                       w-full
                       p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
+                      non:bg-gray-700
+                      non:border-gray-600
+                      non:placeholder-gray-400
+                      non:text-white
+                      non:focus:ring-blue-500
+                      non:focus:border-blue-500
                     "
                     placeholder="Saudi Arabia"
                   />
@@ -191,7 +191,7 @@
                       text-sm
                       font-medium
                       text-gray-900
-                      dark:text-white
+                      non:text-white
                     "
                     >رقم الهاتف</label
                   >
@@ -210,12 +210,12 @@
                       block
                       w-full
                       p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
+                      non:bg-gray-700
+                      non:border-gray-600
+                      non:placeholder-gray-400
+                      non:text-white
+                      non:focus:ring-blue-500
+                      non:focus:border-blue-500
                     "
                     placeholder="+1423456789"
                   />
@@ -232,7 +232,7 @@
                       text-sm
                       font-medium
                       text-gray-900
-                      dark:text-white
+                      non:text-white
                     "
                     >العنوان</label
                   >
@@ -251,12 +251,12 @@
                       block
                       w-full
                       p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
+                      non:bg-gray-700
+                      non:border-gray-600
+                      non:placeholder-gray-400
+                      non:text-white
+                      non:focus:ring-blue-500
+                      non:focus:border-blue-500
                     "
                     placeholder="Al-Ryadh"
                   />
@@ -270,7 +270,7 @@
                       text-sm
                       font-medium
                       text-gray-900
-                      dark:text-white
+                      non:text-white
                     "
                     >كلمه السر</label
                   >
@@ -290,12 +290,12 @@
                       block
                       w-full
                       p-2.5
-                      dark:bg-gray-700
-                      dark:border-gray-600
-                      dark:placeholder-gray-400
-                      dark:text-white
-                      dark:focus:ring-blue-500
-                      dark:focus:border-blue-500
+                      non:bg-gray-700
+                      non:border-gray-600
+                      non:placeholder-gray-400
+                      non:text-white
+                      non:focus:ring-blue-500
+                      non:focus:border-blue-500
                     "
                   />
                 </div>
@@ -315,11 +315,11 @@
                       rounded-lg
                       border-2 border-gray-300 border-dashed
                       cursor-pointer
-                      dark:hover:bg-bray-800 dark:bg-gray-700
+                      non:hover:bg-bray-800 non:bg-gray-700
                       hover:bg-gray-100
-                      dark:border-gray-600
-                      dark:hover:border-gray-500
-                      dark:hover:bg-gray-600
+                      non:border-gray-600
+                      non:hover:border-gray-500
+                      non:hover:bg-gray-600
                     "
                   >
                     <div
@@ -345,7 +345,7 @@
                           d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                         ></path>
                       </svg>
-                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                      <p class="mb-2 text-sm text-gray-500 non:text-gray-400">
                         رفع صورة الملف الشخصي
                       </p>
                     </div>
@@ -360,34 +360,7 @@
 
                 <!-- image upload -->
 
-                <div class="flex items-start">
-                  <div class="flex items-center h-5">
-                    <input
-                      id="terms"
-                      aria-describedby="terms"
-                      type="checkbox"
-                      class="
-                        w-4
-                        h-4
-                        border border-gray-300
-                        rounded
-                        bg-gray-50
-                        focus:ring-3 focus:ring-blue-300
-                        dark:bg-gray-700
-                        dark:border-gray-600
-                        dark:focus:ring-blue-600
-                        dark:ring-offset-gray-800
-                      "
-                    />
-                  </div>
-                  <div class="ml-3 text-sm">
-                    <label
-                      for="terms"
-                      class="font-light text-gray-500 dark:text-gray-300"
-                      >بتسجيلك حساب جديد فأنت تقبل الشروط والاحكام
-                    </label>
-                  </div>
-                </div>
+           
                 <button
                   type="submit"
                   class="
@@ -402,22 +375,22 @@
                     px-5
                     py-2.5
                     text-center
-                    dark:bg-blue-600
-                    dark:hover:bg-blue-700
-                    dark:focus:ring-blue-800
+                    non:bg-blue-600
+                    non:hover:bg-blue-700
+                    non:focus:ring-blue-800
                   "
                 >
                   تسجيل حساب جديد
                 </button>
-                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p class="text-sm font-light text-gray-500 non:text-gray-400">
                   لديك حساب بالفعل ؟
                   <router-link
-                    to="/LoginPage"
+                    to="/tabs/LoginPage"
                     class="
                       font-medium
                       text-blue-600
                       hover:underline
-                      dark:text-blue-500
+                      non:text-blue-500
                     "
                     >تسجيل الدخول</router-link
                   >
@@ -432,7 +405,7 @@
 </template>
 
 <script>
-import { IonPage, IonContent } from "@ionic/vue";
+import { IonPage, IonContent,loadingController } from "@ionic/vue";
 
 import axios from "axios";
 export default {
@@ -460,6 +433,13 @@ export default {
       //   tel: this.tel,
       //   role: "user",
       // };
+         const loading = await loadingController
+          .create({
+            cssClass: 'my-custom-class',
+          });
+
+        await loading.present();
+
       if (
         this.name == "" ||
         this.email == "" ||
@@ -469,14 +449,18 @@ export default {
         this.tel == ""
       ) {
         this.toast("top", "danger", "الرجاء ملء كل الحقول");
+                 loading.dismiss()
+
       } else if (this.tel.toString().length < 9) {
         this.toast("top", "danger", "رقم الهاتف يجب ان يكون اكثر من 9 ارقام");
+                 loading.dismiss()
+
       } else {
         const formData = new FormData(this.$refs.form);
         formData.append("role", "user");
         try {
           const res = await axios.post(
-            "https://www.mod-bina.com/api/v1/auth/register",
+            "https://mod-bina.com/api/v1/auth/register",
             formData
           );
           console.log(res.data);
@@ -488,22 +472,30 @@ export default {
             this.address = "";
             this.tel = "";
             this.toast("top", "success", "      تم تسجيل حسابك بنجاح  ");
-            await this.$router.push("/LoginPage");
+                 loading.dismiss()
+
+            await this.$router.push("/tabs/LoginPage");
             location.reload()
           } else if (res.data.error == "user with this email, already exist") {
             this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
+                 loading.dismiss()
+
           }
         } catch (error) {
           if (
             error.response.data.error == "user with this email, already exist"
           ) {
             this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
+                 loading.dismiss()
+
           } else {
             this.toast(
               "top",
               "danger",
               "  حدث خطاء ما الرجاء التحقق من الاتصال بالانترنت"
             );
+                 loading.dismiss()
+
           }
         }
       }

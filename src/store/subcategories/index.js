@@ -9,6 +9,7 @@ const state = {
     username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
     password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
   },
+  addError: [],
 };
 
 const getters = {

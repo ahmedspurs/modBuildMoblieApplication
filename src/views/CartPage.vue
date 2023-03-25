@@ -45,7 +45,7 @@
             <div class="w-3/4">
               <img
                 class="w-24 h-24"
-                :src="'https://www.mod-bina.com/uploads/' + item.image"
+                :src="'https://mod-bina.com/uploads/' + item.image"
                 loading="lazy"
               />
             </div>
@@ -169,9 +169,7 @@
 
           <!-- checkout section -->
           <div class="checkout p-2 w-full text-center">
-            <router-link to="/tabs/CheckoutPage/" @click="updateCart()">
-              <ion-button>اتمام الطلب</ion-button>
-            </router-link>
+              <ion-button @click="push()">اتمام الطلب</ion-button>
           </div>
         </div>
       </div>
@@ -263,6 +261,14 @@ export default {
       this.total = sum;
       console.log(sum);
       return this.total;
+    },
+    push() {
+      this.updateCart()
+      if (localStorage.getItem("mod_user_token")) {
+        this.$router.push("/tabs/CheckoutPage");
+      } else if (localStorage.getItem("mod_user_token") == null) {
+        this.$router.push("/tabs/LoginPage");
+      }
     },
   },
 };

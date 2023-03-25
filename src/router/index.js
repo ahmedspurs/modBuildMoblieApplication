@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "@ionic/vue-router";
+import { createRouter, createWebHashHistory } from "@ionic/vue-router";
 import TabsPage from "../views/TabsPage.vue";
 import HomePage from "../views/HomePage.vue";
 import CategoryPage from "../views/CategoryPage.vue";
@@ -15,20 +15,20 @@ import LastOrder from "../views/LastOrder.vue";
 import SubCategory from "../views/SubCategory.vue";
 import LoginPage from "../views/LoginPage.vue";
 import RegisterPage from "../views/RegisterPage.vue";
+import SearchPage from "../views/SearchPage.vue";
+import SallersPage from "../views/SallersPage.vue";
+import SallerPage from "../views/SallerPage.vue";
 
 const routes = [
+  {
+    path: '/payment',
+    beforeEnter() { location.href = 'https://api.moyasar.com/v1/payments.html' }
+  },
   {
     path: "/",
     redirect: "/tabs/HomePage"
   },
-  {
-    path: "/LoginPage",
-    component: LoginPage
-  },
-  {
-    path: "/RegisterPage",
-    component: RegisterPage
-  },
+
   {
     path: "/tabs/",
     component: TabsPage,
@@ -36,6 +36,14 @@ const routes = [
       {
         path: "",
         redirect: "/tabs/HomePage"
+      },
+      {
+        path: "LoginPage",
+        component: LoginPage
+      },
+      {
+        path: "RegisterPage",
+        component: RegisterPage
       },
       {
         path: "HomePage",
@@ -85,15 +93,21 @@ const routes = [
         path: "ProfilePage",
         component: ProfilePage
       },
-      
-      
-      { path: "EditProfile", component: EditProfile }
+      {
+        path: "SearchPage",
+        component: SearchPage
+      },
+
+
+      { path: "EditProfile", component: EditProfile },
+      { path: "SallersPage", component: SallersPage },
+      { path: "SallerPage/:id", component: SallerPage },
     ]
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 });
 

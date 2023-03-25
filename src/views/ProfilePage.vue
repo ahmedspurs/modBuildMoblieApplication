@@ -6,20 +6,23 @@
         <h2>الملف الشخصي</h2>
         <div class="flex items-center">
           <div class="p-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
+             <router-link to="/tabs/CartPage">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </router-link>
           </div>
         </div>
       </div>
@@ -28,7 +31,7 @@
 
       <div class="flex flex-col justify-center items-center pt-4">
         <img
-                :src="'https://www.mod-bina.com/uploads/' + userData?.data?.image"
+                :src="'https://mod-bina.com/uploads/' + userData?.data?.image"
           loading="lazy"
           class="w-56 h-56 rounded-full"
         />
@@ -55,9 +58,28 @@
             </svg>
           </div>
         </router-link>
-        <router-link to="/tabs/LastOrders">
+        <!-- <router-link to="/tabs/LastOrders">
           <div class="flex bg-gray-200 rounded-xl justify-between p-2 mt-2">
             <span class="text-xl text-black"> الطلبات السابقه </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </div>
+        </router-link> -->
+           <router-link to="/tabs/ContactPage">
+          <div class="flex bg-gray-200 rounded-xl justify-between p-2 mt-2">
+            <span class="text-xl text-black"> تواصل معنا  </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-8 w-8 text-black"
@@ -101,7 +123,7 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonContent } from "@ionic/vue";
+import { IonPage, IonHeader, IonContent ,loadingController} from "@ionic/vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import axios from "axios";
 import { mapGetters } from 'vuex';
@@ -112,43 +134,52 @@ export default {
     IonHeader,
     IonContent,
     LoadingSpinner,
+    
   },
   mounted() {
     this.loading();
+    this.veirfy()
     this.$store.dispatch("getUser")
   },
   computed : mapGetters(["userData"]),
   methods: {
     async logout() {
+        const loading = await loadingController.create({
+        cssClass: "my-custom-class",
+      });
+
+      await loading.present();
+
       const token = localStorage.getItem("mod_user_token");
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      this.$store.state.loader = true;
 
       try {
         const res = await axios.get(
-          "https://www.mod-bina.com/api/v1/auth/logout",
+          "https://mod-bina.com/api/v1/auth/logout",
           config
         );
         if (!res.data.success) {
-          this.$store.state.loader = false;
           this.toast("top", "danger", "عفوا حدث خطاء ما");
+        loading.dismiss();
+
           return;
         }
 
         console.log(res);
         localStorage.clear();
-        await this.$router.push("/LoginPage");
+        loading.dismiss();
+
+        await this.$router.push("/");
         location.reload();
         this.toast("top", "danger", "تم تسجيل الخروج بنجاح");
       } catch (error) {
-        this.$store.state.loader = false;
         this.toast("top", "danger", "عفوا حدث خطاء ما");
       }
     },
   },
-  inject: ["toast", "loading"],
+  inject: ["toast", "loading","veirfy"],
 };
 </script>
 

@@ -4,7 +4,11 @@ const state = {
   products: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   empty: true,
-  session_url: " https://www.mod-bina.com/api/v1/products",
+  session_url: "https://eng-alzubair.com/wp-json/wc/v3/products",
+  auth: {
+    username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
+    password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
+  },
 };
 
 const getters = {
@@ -38,7 +42,9 @@ const getters = {
 
 const actions = {
   async fetchProducts({ commit, state }) {
-    const response = await axios.get(state.session_url);
+    const response = await axios.get(state.session_url, {
+      auth: state.auth,
+    });
     try {
       if (response.status == 200) {
         console.log(response.data);

@@ -19,10 +19,11 @@ export default {
     IonRouterOutlet,
   },
   mounted() {
-    this.veirfy()
-    this.$store.dispatch("fetchCategories");
+    // this.veirfy()
+    // this.$store.dispatch("fetchCategories");
     this.$store.dispatch("fetchProducts");
-    this.$store.dispatch("getUser");
+    // this.$store.dispatch("getUser");
+    // this.$store.dispatch("fetchSubCategories");
     this.$store.dispatch("fetchSubCategories");
   },
   methods: {

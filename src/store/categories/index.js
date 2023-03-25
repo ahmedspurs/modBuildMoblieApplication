@@ -2,12 +2,11 @@ import axios from "axios";
 
 const state = {
   categories: [],
-  session_url: " https://www.mod-bina.com/api/v1/sections",
+  session_url: "https://eng-alzubair.com/wp-json/wc/v3/products/categories",
   addError: [],
-  config: {
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("mod_user_token"),
-    },
+  auth: {
+    username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
+    password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
   },
 };
 
@@ -19,7 +18,7 @@ const getters = {
 
 const actions = {
   async fetchCategories({ commit, state }) {
-    const response = await axios.get(state.session_url, state.config);
+    const response = await axios.get(state.session_url, state.auth);
     commit("setCategories", response.data);
   },
 };

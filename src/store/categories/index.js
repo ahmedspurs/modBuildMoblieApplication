@@ -18,7 +18,7 @@ const getters = {
 
 const actions = {
   async fetchCategories({ commit, state }) {
-    const response = await axios.get(state.session_url, { auth: state.auth });
+    const response = await axios.get(state.session_url, {auth: state.auth});
     commit("setCategories", response.data);
   },
 };

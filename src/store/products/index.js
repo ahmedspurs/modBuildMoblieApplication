@@ -4,7 +4,7 @@ const state = {
   products: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   empty: true,
-  session_url: "https://eng-alzubair.com/wp-json/wc/v3/products",
+  session_url: "https://eng-alzubair.com/wp-json/wcfmmp/v1/products",
   auth: {
     username: "ck_cfd30277f5f54cdf6ae4ae28d91317ee1dffecdb",
     password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",

@@ -11,7 +11,7 @@
              </router-link>
              </div>
           <h2>
-            {{subCategories?.sections?.name}}
+            {{}}
           </h2>
           <div class="flex items-center">
             <div class=" p-3">
@@ -32,10 +32,10 @@
       <div class="grid grid-cols-2 gap-4 p-4" >
         <div class="card" :key="item.id" v-for="item in subCategories">
           <ion-card class="shadow-none" >
-            <router-link :to="`/tabs/ProductsPage/${item.id}`">
+            <router-link :to="`/tabs/ProductsPage/${item?.id}`">
 
                           <img
-              :src="`https://mod-bina.com/uploads/${item.image}`"
+              :src="item?.image?.src"
               loading="lazy"
               class="h-36 w-full"
 
@@ -75,10 +75,11 @@ subCategories : []
     }
   },
   computed : mapGetters(["allSubCategories"]),
-  created(){
+  mounted(){
 this.subCategories = this.allSubCategories.filter(
-      (word) => word.categoryId == this.$route.params.id
+      (word) => word.parent == this.$route.params.id
     );
+    console.log(this.allSubCategories);
   },
   setup() {
     const accordionGroup = ref();

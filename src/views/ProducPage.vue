@@ -8,7 +8,7 @@
           <swiper-slide class="p-2 relative">
             <img
               class="w-full h-1/2 rounded-b-2xl"
-              :src="'https://mod-bina.com/uploads/' + product?.image?.image"
+              :src="product?.images[0]?.src"
               loading="lazy"
             />
 
@@ -58,7 +58,7 @@
             <h2>{{ product?.name }}</h2>
             <span class="block"> {{ product?.user?.name }}</span>
           </div>
-          <h2>{{ product?.price }}$</h2>
+          <h2>{{ product?.price }} ريال</h2>
         </div>
         <div class="descr px-4">
           <p class="text-gray-600">
@@ -144,7 +144,7 @@ export default {
     },
     async getProduct() {
       const id = this.$route.params.id;
-      const url = ` https://mod-bina.com/api/v1/products/${id}`;
+      const url = `https://eng-alzubair.com/wp-json/wcfmmp/v1/products/${id}`;
       const res = await axios.get(url);
       this.product = res.data;
     },

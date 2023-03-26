@@ -83,14 +83,14 @@
             <router-link :to="`/tabs/ProducPage/${item?.id}`">
               <img
                 class=""
-                :src="`https://mod-bina.com/uploads/${item?.image?.image}`"
+                :src="item?.images[0]?.src"
                 loading="lazy"
               />
             </router-link>
 
             <div class="text-right">
               <span class="block font-semibold"> {{ item?.name }}</span>
-              <span class="block"> {{ item?.user?.name }}</span>
+              <span class="block"> {{ item?.store?.vendor_shop_name }}</span>
               <span class="text-blue-500 font-semibold block pt-2"
                 >{{ item?.price }}$</span
               >
@@ -131,7 +131,7 @@ filtered() {
   },
   created() {
     this.products = this.allProducts.filter(
-      (word) => word.sub_section_id == this.$route.params.id
+      (word) => word.categories[0].id == this.$route.params.id
     );
   },
 };

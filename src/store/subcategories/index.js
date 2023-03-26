@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const state = {
-  session_url: "https://eng-alzubair.com/wp-json/wc/v3/products",
+  session_url: "https://eng-alzubair.com/wp-json/wc/v3/products/categories",
   subCategories: [],
   catName: "",
   categoryIndex: 0,
@@ -10,6 +10,7 @@ const state = {
     password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
   },
   addError: [],
+  loader:0
 };
 
 const getters = {
@@ -23,46 +24,15 @@ const getters = {
 
 const actions = {
   async fetchSubCategories({ commit }) {
-    const response = await axios.get(`${state.session_url}/categories`, {
-      auth: state.auth,
-    });
-    const response2 = await axios.get(`${state.session_url}`, {
-      auth: state.auth,
-    });
-    if (response.data) {
-      let mainCat = [];
-      response.data.forEach((element) => {
-        if (element.parent == 0) {
-          mainCat.push(element);
-        }
-      });
-
-      let allCats = [];
-      mainCat.forEach((element) => {
-        let sub = [];
-        let subCats = [];
-        response2.data.forEach((item) => {
-          for (let i = 0; i < item.categories.length; i++) {
-            if (element.id == item.categories[i].id) {
-              sub.push(item);
-            }
-          }
-        });
-        response.data.forEach((item) => {
-          if (element.id == item.parent) {
-            subCats.push(item);
-          }
-        });
-        allCats.push({ name: element.name, sub: sub, subCats: subCats });
-      });
-      allCats.splice(0, 1);
-      commit("setSubCategories", allCats);
+    const response = await axios.get(state.session_url, {auth: state.auth});
+    commit("setSubCategories", response.data);
+      
     }
-  },
-};
+  }
 
 const mutations = {
   setSubCategories: (state, subCategories) => {
+    subCategories? state.loader = 0:'';
     state.subCategories = subCategories;
   },
 };

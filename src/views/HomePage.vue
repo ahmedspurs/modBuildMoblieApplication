@@ -142,6 +142,7 @@
         <swiper-slide class="px-2" v-for="item in allCategories" :key="item.id">
           <router-link :to="`/tabs/SubCategory/${item.id}`">
             <ion-card
+              v-if="!item.parent"
               class="shadow-none w-full flex flex-col justify-center items-center"
             >
               <img
@@ -191,9 +192,9 @@
 
               <div class="text-right">
                 <span class="block font-semibold"> {{ item?.name }}</span>
-                <span class="block"> {{ item?.user?.name }}</span>
+                <span class="block"> {{ item?.store?.vendor_shop_name }}</span>
                 <span class="text-blue-500 font-semibold block pt-2"
-                  >{{ item?.price }}$</span
+                  >{{ item?.price }} ريال</span
                 >
               </div>
             </router-link>

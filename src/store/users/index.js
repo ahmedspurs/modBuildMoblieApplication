@@ -17,10 +17,16 @@ const getters = {
 };
 
 const actions = {
-  async login({ commit, state }, user) {
+  async login({ commit, state }) {
     try {
-      const response = await axios.post(state.login_url, user);
-      localStorage.setItem("mod_user_token", response.data.token);
+      const id = localStorage.currentUserId;
+      if (!id) return false;
+      if (localStorage.isLoggIn) return false;
+      const response = await axios.get(`${state.session_url}/${id}`, {
+        auth: state.auth,
+      });
+      localStorage.setItem("currentUserDate", response.data);
+      localStorage.isLoggIn = true;
       commit("loginUser", response.data);
     } catch (err) {
       commit("loginUser", err.response.data);
@@ -28,8 +34,13 @@ const actions = {
   },
   async register({ commit, state }, user) {
     try {
-      const response = await axios.post(state.register_url, user, state.config);
-      if (response.data.success) {
+      const response = await axios.post(state.session_url, user, {
+        auth: state.auth,
+      });
+      if (response.status) {
+        localStorage.currentUserId = response.data.id;
+        localStorage.currentUserData = response.data;
+        localStorage.isLoggIn = true;
         commit("registerUser", response.data);
         return true;
       } else {
@@ -40,13 +51,14 @@ const actions = {
       return false;
     }
   },
-  async logout({ commit, state }) {
+  async logout({ commit }) {
     try {
-      const response = await axios.get(state.logout_url, state.config);
-      localStorage.removeItem("mod_user_token");
-      commit("logoutUser", response.data);
+      if (!localStorage.isLoggIn) return false;
+      localStorage.removeItem("currentUserData");
+      localStorage.isLoggIn = false;
+      commit("logoutUser");
     } catch (err) {
-      commit("logoutUser", err.response.data);
+      console.log(err);
     }
   },
   async getUser({ commit, state }) {
@@ -78,19 +90,14 @@ const mutations = {
     state.user = user;
   },
   loginUser: (state, user) => {
-    if (user.success == true) {
-      state.token = user.token;
-    }
+    state.user = user;
+    console.log(`logged in ${user}`);
   },
   registerUser: (state, data) => {
-    if (data.success == true) {
-      state.user = data;
-    }
+    state.user = data;
   },
-  logoutUser: (state, data) => {
-    if (data.success == true) {
-      state.token = null;
-    }
+  logoutUser: () => {
+    console.log(`logged out`);
   },
 
   editUser: (state, data) => {

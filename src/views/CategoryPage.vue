@@ -33,7 +33,7 @@
       </div>
       <div class="grid grid-cols-2 gap-4 p-4">
         <div class="card" :key="item.id" v-for="item in allCategories">
-          <ion-card class="shadow-none">
+          <ion-card v-if="!item.parent" class="shadow-none">
             <router-link :to="`/tabs/SubCategory/${item.id}`">
               <img
                 :src="item?.image?.src"

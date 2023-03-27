@@ -45,7 +45,7 @@
             <div class="w-3/4">
               <img
                 class="w-24 h-24"
-                :src="'https://mod-bina.com/uploads/' + item.image"
+                :src="item.image"
                 loading="lazy"
               />
             </div>
@@ -58,7 +58,7 @@
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }}
-                <span class="text-sm">SAR</span>
+                <span class="text-sm">ريال</span>
               </span>
 
               <div class="flex items-center justify-between">
@@ -159,7 +159,7 @@
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                       }}
-                      SAR</span
+                      ريال</span
                     >
                   </ion-text>
                 </div>

@@ -6,7 +6,7 @@ const state = {
   addError: [],
   auth: {
     username: "ck_cfd30277f5f54cdf6ae4ae28d91317ee1dffecdb",
-    password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
+  password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
   },
 };
 

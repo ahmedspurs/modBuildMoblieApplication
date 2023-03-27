@@ -62,7 +62,7 @@
         </div>
         <div class="descr px-4">
           <p class="text-gray-600">
-            {{ product?.discr }}
+            {{ product?.description }}
           </p>
         </div>
         <div class="checkout flex justify-between items-center px-4">
@@ -134,7 +134,7 @@ export default {
         id: product.id,
         name: product.name,
         price: product.price,
-        image: product.image.image,
+        image: product.images[0].src,
         qty: 1,
       };
       await this.$store.dispatch("addToCart", cart);

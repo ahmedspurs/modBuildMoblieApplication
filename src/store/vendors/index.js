@@ -35,8 +35,8 @@ const actions = {
   },
   // get single vendor
   // @GET session url /id
-  async fetchVendor({ commit, state }) {
-    const response = await axios.get(state.session_url, {
+  async fetchVendor({ commit, state }, id) {
+    const response = await axios.get(`${state.session_url}/${id}`, {
       auth: state.auth,
     });
     try {

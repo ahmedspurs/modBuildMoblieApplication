@@ -26,6 +26,7 @@ export default {
     // this.$store.dispatch("getUser");
     // this.$store.dispatch("fetchSubCategories");
     this.$store.dispatch("fetchSubCategories");
+    this.$store.dispatch("fetchVendors");
   },
   methods: {
     async toast(position, color, text) {
@@ -49,12 +50,11 @@ export default {
     },
     loading() {
       setTimeout(() => {
-        this.$store.state.loader = false
+        this.$store.state.loader = false;
       }, 1000);
-        this.$store.state.loader = true
-
-},
-  veirfy() {
+      this.$store.state.loader = true;
+    },
+    veirfy() {
       if (localStorage.getItem("mod_user_token")) {
         console.log("loggend in");
       } else if (localStorage.getItem("mod_user_token") == null) {
@@ -67,7 +67,7 @@ export default {
       toast: this.toast,
       alert: this.alert,
       loading: this.loading,
-      veirfy : this.veirfy
+      veirfy: this.veirfy,
     };
   },
 };

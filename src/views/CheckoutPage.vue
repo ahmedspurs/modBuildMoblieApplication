@@ -66,23 +66,7 @@
             name="userName"
             id="name"
             v-model="name"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder=" الاسم"
           />
         </div>
@@ -100,23 +84,7 @@
             name="tel"
             id="tel"
             v-model="phone"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="+1423456789"
           />
         </div>
@@ -134,23 +102,7 @@
             name="address"
             id="address"
             v-model="address"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="Al-Ryadh"
           />
         </div>
@@ -166,23 +118,7 @@
             name="source[number]"
             v-model="cNum"
             id="name"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder=" رقم البطاقه"
           />
         </div>
@@ -199,23 +135,7 @@
             name="source[name]"
             id="name"
             v-model="noc"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder=" الاسم"
           />
         </div>
@@ -223,15 +143,7 @@
         <div>
           <label
             for="name"
-            class="
-              block
-              mb-2
-              text-sm
-              font-medium
-              text-gray-900
-              non:text-white
-              my-2
-            "
+            class="block mb-2 text-sm font-medium text-gray-900 non:text-white my-2"
             >تاريخ الانتهاء</label
           >
         </div>
@@ -240,24 +152,7 @@
           name="source[month]"
           v-model="month"
           id="name"
-          class="
-            my-2
-            bg-gray-50
-            border border-gray-300
-            text-gray-900
-            sm:text-sm
-            rounded-lg
-            focus:ring-blue-600 focus:border-blue-600
-            block
-            w-full
-            p-2.5
-            non:bg-gray-700
-            non:border-gray-600
-            non:placeholder-gray-400
-            non:text-white
-            non:focus:ring-blue-500
-            non:focus:border-blue-500
-          "
+          class="my-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
           placeholder="mm"
         />
         <input
@@ -265,23 +160,7 @@
           name="source[year]"
           id="name"
           v-model="year"
-          class="
-            bg-gray-50
-            border border-gray-300
-            text-gray-900
-            sm:text-sm
-            rounded-lg
-            focus:ring-blue-600 focus:border-blue-600
-            block
-            w-full
-            p-2.5
-            non:bg-gray-700
-            non:border-gray-600
-            non:placeholder-gray-400
-            non:text-white
-            non:focus:ring-blue-500
-            non:focus:border-blue-500
-          "
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
           placeholder="yy"
         />
 
@@ -296,63 +175,47 @@
             name="source[cvc]"
             id="name"
             v-model="cvc"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder=" cvc"
           />
         </div>
 
-      <!-- total price section -->
-          <div class="total-price">
-            <ion-card>
-              <ion-card-content>
+        <!-- total price section -->
+        <div class="total-price">
+          <ion-card>
+            <ion-card-content>
+              <ion-text color="dark">
+                <span class="text-[16px] font-semibold">ملخص الطلبيه</span>
+              </ion-text>
+              <div class="products flex justify-between ml-9 pt-2">
                 <ion-text color="dark">
-                  <span class="text-[16px] font-semibold">ملخص الطلبيه</span>
+                  <span cla> عدد المنتجات</span>
                 </ion-text>
-                <div class="products flex justify-between ml-9 pt-2">
-                  <ion-text color="dark">
-                    <span cla> عدد المنتجات</span>
-                  </ion-text>
-                  <ion-text color="dark">
-                    <span class="font-semibold"
-                      >{{ $store.state.products.cart.length }} منتج</span
-                    >
-                  </ion-text>
-                </div>
+                <ion-text color="dark">
+                  <span class="font-semibold"
+                    >{{ $store.state.products.cart.length }} منتج</span
+                  >
+                </ion-text>
+              </div>
 
-                <div class="products flex justify-between">
-                  <ion-text color="dark">
-                    <span>المجموع الكلي </span>
-                  </ion-text>
-                  <ion-text color="dark">
-                    <span class="font-semibold"
-                      >{{
-                        totalPrice()
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      }}
-                      SAR</span
-                    >
-                  </ion-text>
-                </div>
-              </ion-card-content>
-            </ion-card>
-          </div>
+              <div class="products flex justify-between">
+                <ion-text color="dark">
+                  <span>المجموع الكلي </span>
+                </ion-text>
+                <ion-text color="dark">
+                  <span class="font-semibold"
+                    >{{
+                      totalPrice()
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    }}
+                    SAR</span
+                  >
+                </ion-text>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
         <input
           type="hidden"
           name="callback_url"
@@ -363,26 +226,13 @@
           name="publishable_api_key"
           value="pk_test_ZcsLqrJypvVT2X9HTkaTr8utDa3tuwgvf2eizdM7"
         />
-        <input type="hidden" name="amount" :value="totalPrice()*100" />
+        <input type="hidden" name="amount" :value="totalPrice() * 100" />
         <input type="hidden" name="source[type]" value="creditcard" />
         <input type="hidden" name="description" value="new order" />
         <button
           @click.prevent="vaildation"
           to="/payment"
-          class="
-            w-full
-            text-white
-            bg-blue-600
-            hover:bg-blue-700
-            focus:ring-4 focus:outline-none focus:ring-blue-300
-            font-medium
-            rounded-lg
-            text-sm
-            px-5
-            py-2.5
-            text-center
-            non:bg-blue-600 non:hover:bg-blue-700 non:focus:ring-blue-800
-          "
+          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center non:bg-blue-600 non:hover:bg-blue-700 non:focus:ring-blue-800"
         >
           اتمام الطلب
         </button>
@@ -460,7 +310,7 @@ export default {
         document.getElementById("myForm").submit();
       }
     },
-     totalPrice() {
+    totalPrice() {
       let sum = 0;
       this.$store.state.products.cart.forEach((item) => {
         let element = item.price * item.qty;

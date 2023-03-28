@@ -6,11 +6,10 @@
         <h2>الملف الشخصي</h2>
         <div class="flex items-center">
           <div class="p-3">
-             <router-link to="/tabs/CartPage">
-
+            <router-link to="/tabs/CartPage">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                class="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -28,15 +27,16 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader" class="">
-
       <div class="flex flex-col justify-center items-center pt-4">
         <img
-                :src="'https://mod-bina.com/uploads/' + userData?.data?.image"
+          :src="'https://mod-bina.com/uploads/' + userData?.data?.image"
           loading="lazy"
           class="w-56 h-56 rounded-full"
         />
-        <span class="block py-1 pt-2 text-xl font-semibold"> {{userData?.data?.name}}</span>
-        <span class="block py-1 text-xl"> {{userData?.data?.email}} </span>
+        <span class="block py-1 pt-2 text-xl font-semibold">
+          {{ userData?.data?.name }}</span
+        >
+        <span class="block py-1 text-xl"> {{ userData?.data?.email }} </span>
       </div>
       <div class="px-2 py-4">
         <router-link to="/tabs/EditProfile">
@@ -77,9 +77,9 @@
             </svg>
           </div>
         </router-link> -->
-           <router-link to="/tabs/ContactPage">
+        <router-link to="/tabs/ContactPage">
           <div class="flex bg-gray-200 rounded-xl justify-between p-2 mt-2">
-            <span class="text-xl text-black"> تواصل معنا  </span>
+            <span class="text-xl text-black"> تواصل معنا </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-8 w-8 text-black"
@@ -123,10 +123,10 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonContent ,loadingController} from "@ionic/vue";
+import { IonPage, IonHeader, IonContent, loadingController } from "@ionic/vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import axios from "axios";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "ProfilePage",
   components: {
@@ -134,17 +134,16 @@ export default {
     IonHeader,
     IonContent,
     LoadingSpinner,
-    
   },
   mounted() {
     this.loading();
-    this.veirfy()
-    this.$store.dispatch("getUser")
+    this.veirfy();
+    this.$store.dispatch("getUser");
   },
-  computed : mapGetters(["userData"]),
+  computed: mapGetters(["userData"]),
   methods: {
     async logout() {
-        const loading = await loadingController.create({
+      const loading = await loadingController.create({
         cssClass: "my-custom-class",
       });
 
@@ -162,7 +161,7 @@ export default {
         );
         if (!res.data.success) {
           this.toast("top", "danger", "عفوا حدث خطاء ما");
-        loading.dismiss();
+          loading.dismiss();
 
           return;
         }
@@ -179,7 +178,7 @@ export default {
       }
     },
   },
-  inject: ["toast", "loading","veirfy"],
+  inject: ["toast", "loading", "veirfy"],
 };
 </script>
 

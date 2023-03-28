@@ -23,11 +23,10 @@
         <h2>الطلبات السابقه</h2>
         <div class="flex items-center">
           <div class="p-3">
-             <router-link to="/tabs/CartPage">
-
+            <router-link to="/tabs/CartPage">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                class="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -48,15 +47,7 @@
       <div class="last-order p-4">
         <router-link to="/tabs/LastOrder">
           <div
-            class="
-              flex
-              items-center
-              justify-between
-              bg-gray-200
-              p-4
-              rounded-xl
-              mt-2
-            "
+            class="flex items-center justify-between bg-gray-200 p-4 rounded-xl mt-2"
             :key="item"
             v-for="item in 7"
           >
@@ -73,15 +64,16 @@
 </template>
 
 <script>
-import { IonPage , IonHeader , IonContent } from "@ionic/vue";
+import { IonPage, IonHeader, IonContent } from "@ionic/vue";
 
 export default {
   name: "LastOrders",
   components: {
-    IonPage , IonHeader , IonContent
+    IonPage,
+    IonHeader,
+    IonContent,
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

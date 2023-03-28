@@ -66,20 +66,20 @@
           </p>
         </div>
         <div class="checkout flex justify-between items-center px-4">
-          <button 
-          @click="addToCart(product)"
-           class="w-3/4 text-white bg-blue-600 rounded-xl p-4">
+          <button
+            @click="addToCart(product)"
+            class="w-3/4 text-white bg-blue-600 rounded-xl p-4"
+          >
             شراء الان
           </button>
           <button
             @click="addToCart(product)"
             class="border border-gray-600 text-blue-600 mx-auto p-4 rounded-xl"
           >
-             <router-link to="/tabs/CartPage">
-
+            <router-link to="/tabs/CartPage">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                class="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

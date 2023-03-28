@@ -6,11 +6,10 @@
         <h2>الاقسام</h2>
         <div class="flex items-center">
           <div class="p-3">
-             <router-link to="/tabs/CartPage">
-
+            <router-link to="/tabs/CartPage">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                class="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -28,20 +27,21 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader">
-         <div v-if="allCategories.length==0 " class="h-screen flex items-center justify-center text-center">
+      <div
+        v-if="allCategories.length == 0"
+        class="h-screen flex items-center justify-center text-center"
+      >
         <h2>عفوا لا توجد اقسام</h2>
       </div>
       <div class="grid grid-cols-2 gap-4 p-4">
         <div class="card" :key="item.id" v-for="item in allCategories">
           <ion-card v-if="!item.parent" class="shadow-none">
             <router-link :to="`/tabs/SubCategory/${item.id}`">
-              <img
-                :src="item?.image?.src"
-                loading="lazy"
-                class="h-36 w-full"
-              />
+              <img :src="item?.image?.src" loading="lazy" class="h-36 w-full" />
             </router-link>
-                  <h1 style="font-size: 18px;text-align:center;color:black"> {{ item?.name }}</h1>
+            <h1 style="font-size: 18px; text-align: center; color: black">
+              {{ item?.name }}
+            </h1>
           </ion-card>
         </div>
       </div>

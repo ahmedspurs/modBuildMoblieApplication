@@ -10,7 +10,7 @@ const state = {
     password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
   },
   addError: [],
-  loader:0
+  loader: 0,
 };
 
 const getters = {
@@ -24,15 +24,14 @@ const getters = {
 
 const actions = {
   async fetchSubCategories({ commit }) {
-    const response = await axios.get(state.session_url, {auth: state.auth});
+    const response = await axios.get(state.session_url, { auth: state.auth });
+    localStorage.setItem("subCategories", JSON.stringify(response.data));
     commit("setSubCategories", response.data);
-      
-    }
-  }
+  },
+};
 
 const mutations = {
   setSubCategories: (state, subCategories) => {
-    subCategories? state.loader = 0:'';
     state.subCategories = subCategories;
   },
 };

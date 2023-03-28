@@ -6,11 +6,10 @@
         <h2>المغالق</h2>
         <div class="flex items-center">
           <div class="p-3">
-             <router-link to="/tabs/CartPage">
-
+            <router-link to="/tabs/CartPage">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                class="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -28,20 +27,23 @@
       </div>
     </ion-header>
     <ion-content v-if="!$store.state.loader">
-       <div v-if="filteredUsers.length==0 " class="h-screen flex items-center justify-center text-center">
+      <div
+        v-if="allVendors.length == 0"
+        class="h-screen flex items-center justify-center text-center"
+      >
         <h2>عفوا لا توجد مغالق</h2>
       </div>
       <div class="grid grid-cols-2 gap-4 p-4">
-        <div class="card" :key="item.id" v-for="item in filteredUsers">
+        <div class="card" :key="item.id" v-for="item in allVendors">
           <ion-card class="shadow-none">
-            <router-link :to="`/tabs/SallerPage/${item?.id}`">
+            <router-link :to="`/tabs/SallerPage/${item?.vendor_id}`">
               <img
-                :src="`https://mod-bina.com/uploads/${item?.image}`"
+                :src="item?.vendor_shop_logo"
                 loading="lazy"
                 class="h-36 w-full"
               />
             </router-link>
-            <h2 class="text-center">{{ item?.name }}</h2>
+            <h2 class="text-center">{{ item?.vendor_shop_name }}</h2>
           </ion-card>
         </div>
       </div>
@@ -54,7 +56,7 @@ import { IonPage, IonContent, IonHeader, IonCard } from "@ionic/vue";
 import { mapGetters } from "vuex";
 import { ref } from "vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
-import axios from 'axios';
+//import axios from "axios";
 
 export default {
   name: "CategoryPage",
@@ -65,38 +67,37 @@ export default {
     IonCard,
     LoadingSpinner,
   },
-  data(){
-    return{
-        users : [],
-        filteredUsers:[]
-    }
+  data() {
+    return {
+      users: [],
+    };
   },
   async mounted() {
     await this.loading();
-    await this.getUsers();
-    await this.filter()
-     
-    console.log(this.filteredUsers);
+    // await this.getUsers();
+    // await this.filter()
+
+    console.log(this.allVendors);
   },
-  computed: mapGetters(["allProducts"]),
+  computed: mapGetters(["allProducts", "allVendors"]),
   setup() {
     const accordionGroup = ref();
     return {
       accordionGroup,
     };
   },
-  methods:{
-    async getUsers(){
-        const url = "https://mod-bina.com/api/v1/users"
-        const response = await axios.get(url)
-        this.users = response.data
-        console.log(this.users);
-    },
-    async filter(){
-  this.filteredUsers = this.users.filter(
-      (word) => word.role == "admin"
-    );
-    }
+  methods: {
+    //   async getUsers(){
+    //       const url = "https://mod-bina.com/api/v1/users"
+    //       const response = await axios.get(url)
+    //       this.users = response.data
+    //       console.log(this.users);
+    //   },
+    //   async filter(){
+    // this.filteredUsers = this.users.filter(
+    //     (word) => word.role == "admin"
+    //   );
+    //   }
   },
   inject: ["loading"],
 };

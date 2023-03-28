@@ -1,25 +1,25 @@
 <template>
   <ion-page>
-      <!-- HEADER -->
+    <!-- HEADER -->
     <ion-header>
       <div class="flex items-cnter justify-between px-4 py-2">
         <div class="p-4">
-                  <router-link to="/tabs/LastOrders">
+          <router-link to="/tabs/LastOrders">
             <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 text-black"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-        </router-link>
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </router-link>
         </div>
         <h2>تفاصيل الطلب</h2>
         <div class="flex items-center">
@@ -106,15 +106,26 @@
 </template>
 
 <script>
-import {IonPage , IonHeader , IonContent , IonText , IonCard , IonCardContent} from "@ionic/vue"
+import {
+  IonPage,
+  IonHeader,
+  IonContent,
+  IonText,
+  IonCard,
+  IonCardContent,
+} from "@ionic/vue";
 
 export default {
   name: "LastOrder",
-  components:{
-    IonPage, IonHeader , IonContent , IonText , IonCard , IonCardContent
-  }
+  components: {
+    IonPage,
+    IonHeader,
+    IonContent,
+    IonText,
+    IonCard,
+    IonCardContent,
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

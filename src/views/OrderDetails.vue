@@ -3,22 +3,22 @@
     <ion-header>
       <div class="flex items-cnter justify-between px-4 py-2">
         <div class="p-4">
-                 <router-link to="/tabs/HomePage">
+          <router-link to="/tabs/HomePage">
             <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 text-black"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-        </router-link>
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </router-link>
         </div>
         <h2>تفاصيل الطلب</h2>
         <div class="flex items-center">
@@ -76,59 +76,70 @@
         </div>
       </div>
 
-               <!-- total price section -->
+      <!-- total price section -->
 
-        <div class="total-price">
-          <ion-card>
-            <ion-card-content>
-              <div class="products flex justify-between">
-                <ion-text color="dark">
-                  <b>ملخص الطبيه</b>
-                </ion-text>
-                <ion-text color="dark">
-                  <b>3 منتجات</b>
-                </ion-text>
-              </div>
-              <div class="products flex justify-between">
-                <ion-text color="dark">
-                  <span>رسوم التوصيل</span>
-                </ion-text>
-                <ion-text color="dark">
-                  <span>50$</span>
-                </ion-text>
-              </div>
-              <div class="products flex justify-between">
-                <ion-text color="dark">
-                  <span>المجموع الكلي</span>
-                </ion-text>
-                <ion-text color="dark">
-                  <span>550.99$</span>
-                </ion-text>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </div>
+      <div class="total-price">
+        <ion-card>
+          <ion-card-content>
+            <div class="products flex justify-between">
+              <ion-text color="dark">
+                <b>ملخص الطبيه</b>
+              </ion-text>
+              <ion-text color="dark">
+                <b>3 منتجات</b>
+              </ion-text>
+            </div>
+            <div class="products flex justify-between">
+              <ion-text color="dark">
+                <span>رسوم التوصيل</span>
+              </ion-text>
+              <ion-text color="dark">
+                <span>50$</span>
+              </ion-text>
+            </div>
+            <div class="products flex justify-between">
+              <ion-text color="dark">
+                <span>المجموع الكلي</span>
+              </ion-text>
+              <ion-text color="dark">
+                <span>550.99$</span>
+              </ion-text>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
 
-        <!-- continue shopping -->
-        <div class="checkout p-2 pb-24">
-          <router-link to="/tabs/cart/checkout/">
-            <ion-button expand="full"> الاستمرار بالتسوق </ion-button>
-          </router-link>
-        </div>
+      <!-- continue shopping -->
+      <div class="checkout p-2 pb-24">
+        <router-link to="/tabs/cart/checkout/">
+          <ion-button expand="full"> الاستمرار بالتسوق </ion-button>
+        </router-link>
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import {IonPage , IonHeader , IonContent , IonCard , IonCardContent , IonText} from "@ionic/vue"
+import {
+  IonPage,
+  IonHeader,
+  IonContent,
+  IonCard,
+  IonCardContent,
+  IonText,
+} from "@ionic/vue";
 
 export default {
   name: "OrderDetails",
-  components:{
-    IonPage, IonHeader , IonContent , IonCard , IonCardContent , IonText
-  }
+  components: {
+    IonPage,
+    IonHeader,
+    IonContent,
+    IonCard,
+    IonCardContent,
+    IonText,
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

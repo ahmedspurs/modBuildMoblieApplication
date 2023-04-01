@@ -23,7 +23,7 @@ const getters = {
 };
 
 const actions = {
-  async login({ commit, state }) {
+  async login({ commit, state }, user) {
     try {
       const response = await axios.post(`${state.auth_url}/login`, user);
       localStorage.setItem("mod_user_token", response.data.token);

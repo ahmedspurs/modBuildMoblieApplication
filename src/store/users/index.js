@@ -3,10 +3,16 @@ import axios from "axios";
 const state = {
   user: {},
   session_url: "https://eng-alzubair.com/wp-json/wc/v3/customers",
+  auth_url: "http://localhost:3000/api/v1/auth",
   token: null,
   auth: {
     username: "ck_6df23b04cb977dea0f6441042490abe14e18dcf4",
     password: "cs_e81a9ff338b655486de081a588a8026c216506f5",
+  },
+  config: {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("mod_user_token"),
+    },
   },
 };
 
@@ -19,14 +25,8 @@ const getters = {
 const actions = {
   async login({ commit, state }) {
     try {
-      const id = localStorage.currentUserId;
-      if (!id) return false;
-      if (localStorage.isLoggIn) return false;
-      const response = await axios.get(`${state.session_url}/${id}`, {
-        auth: state.auth,
-      });
-      localStorage.setItem("currentUserDate", response.data);
-      localStorage.isLoggIn = true;
+      const response = await axios.post(`${state.auth_url}/login`, user);
+      localStorage.setItem("mod_user_token", response.data.token);
       commit("loginUser", response.data);
     } catch (err) {
       commit("loginUser", err.response.data);
@@ -34,13 +34,8 @@ const actions = {
   },
   async register({ commit, state }, user) {
     try {
-      const response = await axios.post(state.session_url, user, {
-        auth: state.auth,
-      });
-      if (response.status) {
-        localStorage.currentUserId = response.data.id;
-        localStorage.currentUserData = response.data;
-        localStorage.isLoggIn = true;
+      const response = await axios.post(`${state.auth_url}/register`, user);
+      if (response.data.success) {
         commit("registerUser", response.data);
         return true;
       } else {

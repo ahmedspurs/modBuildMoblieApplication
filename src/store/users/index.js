@@ -33,6 +33,7 @@ const actions = {
     }
   },
   async register({ commit, state }, user) {
+    console.log(user);
     try {
       const response = await axios.post(state.session_url, user, {
         auth: state.auth,

@@ -192,7 +192,6 @@
 <script>
 import { IonPage, IonContent, loadingController } from "@ionic/vue";
 
-import axios from "axios";
 export default {
   components: { IonPage, IonContent },
   data() {
@@ -204,6 +203,7 @@ export default {
       address: "",
       tel: "",
       role: "user",
+      success: false,
     };
   },
 
@@ -238,45 +238,45 @@ export default {
         this.toast("top", "danger", "رقم الهاتف يجب ان يكون اكثر من 9 ارقام");
         loading.dismiss();
       } else {
-        const formData = new FormData(this.$refs.form);
-        formData.append("role", "user");
-        try {
-          const res = await axios.post(
-            "https://mod-bina.com/api/v1/auth/register",
-            formData
-          );
-          console.log(res.data);
-          if (res.data.success) {
-            this.name = "";
-            this.email = "";
-            this.password = "";
-            this.country = "";
-            this.address = "";
-            this.tel = "";
-            this.toast("top", "success", "      تم تسجيل حسابك بنجاح  ");
-            loading.dismiss();
+        const formRef = Object.fromEntries(new FormData(this.$refs.form));
+        const formData = {
+          username: formRef.name,
+          email: formRef.email,
+          role: "customer",
+          shipping: {
+            country: formRef.country,
+            phone: formRef.tel,
+          },
+        };
+        // try {
+        this.$store.dispatch("register", formData);
+        // this.success = true;
+        if (this.success) {
+          this.name = "";
+          this.email = "";
+          this.password = "";
+          this.country = "";
+          this.address = "";
+          this.tel = "";
+          this.toast("top", "success", "      تم تسجيل حسابك بنجاح  ");
+          loading.dismiss();
 
-            await this.$router.push("/tabs/LoginPage");
-            location.reload();
-          } else if (res.data.error == "user with this email, already exist") {
-            this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
-            loading.dismiss();
-          }
-        } catch (error) {
-          if (
-            error.response.data.error == "user with this email, already exist"
-          ) {
-            this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
-            loading.dismiss();
-          } else {
-            this.toast(
-              "top",
-              "danger",
-              "  حدث خطاء ما الرجاء التحقق من الاتصال بالانترنت"
-            );
-            loading.dismiss();
-          }
+          await this.$router.push("/tabs/LoginPage");
+          location.reload();
         }
+        // else if (res.data.error == "user with this email, already exist") {
+        //   this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
+        //   loading.dismiss();
+        // }
+        // }
+        // catch (error) {
+        //   if (
+        //     error.response.data.error == "user with this email, already exist"
+        //   ) {
+        //     this.toast("top", "danger", "    المستخدم موجود بالفعل  ");
+        //     loading.dismiss();
+        //   }
+        // }
       }
 
       // perform async actions

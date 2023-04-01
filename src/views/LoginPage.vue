@@ -74,7 +74,7 @@
 
 <script>
 import axios from "axios";
-import { IonPage , useBackButton,loadingController } from "@ionic/vue";
+import { IonPage, useBackButton, loadingController } from "@ionic/vue";
 
 export default {
   components: { IonPage },
@@ -91,18 +91,15 @@ export default {
   },
   methods: {
     async login() {
-         const loading = await loadingController
-          .create({
-            cssClass: 'my-custom-class',
-          });
+      const loading = await loadingController.create({
+        cssClass: "my-custom-class",
+      });
 
-        await loading.present();
+      await loading.present();
 
-      
       if (this.email == "" || this.password == "") {
         this.toast("top", "danger", "  الرجاء مل كل الحقول");
-                 loading.dismiss()
-
+        loading.dismiss();
       } else {
         try {
           const userData = { email: this.email, password: this.password };
@@ -112,7 +109,7 @@ export default {
           );
           console.log(res.data);
           if (res.data.success) {
-                 loading.dismiss()
+            loading.dismiss();
 
             localStorage.setItem("mod_user_token", res.data.token);
             this.toast("top", "success", "  تم تسجيل الدخول بنجاح ");
@@ -120,12 +117,12 @@ export default {
             await this.$router.push("/tabs/HomePage");
             location.reload();
           } else {
-                 loading.dismiss()
+            loading.dismiss();
 
             this.toast("top", "danger", "عفوا حدث خطاء ما اعد المحاوله");
           }
         } catch (error) {
-                 loading.dismiss()
+          loading.dismiss();
 
           this.toast("top", "danger", "عفوا حدث خطاء ما اعد المحاوله");
 
@@ -133,8 +130,7 @@ export default {
           // expected output: ReferenceError: nonExistentFunction is not defined
           // Note - error messages will vary depending on browser
         }
-                 loading.dismiss()
-
+        loading.dismiss();
       }
     },
   },

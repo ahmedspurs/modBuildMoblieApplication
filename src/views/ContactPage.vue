@@ -1,22 +1,30 @@
 <template>
   <ion-page>
-    <loading-spinner  v-if="$store.state.loader"/>
-  <ion-header v-if="!$store.state.loader">
-           <div class="flex items-cnter justify-between px-4">
-          <h2>
-              تواصل معنا
-          </h2>
-          <div class="flex items-center">
-            <div class=" p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-</svg>
-            </div>
+    <loading-spinner v-if="$store.state.loader" />
+    <ion-header v-if="!$store.state.loader">
+      <div class="flex items-cnter justify-between px-4">
+        <h2>تواصل معنا</h2>
+        <div class="flex items-center">
+          <div class="p-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
           </div>
         </div>
-      </ion-header>
+      </div>
+    </ion-header>
     <ion-content v-if="!$store.state.loader">
-
       <div class="contact py-4">
         <ion-card class="shadow-none">
           <ion-card-content>
@@ -29,11 +37,12 @@
                   placeholder=" "
                   autocomplete="off"
                   v-model="name"
-                >
+                />
                 <label
                   for="email"
                   class="absolute top-0 right-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
-                >الاسم</label>
+                  >الاسم</label
+                >
               </div>
               <div class="floating-input mb-5 relative">
                 <input
@@ -43,11 +52,12 @@
                   placeholder=" "
                   autocomplete="off"
                   v-model="email"
-                >
+                />
                 <label
                   for="email"
                   class="absolute top-0 right-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
-                >الايميل</label>
+                  >الايميل</label
+                >
               </div>
 
               <div class="floating-input mb-5 relative">
@@ -58,11 +68,12 @@
                   placeholder=" "
                   autocomplete="off"
                   v-model="phone"
-                >
+                />
                 <label
                   for="phone"
                   class="absolute top-0 right-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
-                >رقم الهاتف</label>
+                  >رقم الهاتف</label
+                >
               </div>
 
               <div class="floating-input mb-5 relative">
@@ -76,11 +87,14 @@
                 <label
                   for="message"
                   class="absolute top-0 right-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
-                >رسالتك</label>
+                  >رسالتك</label
+                >
               </div>
 
               <div class="checkout">
-                <ion-button expand="block" @click="send()">ارسال الرساله</ion-button>
+                <ion-button expand="block" @click="send()"
+                  >ارسال الرساله</ion-button
+                >
               </div>
             </form>
           </ion-card-content>
@@ -91,17 +105,17 @@
       <div class="fab">
         <ion-fab horizontal="end" vertical="bottom" slot="fixed">
           <ion-fab-button color="primary">
-            <ion-icon :icon="chatbubblesOutline"/>
+            <ion-icon :icon="chatbubblesOutline" />
           </ion-fab-button>
           <ion-fab-list side="start">
             <ion-fab-button color="primary">
-              <ion-icon :icon="logoFacebook"/>
+              <ion-icon :icon="logoFacebook" />
             </ion-fab-button>
             <ion-fab-button color="primary">
-              <ion-icon :icon="logoInstagram"/>
+              <ion-icon :icon="logoInstagram" />
             </ion-fab-button>
             <ion-fab-button color="primary">
-              <ion-icon :icon="logoTwitter"/>
+              <ion-icon :icon="logoTwitter" />
             </ion-fab-button>
           </ion-fab-list>
         </ion-fab>
@@ -122,15 +136,15 @@ import {
   IonButton,
   IonIcon,
   IonFabButton,
-  IonFabList
+  IonFabList,
 } from "@ionic/vue";
 import {
   chatbubblesOutline,
   logoFacebook,
   logoInstagram,
-  logoTwitter
+  logoTwitter,
 } from "ionicons/icons";
-import LoadingSpinner from '../components/LoadingSpinner.vue';
+import LoadingSpinner from "../components/LoadingSpinner.vue";
 export default {
   name: "ContactPage",
   components: {
@@ -144,7 +158,7 @@ export default {
     IonFab,
     IonFabButton,
     IonFabList,
-    LoadingSpinner
+    LoadingSpinner,
   },
   data() {
     return {
@@ -152,16 +166,16 @@ export default {
       email: "",
       message: "",
       phone: "",
-      validate: true
+      validate: true,
     };
   },
-  mounted(){
-    this.loading()
+  mounted() {
+    this.loading();
   },
   methods: {
     send() {
       if (this.name == "" && this.email == "" && this.message == "") {
-        this.failed()
+        this.failed();
       } else if (this.name != "" && this.email != "" && this.message != "") {
         this.validate = true;
 
@@ -178,7 +192,7 @@ export default {
         cssClass: "my-custom-class",
         header: " شكرا لتواصلك معنا ",
         message: "سيتم الرد عليك في اقرب فرصه",
-        buttons: ["تم"]
+        buttons: ["تم"],
       });
       await alert.present();
 
@@ -191,30 +205,30 @@ export default {
         duration: 4000,
         position: "top",
 
-        color: "success"
+        color: "success",
       });
       return toast.present();
     },
-        async failed() {
+    async failed() {
       const toast = await toastController.create({
         message: " الرجاء ملء كل الحقول ",
         duration: 4000,
         position: "top",
 
-        color: "primary"
+        color: "primary",
       });
       return toast.present();
-    }
+    },
   },
   setup() {
     return {
       chatbubblesOutline,
       logoFacebook,
       logoInstagram,
-      logoTwitter
+      logoTwitter,
     };
   },
-  inject:["loading"]
+  inject: ["loading"],
 };
 </script>
 <style scoped>

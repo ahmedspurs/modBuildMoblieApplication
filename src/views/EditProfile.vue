@@ -75,23 +75,7 @@
             name="name"
             v-model="userData.data.name"
             id="name"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="احد عادل"
           />
         </div>
@@ -108,23 +92,7 @@
             name="email"
             v-model="userData.data.email"
             id="email"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="name@company.com"
           />
         </div>
@@ -142,23 +110,7 @@
             name="country"
             v-model="userData.data.country"
             id="country"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="Saudi Arabia"
           />
         </div>
@@ -176,23 +128,7 @@
             name="tel"
             v-model="userData.data.tel"
             id="tel"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="+1423456789"
           />
         </div>
@@ -210,23 +146,7 @@
             name="address"
             v-model="userData.data.address"
             id="address"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
             placeholder="Al-Ryadh"
           />
         </div>
@@ -242,42 +162,13 @@
             id="password"
             v-model="userData.data.password"
             placeholder="••••••••"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900
-              sm:text-sm
-              rounded-lg
-              focus:ring-blue-600 focus:border-blue-600
-              block
-              w-full
-              p-2.5
-              non:bg-gray-700
-              non:border-gray-600
-              non:placeholder-gray-400
-              non:text-white
-              non:focus:ring-blue-500
-              non:focus:border-blue-500
-            "
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
           />
         </div>
 
         <button
           type="submit"
-          class="
-            w-full
-            text-white
-            bg-blue-600
-            hover:bg-blue-700
-            focus:ring-4 focus:outline-none focus:ring-blue-300
-            font-medium
-            rounded-lg
-            text-sm
-            px-5
-            py-2.5
-            text-center
-            non:bg-blue-600 non:hover:bg-blue-700 non:focus:ring-blue-800
-          "
+          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center non:bg-blue-600 non:hover:bg-blue-700 non:focus:ring-blue-800"
         >
           تعديل الملف الشخصي
         </button>

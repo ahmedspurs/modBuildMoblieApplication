@@ -45,25 +45,23 @@
 
         <div class="grid grid-cols-2 gap-4 p-4 py-8" v-show="search != ''">
           <div class="card" :key="item.id" v-for="item in filtered">
-         <div class="border border-gray-300 rounded-xl p-6 relative">
-            <router-link :to="`/tabs/ProducPage/${item?.id}`">
-              <img
-                class=""
-                :src="`https://mod-bina.com/uploads/${item?.image?.image}`"
-                loading="lazy"
-              />
-            </router-link>
+            <div class="border border-gray-300 rounded-xl p-6 relative">
+              <router-link :to="`/tabs/ProducPage/${item?.id}`">
+                <img
+                  class=""
+                  :src="`https://mod-bina.com/uploads/${item?.image?.image}`"
+                  loading="lazy"
+                />
+              </router-link>
 
-            <div class="text-right">
-              <span class="block font-semibold"> {{ item?.name }}</span>
-              <span class="block"> {{ item?.user?.name }}</span>
-              <span class="text-blue-500 font-semibold block pt-2"
-                >{{ item?.price }}$</span
-              >
+              <div class="text-right">
+                <span class="block font-semibold"> {{ item?.name }}</span>
+                <span class="block"> {{ item?.user?.name }}</span>
+                <span class="text-blue-500 font-semibold block pt-2"
+                  >{{ item?.price }}$</span
+                >
+              </div>
             </div>
-
-        
-          </div>
           </div>
         </div>
       </div>

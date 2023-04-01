@@ -43,11 +43,7 @@
             v-for="(item, index) in $store.state.products.cart"
           >
             <div class="w-3/4">
-              <img
-                class="w-24 h-24"
-                :src="item.image"
-                loading="lazy"
-              />
+              <img class="w-24 h-24" :src="item.image" loading="lazy" />
             </div>
             <div class="w-full">
               <span class="block">{{ item.name }}</span>
@@ -169,7 +165,7 @@
 
           <!-- checkout section -->
           <div class="checkout p-2 w-full text-center">
-              <ion-button @click="push()">اتمام الطلب</ion-button>
+            <ion-button @click="push()">اتمام الطلب</ion-button>
           </div>
         </div>
       </div>
@@ -263,7 +259,7 @@ export default {
       return this.total;
     },
     push() {
-      this.updateCart()
+      this.updateCart();
       if (localStorage.getItem("mod_user_token")) {
         this.$router.push("/tabs/CheckoutPage");
       } else if (localStorage.getItem("mod_user_token") == null) {

@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { IonPage, useBackButton, loadingController } from "@ionic/vue";
 
 export default {
@@ -103,15 +102,9 @@ export default {
       } else {
         try {
           const userData = { email: this.email, password: this.password };
-          const res = await axios.post(
-            "https://mod-bina.com/api/v1/auth/login",
-            userData
-          );
-          console.log(res.data);
-          if (res.data.success) {
-            loading.dismiss();
 
-            localStorage.setItem("mod_user_token", res.data.token);
+          if (await this.$store.dispatch("login", userData)) {
+            loading.dismiss();
             this.toast("top", "success", "  تم تسجيل الدخول بنجاح ");
             this.$store.dispatch("getUser");
             await this.$router.push("/tabs/HomePage");

@@ -242,6 +242,8 @@ export default {
         const formData = {
           username: formRef.name,
           email: formRef.email,
+          first_name: formRef.name,
+          password: formRef.password,
           role: "customer",
           shipping: {
             country: formRef.country,
@@ -249,9 +251,9 @@ export default {
           },
         };
         // try {
-        this.$store.dispatch("register", formData);
+
         // this.success = true;
-        if (this.success) {
+        if (this.$store.dispatch("register", formData)) {
           this.name = "";
           this.email = "";
           this.password = "";
@@ -263,6 +265,9 @@ export default {
 
           await this.$router.push("/tabs/LoginPage");
           location.reload();
+        } else {
+          this.toast("top", "danger", "حدث خطاء ما اعد المحاولة");
+          loading.dismiss();
         }
         // else if (res.data.error == "user with this email, already exist") {
         //   this.toast("top", "danger", "    المستخدم موجود بالفعل  ");

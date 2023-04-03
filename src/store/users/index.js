@@ -28,8 +28,10 @@ const actions = {
       const response = await axios.post(`${state.auth_url}/login`, user);
       localStorage.setItem("mod_user_token", response.data.token);
       commit("loginUser", response.data);
+      return true;
     } catch (err) {
       commit("loginUser", err.response.data);
+      return false;
     }
   },
   async register({ commit, state }, user) {

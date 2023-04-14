@@ -261,10 +261,10 @@ export default {
           this.address = "";
           this.tel = "";
           this.toast("top", "success", "      تم تسجيل حسابك بنجاح  ");
-          loading.dismiss();
+          // loading.dismiss();
 
-          await this.$router.push("/tabs/LoginPage");
-          location.reload();
+          // await this.$router.push("/tabs/LoginPage");
+          // location.reload();
         } else {
           this.toast("top", "danger", "حدث خطاء ما اعد المحاولة");
           loading.dismiss();

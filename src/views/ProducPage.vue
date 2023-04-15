@@ -156,12 +156,11 @@
         </swiper>
       </div>
 
-      <ion-select placeholder="اختر المقاس">
+      <ion-select :placeholder="`اختر ${product?.attributes[0].name}`">
         <ion-select-option
           v-for="item in product?.attributes[0].options"
           :key="item"
           :value="item"
-          v-model="option"
           >{{ item }}</ion-select-option
         >
       </ion-select>
@@ -171,7 +170,7 @@
             <h2>{{ product?.name }}</h2>
             <span class="block"> {{ product?.user?.name }}</span>
           </div>
-          <h2>{{ price[0].data.price }} ريال</h2>
+          <h2>{{ price[0]?.data?.price }} ريال</h2>
         </div>
         <div class="descr px-4">
           <p class="text-gray-600" v-html="product?.description"></p>
@@ -241,7 +240,7 @@ export default {
   async created() {
     this.loading();
     await this.getProduct();
-    await this.priceFilter();
+    await this.priceFilter(10);
   },
   mounted() {
     this.loading();
@@ -252,7 +251,7 @@ export default {
       const cart = {
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: this.price[0]?.data?.price,
         image: product.images[0].src,
         qty: 1,
       };
@@ -274,10 +273,11 @@ export default {
       });
       console.log(this.variations[0].option[0].option);
     },
-    async priceFilter() {
+    async priceFilter(option) {
       this.price = this.variations.filter(
-        (variation) => variation.option[0].option == this.option
+        (variation) => variation.option[0].option == option
       );
+      console.log(this.price[0].data.price);
     },
   },
   inject: ["alert", "loading"],

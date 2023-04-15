@@ -13,7 +13,7 @@
         >
           <swiper-slide class="" v-for="item in product?.images" :key="item">
             <div class="img relative">
-              <img class="w-full" :src="`${item.src}`" loading="lazy" />
+              <img class="w-full" :src="`${item?.src}`" loading="lazy" />
 
               <router-link to="/tabs/CategoryPage">
                 <button class="bg-white rounded-xl p-4 absolute top-3 right-3">
@@ -159,7 +159,7 @@
       <ion-select placeholder="اختر احد الخيارات">
         <ion-select-option
           value="apples"
-          v-for="item in variations"
+          v-for="item in variations[0]"
           :key="item"
           >{{ item }}</ion-select-option
         >
@@ -173,9 +173,7 @@
           <h2>{{ product?.price }} ريال</h2>
         </div>
         <div class="descr px-4">
-          <p class="text-gray-600">
-            {{ product?.description }}
-          </p>
+          <p class="text-gray-600" v-html="product?.description"></p>
         </div>
         <div class="checkout flex justify-between items-center px-4">
           <button
@@ -260,8 +258,8 @@ export default {
       const url = `https://eng-alzubair.com/wp-json/wcfmmp/v1/products/${id}`;
       const res = await axios.get(url);
       this.product = res.data;
-      this.product?.variations.forEach((element) => {
-        this.variations.push(element.attributes);
+      this.product?.attributes.forEach((element) => {
+        this.variations.push(element.options);
       });
       console.log(this.variations);
     },

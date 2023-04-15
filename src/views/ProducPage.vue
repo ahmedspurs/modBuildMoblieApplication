@@ -2,7 +2,7 @@
   <ion-page>
     <loading-spinner v-if="$store.state.loader" />
 
-    <ion-content v-if="product?.type != 'variable'">
+    <!-- <ion-content v-if="product?.type != 'variable'">
       <div class="img z-10 relative">
         <swiper
           dir="rtl"
@@ -62,7 +62,7 @@
             <h2>{{ product?.name }}</h2>
             <span class="block"> {{ product?.user?.name }}</span>
           </div>
-          <h2>{{ product?.price }} ريال</h2>
+          <h2>{{ variations.option }} ريال</h2>
         </div>
         <div class="descr px-4">
           <p class="text-gray-600">
@@ -99,7 +99,7 @@
           </button>
         </div>
       </div>
-    </ion-content>
+    </ion-content> -->
 
     <ion-content v-if="product?.type == 'variable'">
       <div class="img z-10 relative">
@@ -156,11 +156,12 @@
         </swiper>
       </div>
 
-      <ion-select placeholder="اختر احد الخيارات">
+      <ion-select placeholder="اختر المقاس">
         <ion-select-option
-          value="apples"
-          v-for="item in variations[0]"
+          v-for="item in product?.attributes[0].options"
           :key="item"
+          :value="item"
+          v-model="option"
           >{{ item }}</ion-select-option
         >
       </ion-select>
@@ -170,7 +171,7 @@
             <h2>{{ product?.name }}</h2>
             <span class="block"> {{ product?.user?.name }}</span>
           </div>
-          <h2>{{ product?.price }} ريال</h2>
+          <h2>{{ price[0].data.price }} ريال</h2>
         </div>
         <div class="descr px-4">
           <p class="text-gray-600" v-html="product?.description"></p>
@@ -229,11 +230,18 @@ export default {
       product: [],
       Loading: true,
       variations: [],
+      auth: {
+        username: "ck_cfd30277f5f54cdf6ae4ae28d91317ee1dffecdb",
+        password: "cs_c3ee33707231d3787bad4f125ace3bd2685237c6",
+      },
+      price: 0,
+      option: 10,
     };
   },
   async created() {
     this.loading();
     await this.getProduct();
+    await this.priceFilter();
   },
   mounted() {
     this.loading();
@@ -255,13 +263,21 @@ export default {
     },
     async getProduct() {
       const id = this.$route.params.id;
-      const url = `https://eng-alzubair.com/wp-json/wcfmmp/v1/products/${id}`;
-      const res = await axios.get(url);
+      const url = `https://eng-alzubair.com/wp-json/wc/v1/products/${id}`;
+      const res = await axios.get(url, { auth: this.auth });
       this.product = res.data;
-      this.product?.attributes.forEach((element) => {
-        this.variations.push(element.options);
+      this.product?.variations.forEach((element) => {
+        this.variations.push({
+          data: element,
+          option: Object.values(element.attributes),
+        });
       });
-      console.log(this.variations);
+      console.log(this.variations[0].option[0].option);
+    },
+    async priceFilter() {
+      this.price = this.variations.filter(
+        (variation) => variation.option[0].option == this.option
+      );
     },
   },
   inject: ["alert", "loading"],

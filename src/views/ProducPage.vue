@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <loading-spinner v-if="$store.state.loader" />
+    <loading-spinner v-if="!load" />
 
     <!-- <ion-content v-if="product?.type != 'variable'">
       <div class="img z-10 relative">
@@ -256,6 +256,7 @@ export default {
       price: 0,
       option: 10,
       variationPrice: "",
+      load: false,
     };
   },
   async created() {
@@ -286,6 +287,9 @@ export default {
       const url = `https://eng-alzubair.com/wp-json/wc/v1/products/${id}`;
       const res = await axios.get(url, { auth: this.auth });
       this.product = res.data;
+      if (res.data) {
+        this.load = true;
+      }
       this.product?.variations.forEach((element) => {
         this.variations.push({
           data: element,

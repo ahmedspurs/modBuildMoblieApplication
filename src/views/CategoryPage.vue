@@ -36,7 +36,13 @@
       <div class="grid grid-cols-2 gap-4 p-4">
         <div class="card" :key="item.id" v-for="item in allCategories">
           <ion-card v-if="!item.parent" class="shadow-none">
-            <router-link :to="`/tabs/SubCategory/${item.id}`">
+            <router-link
+              :to="
+                item?.name == 'غير مصنف'
+                  ? `/tabs/ProductsPage/${item.id}`
+                  : `/tabs/SubCategory/${item.id}`
+              "
+            >
               <img :src="item?.image?.src" loading="lazy" class="h-36 w-full" />
             </router-link>
             <h1 style="font-size: 18px; text-align: center; color: black">

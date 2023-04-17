@@ -140,7 +140,13 @@
       </div>
       <swiper dir="rtl" class="cats" :slides-per-view="2.5" :space-between="10">
         <swiper-slide class="px-2" v-for="item in allCategories" :key="item.id">
-          <router-link :to="`/tabs/SubCategory/${item.id}`">
+          <router-link
+            :to="
+              item?.name == 'غير مصنف'
+                ? `/tabs/ProductsPage/${item.id}`
+                : `/tabs/SubCategory/${item.id}`
+            "
+          >
             <ion-card
               v-if="!item.parent"
               class="shadow-none w-full flex flex-col justify-center items-center"

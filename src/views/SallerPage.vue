@@ -128,6 +128,15 @@ export default {
     this.products = this.allProducts.filter(
       (word) => word?.store?.vendor_id == this.$route?.params?.id
     );
+    this.deb;
+  },
+  async created() {
+    await this.deb();
+  },
+  methods: {
+    async deb() {
+      console.log(this.allProducts + "hi");
+    },
   },
 };
 </script>

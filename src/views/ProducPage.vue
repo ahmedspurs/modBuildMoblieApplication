@@ -156,24 +156,34 @@
         </swiper>
       </div>
 
-      <ion-select
-        interface="popover"
-        :value="price"
-        @checkout="priceFilter($event.target.value)"
-        :placeholder="`اختر ${product?.attributes[0]?.name}`"
+      <span class="block"> اختر {{ product?.attributes[0]?.name }} </span>
+      <ul
+        id="filter4"
+        class="filter-switch inline-flex items-center relative h-10 p-1 mx-2 bg-gray-300 rounded-md font-semibold text-blue-600 my-4"
       >
-        <ion-select-option
+        <li
+          class="filter-switch-item flex relative h-8 bg-gray-300x mx-1"
           v-for="item in product?.attributes[0]?.options"
           :key="item"
-          :value="item"
-          >{{ item }}</ion-select-option
         >
-      </ion-select>
-      <ion-radio-group value="price" @click="priceFilter($event.target.value)">
-        <ion-radio value="10">10</ion-radio><br />
-        <ion-radio value="20">20</ion-radio><br />
-        <ion-radio value="30">30</ion-radio><br />
-      </ion-radio-group>
+          <input
+            type="radio"
+            name="filter4"
+            class="sr-only"
+            :id="item"
+            :value="item"
+          />
+          <label
+            :for="item"
+            @click="priceFilter(item)"
+            class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+          >
+            {{ item }}
+          </label>
+          <div aria-hidden="true" class="filter-active"></div>
+        </li>
+      </ul>
+
       <div class="bg-white -mt-6">
         <div class="flex justify-between items-center p-4 w-full">
           <div>
@@ -245,12 +255,12 @@ export default {
       },
       price: 0,
       option: 10,
+      variationPrice: "",
     };
   },
   async created() {
     this.loading();
     await this.getProduct();
-    await this.priceFilter(10);
   },
   mounted() {
     this.loading();
@@ -262,7 +272,7 @@ export default {
       const cart = {
         id: product.id,
         name: product.name,
-        price: this.price[0]?.data?.price,
+        price: this.price[0]?.data?.price || product?.price,
         image: product.images[0].src,
         qty: 1,
       };
@@ -282,18 +292,28 @@ export default {
           option: Object.values(element.attributes),
         });
       });
-      console.log(this.variations[0].option[0].option);
     },
     async priceFilter(option) {
-      this.price = this.variations.filter(
-        (variation) => variation.option[0].option == option
-      );
-      console.log(this.price[0]?.data?.price);
-      console.log(option);
+      if (option) {
+        this.price = this.variations.filter(
+          (variation) => variation.option[0].option == option
+        );
+      }
     },
   },
   inject: ["alert", "loading"],
 };
 </script>
 
-<style></style>
+<style>
+.filter-switch label {
+  cursor: pointer;
+}
+.filter-switch-item input:checked + label {
+  color: inherit;
+}
+.filter-switch-item input:not(:checked) + label {
+  --bg-opacity: 0;
+  box-shadow: none;
+}
+</style>

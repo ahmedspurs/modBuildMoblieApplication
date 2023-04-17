@@ -74,7 +74,7 @@ const mutations = {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let found = false;
     cart.forEach((product) => {
-      if (product.id == item.id) {
+      if (product.id == item.id && product.price == item.price) {
         found = !found;
         product.qty++;
       }

@@ -103,14 +103,14 @@
 
     <ion-content v-if="product?.type == 'variable'">
       <div class="img z-10 relative">
-        <swiper dir="rtl" class="p-2 leatest">
+        <swiper dir="rtl" class="leatest">
           <swiper-slide
             class="p-2 relative"
             v-for="item in product?.images"
             :key="item"
           >
             <img
-              class="w-full h-1/2 rounded-b-2xl"
+              class="w-full h-60 rounded-b-2xl"
               :src="item.src"
               loading="lazy"
             />
@@ -156,21 +156,31 @@
         </swiper>
       </div>
 
-      <ion-select :placeholder="`اختر ${product?.attributes[0].name}`">
+      <ion-select
+        interface="popover"
+        :value="price"
+        @checkout="priceFilter($event.target.value)"
+        :placeholder="`اختر ${product?.attributes[0]?.name}`"
+      >
         <ion-select-option
-          v-for="item in product?.attributes[0].options"
+          v-for="item in product?.attributes[0]?.options"
           :key="item"
           :value="item"
           >{{ item }}</ion-select-option
         >
       </ion-select>
+      <ion-radio-group value="price" @click="priceFilter($event.target.value)">
+        <ion-radio value="10">10</ion-radio><br />
+        <ion-radio value="20">20</ion-radio><br />
+        <ion-radio value="30">30</ion-radio><br />
+      </ion-radio-group>
       <div class="bg-white -mt-6">
         <div class="flex justify-between items-center p-4 w-full">
           <div>
             <h2>{{ product?.name }}</h2>
             <span class="block"> {{ product?.user?.name }}</span>
           </div>
-          <h2>{{ price[0]?.data?.price }} ريال</h2>
+          <h2>{{ price[0]?.data?.price || product?.price }} ريال</h2>
         </div>
         <div class="descr px-4">
           <p class="text-gray-600" v-html="product?.description"></p>
@@ -244,6 +254,7 @@ export default {
   },
   mounted() {
     this.loading();
+    console.log(this.price);
   },
   methods: {
     async addToCart(product) {
@@ -277,7 +288,8 @@ export default {
       this.price = this.variations.filter(
         (variation) => variation.option[0].option == option
       );
-      console.log(this.price[0].data.price);
+      console.log(this.price[0]?.data?.price);
+      console.log(option);
     },
   },
   inject: ["alert", "loading"],

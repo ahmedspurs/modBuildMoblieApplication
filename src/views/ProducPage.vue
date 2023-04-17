@@ -163,22 +163,22 @@
       >
         <li
           class="filter-switch-item flex relative h-8 bg-gray-300x mx-1"
-          v-for="item in product?.attributes[0]?.options"
+          v-for="item in variations"
           :key="item"
         >
           <input
             type="radio"
             name="filter4"
             class="sr-only"
-            :id="item"
-            :value="item"
+            :id="item?.option[0]?.option"
+            :value="item?.option[0]?.option"
           />
           <label
-            :for="item"
-            @click="priceFilter(item)"
+            :for="item?.option[0]?.option"
+            @click="priceFilter(item?.option[0]?.option)"
             class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
           >
-            {{ item }}
+            {{ item?.option[0]?.option }}
           </label>
           <div aria-hidden="true" class="filter-active"></div>
         </li>

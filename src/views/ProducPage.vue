@@ -103,7 +103,16 @@
 
     <ion-content v-if="product?.type == 'variable'">
       <div class="img z-10 relative">
-        <swiper dir="rtl" class="leatest">
+        <swiper
+          :modules="modules"
+          :slides-per-view="1"
+          :space-between="50"
+          :pagination="{ clickable: true }"
+          @swiper="onSwiper"
+          @slideChange="onSlideChange"
+          dir="rtl"
+          class="leatest"
+        >
           <swiper-slide
             class="p-2 relative"
             v-for="item in product?.images"
@@ -179,6 +188,7 @@
             class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
           >
             {{ item?.option[0]?.option }}
+            {{ variations }}
           </label>
           <div aria-hidden="true" class="filter-active"></div>
         </li>
@@ -231,9 +241,12 @@
 
 <script>
 import { IonPage, IonContent } from "@ionic/vue";
-import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, A11y } from "swiper";
 
 export default {
   name: "ProducPage",
@@ -259,14 +272,24 @@ export default {
       load: false,
     };
   },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log("slide change");
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+      modules: [Pagination, A11y],
+    };
+  },
   async created() {
     this.loading();
     await this.getProduct();
   },
-  mounted() {
-    this.loading();
-    console.log(this.price);
-  },
+
   methods: {
     async addToCart(product) {
       console.log(product);
@@ -283,19 +306,22 @@ export default {
       console.log(this.$store.state.products.cart);
     },
     async getProduct() {
-      const id = this.$route.params.id;
-      const url = `https://eng-alzubair.com/wp-json/wc/v1/products/${id}`;
-      const res = await axios.get(url, { auth: this.auth });
-      this.product = res.data;
-      if (res.data) {
-        this.load = true;
-      }
-      this.product?.variations.forEach((element) => {
+      console.log(this.$store.state.products.products);
+      this.product = this.$store.state.products.products.filter(
+        (word) => word.id == this.$route.params.id
+      );
+      this.product = this.product[0];
+      this.load = true;
+
+      console.log(this.product);
+      this.product[0]?.variations.forEach((element) => {
         this.variations.push({
           data: element,
           option: Object.values(element.attributes),
         });
       });
+      console.log(this.variations);
+      this.load = true;
     },
     async priceFilter(option) {
       if (option) {

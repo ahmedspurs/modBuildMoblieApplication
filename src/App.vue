@@ -11,6 +11,7 @@ import {
   toastController,
   alertController,
 } from "@ionic/vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -18,6 +19,12 @@ export default {
     IonApp,
     IonRouterOutlet,
   },
+  computed: mapGetters([
+    "allProducts",
+    "allCategories",
+    "allSubCategories",
+    "userData",
+  ]),
   mounted() {
     // this.veirfy()
     // this.$store.dispatch("fetchCategories");
@@ -45,7 +52,6 @@ export default {
         message: text,
         buttons: ["تم"],
       });
-
       await alert.present();
     },
     loading() {

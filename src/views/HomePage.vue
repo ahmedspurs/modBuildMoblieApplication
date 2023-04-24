@@ -138,7 +138,10 @@
           </router-link>
         </ion-text>
       </div>
-      <swiper dir="rtl" class="cats" :slides-per-view="2.5" :space-between="10">
+        <div v-show="!check" class="grid grid-cols-2 gap-4"  >
+                        <skeleton-loading v-for="item in 2" :key="item" />
+                    </div>
+      <swiper v-show="check" dir="rtl" class="cats" :slides-per-view="3.5" :space-between="10">
         <swiper-slide class="px-2" v-for="item in allCategories" :key="item.id">
           <router-link
             :to="
@@ -181,7 +184,11 @@
           </router-link>
         </ion-text>
       </div>
+        <div v-show="!check" class="grid grid-cols-2 gap-4"  >
+                        <skeleton-loading v-for="item in 2" :key="item" />
+                    </div>
       <swiper
+      v-show="check"
         dir="rtl"
         class="p-2 leatest"
         :slides-per-view="1.5"
@@ -223,19 +230,20 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 import { mapGetters } from "vuex";
+import SkeletonLoading from "../components/SkeletonLoading.vue";
 
 export default {
   name: "HomePage",
   components: {
     IonPage,
     IonContent,
-
     IonCard,
     IonCardContent,
     IonText,
     LoadingSpinner,
     Swiper,
     SwiperSlide,
+    SkeletonLoading
   },
   data() {
     return {
@@ -243,6 +251,8 @@ export default {
       categories: [],
       products: [],
       token: true,
+            check: false,
+
     };
   },
 
@@ -255,6 +265,15 @@ export default {
     } else {
       this.token = true;
     }
+
+       const inter = setInterval(() => {
+       
+            if (this.allProducts.length > 0 && this.allCategories.length > 0) {
+                this.check = true;
+                console.log("done");
+                clearInterval(inter);
+            }
+        }, 2000);
   },
   computed: mapGetters([
     "allProducts",

@@ -77,7 +77,7 @@ subCategories : []
   computed : mapGetters(["allSubCategories"]),
   created(){
 this.subCategories = this.allSubCategories.filter(
-      (word) => word.id == this.$route.params.id
+      (word) => word.categoryId == this.$route.params.id
     );
   },
   setup() {

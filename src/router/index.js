@@ -1,114 +1,108 @@
 import { createRouter, createWebHashHistory } from "@ionic/vue-router";
-import TabsPage from "../views/TabsPage.vue";
-import HomePage from "../views/HomePage.vue";
-import CategoryPage from "../views/CategoryPage.vue";
-import CartPage from "../views/CartPage.vue";
-import ContactPage from "../views/ContactPage.vue";
-import ProfilePage from "../views/ProfilePage.vue";
-import EditProfile from "../views/EditProfile.vue";
-import LastOrders from "../views/LastOrders.vue";
-import ProductsPage from "../views/ProductsPage.vue";
-import ProducPage from "../views/ProducPage.vue";
-import CheckoutPage from "../views/CheckoutPage.vue";
-import OrderDetails from "../views/OrderDetails.vue";
-import LastOrder from "../views/LastOrder.vue";
-import SubCategory from "../views/SubCategory.vue";
-import LoginPage from "../views/LoginPage.vue";
-import RegisterPage from "../views/RegisterPage.vue";
-import SearchPage from "../views/SearchPage.vue";
-import SallersPage from "../views/SallersPage.vue";
-import SallerPage from "../views/SallerPage.vue";
+// main routes
+import TabsPage from "@/views/TabsPage.vue";
+import HomePage from "@/views/HomePage/HomePage.vue";
+import StoresListingPage from "@/views/StoreListingPage/StoreListingPage.vue";
+import CategoriesListingPage from "@/views/CategoryListingPage/CategoryListingPage.vue";
+import ProductListing from "@/views/ProductListingPages/ProductListing.vue";
+import ProducPage from "@/views/ProductListingPages/SingleProduct/ProducPage.vue";
+// user related routes
+import ProfilePage from "@/views/UserPages/ProfilePage.vue";
+import EditProfile from "@/views/UserPages/EditProfile.vue";
+import ContactPage from "@/views/UserPages/ContactPage.vue";
+import LoginPage from "@/views/UserPages/LoginPage.vue";
+import RegisterPage from "@/views/UserPages/RegisterPage.vue";
+// cart & checkout routes
+import CartPage from "@/views/Cart/CartPage.vue";
+import LastOrders from "@/views/ProductPurchasePages/LastOrders.vue";
+import CheckoutPage from "@/views/ProductPurchasePages/CheckoutPage.vue";
+import OrderDetails from "@/views/ProductPurchasePages/OrderDetails.vue";
+import LastOrder from "@/views/ProductPurchasePages/LastOrder.vue";
 
 const routes = [
   {
-    path: '/payment',
-    beforeEnter() { location.href = 'https://api.moyasar.com/v1/payments.html' }
+    path: "/payment",
+    beforeEnter() {
+      location.href = "https://api.moyasar.com/v1/payments.html";
+    },
   },
   {
     path: "/",
-    redirect: "/tabs/HomePage"
+    redirect: "/tabs/home",
   },
 
   {
     path: "/tabs/",
     component: TabsPage,
     children: [
+      // main routes
       {
         path: "",
-        redirect: "/tabs/HomePage"
+        redirect: "/tabs/home",
       },
       {
-        path: "LoginPage",
-        component: LoginPage
+        path: "home",
+        component: HomePage,
+      },
+      { path: "stores", component: StoresListingPage },
+      {
+        path: "categories",
+        component: CategoriesListingPage,
       },
       {
-        path: "RegisterPage",
-        component: RegisterPage
+        path: "products-listing",
+        component: ProductListing,
       },
       {
-        path: "HomePage",
-        component: HomePage
+        path: "products-listing/:id",
+        component: ProducPage,
+      },
+      // user related routes
+      {
+        path: "login",
+        component: LoginPage,
       },
       {
-        path: "CategoryPage",
-        component: CategoryPage
-      },
-      {
-        path: "SubCategory/:id",
-        component: SubCategory
-      },
-      {
-        path: "ProductsPage/:id",
-        component: ProductsPage
-      },
-      {
-        path: "ProducPage/:id",
-        component: ProducPage
-      },
-      {
-        path: "CartPage",
-        component: CartPage
+        path: "register",
+        component: RegisterPage,
       },
       {
         path: "ContactPage",
-        component: ContactPage
-      },
-      {
-        path: "LastOrders",
-        component: LastOrders
-      },
-      {
-        path: "CheckoutPage",
-        component: CheckoutPage
-      },
-      {
-        path: "OrderDetails",
-        component: OrderDetails
-      },
-      {
-        path: "LastOrder",
-        component: LastOrder
+        component: ContactPage,
       },
       {
         path: "ProfilePage",
-        component: ProfilePage
+        component: ProfilePage,
+      },
+      { path: "EditProfile", component: EditProfile },
+      // product purchase routes
+      {
+        path: "CartPage",
+        component: CartPage,
       },
       {
-        path: "SearchPage",
-        component: SearchPage
+        path: "CheckoutPage",
+        component: CheckoutPage,
       },
-
-
-      { path: "EditProfile", component: EditProfile },
-      { path: "SallersPage", component: SallersPage },
-      { path: "SallerPage/:id", component: SallerPage },
-    ]
-  }
+      {
+        path: "LastOrders",
+        component: LastOrders,
+      },
+      {
+        path: "LastOrder",
+        component: LastOrder,
+      },
+      {
+        path: "OrderDetails",
+        component: OrderDetails,
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
-  routes
+  routes,
 });
 
 export default router;

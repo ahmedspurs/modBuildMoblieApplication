@@ -1,71 +1,47 @@
+<script setup>
+  import { IonApp, IonRouterOutlet } from "@ionic/vue";
+  import { useCart } from "@/store/cart";
+  import { onMounted } from "vue";
+
+  const cartStore = useCart();
+
+  onMounted(() => {
+    if (localStorage["cartItems"]) cartStore.setCartFromLocalStorage();
+  });
+
+  // import { onMounted } from "vue";
+  // import { useUser } from "./store/user";
+
+  // const userStore = useUser();
+
+  // onMounted(async () => {
+  //   const loginStatus = await userStore.login(
+  //     "amnnn80@gmail.com",
+  //     "09123123Aa@",
+  //     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJod…n19fQ.K62QP-rThi4BdEZervumkkmuQL-R05CW3g6Xc0r-BdM"
+  //   );
+  //   console.log({ loginStatus });
+  // });
+</script>
+
 <template>
   <ion-app>
-    <ion-router-outlet />
+    <ion-router-outlet class="main-wrapper" />
   </ion-app>
 </template>
 
-<script>
-import {
-  IonApp,
-  IonRouterOutlet,
-  toastController,
-  alertController,
-} from "@ionic/vue";
+<style>
+  :root {
+    --radius: 0.5rem;
+  }
+  .main-wrapper {
+    max-width: 600px;
+    margin-inline: auto;
+  }
 
-export default {
-  name: "App",
-  components: {
-    IonApp,
-    IonRouterOutlet,
-  },
-  mounted() {
-    this.$store.dispatch("fetchCategories");
-    this.$store.dispatch("fetchProducts");
-    this.$store.dispatch("getUser");
-    this.$store.dispatch("fetchSubCategories");
-  },
-  methods: {
-    async toast(position, color, text) {
-      const toast = await toastController.create({
-        message: text,
-        duration: 1500,
-        position: position,
-        color: color,
-      });
-
-      await toast.present();
-    },
-    async alert(header, text) {
-      const alert = await alertController.create({
-        header: header,
-        message: text,
-        buttons: ["تم"],
-      });
-
-      await alert.present();
-    },
-    loading() {
-      setTimeout(() => {
-        this.$store.state.loader = false
-      }, 1000);
-        this.$store.state.loader = true
-
-},
-  veirfy() {
-      if (localStorage.getItem("mod_user_token")) {
-        console.log("loggend in");
-      } else if (localStorage.getItem("mod_user_token") == null) {
-        this.$router.push("/tabs/LoginPage");
-      }
-    },
-  },
-  provide() {
-    return {
-      toast: this.toast,
-      alert: this.alert,
-      loading: this.loading,
-      veirfy : this.veirfy
-    };
-  },
-};
-</script>
+  .bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+</style>

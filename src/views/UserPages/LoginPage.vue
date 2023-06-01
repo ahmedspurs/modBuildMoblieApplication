@@ -2,15 +2,24 @@
   import { IonPage, IonContent } from "@ionic/vue";
   import { useUser } from "@/store/user";
   import { ref } from "vue";
+  import { useRouter } from "vue-router";
 
   const userStore = useUser();
+  const router = useRouter();
 
-  const login = () => {
-    userStore.login();
+  const login = async () => {
+    disableBtn.value = true;
+    const loginStatus = await userStore.login(
+      username_email.value,
+      password.value
+    );
+    if (loginStatus) router.push("/");
+    disableBtn.value = false;
   };
 
   const username_email = ref("");
   const password = ref("");
+  const disableBtn = ref(false);
 </script>
 
 <template>
@@ -48,6 +57,9 @@
                   id="username_email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                   placeholder="name@company.com"
+                  minlength="3"
+                  errorText="جميع الحقول مطلوبة"
+                  required
                 />
               </div>
               <div>
@@ -62,11 +74,15 @@
                   name="password"
                   id="password"
                   placeholder="••••••••"
+                  minlength="6"
+                  errorText="جميع الحقول مطلوبة"
+                  required
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                 />
               </div>
 
               <button
+                :disabled="disableBtn"
                 type="submit"
                 class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center non:bg-blue-600 non:hover:bg-blue-700 non:focus:ring-blue-800"
               >

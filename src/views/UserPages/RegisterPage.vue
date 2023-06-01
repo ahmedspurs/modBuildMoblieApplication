@@ -18,7 +18,7 @@
       email.value,
       password.value
     );
-    userStore.uploadProfilePicture(file.value, user.id);
+    if (user) userStore.uploadProfilePicture(file.value, user.id);
   };
 
   const handleFileInput = (e) => {

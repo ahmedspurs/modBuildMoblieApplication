@@ -1,17 +1,19 @@
 import { defineStore } from "pinia";
 import axios from "@/services/axios";
-import { vendors } from "../data/vendors";
+// import { vendors } from "../data/vendors";
 import { products } from "../data/products";
 
 export const useVendor = defineStore("vendors", {
   state: () => ({
     allVendors: [],
     filteredVendors: [],
+    queryStatus: null,
     vendorProducts: [],
   }),
   getters: {
     getAllVendors: (state) => state.allVendors,
     getFilteredVendors: (state) => state.filteredVendors,
+    getQueryStatus: (state) => state.queryStatus,
     getVendorProducts: (state) => state.vendorProducts,
   },
   actions: {
@@ -20,16 +22,20 @@ export const useVendor = defineStore("vendors", {
         const res = await axios.get(
           "/wcfmmp/v1/store-vendors?_fields=vendor_id,vendor_shop_name,vendor_shop_logo"
         );
-        if (res.status == 200) {
+        if (res.data) {
           this.allVendors = res.data;
+          this.queryStatus = true;
           console.log({ data: res.data, allVendors: this.allVendors });
-        } else console.log({ status: res.status });
+          return true;
+        }
       } catch (err) {
         if (err.code == "ECONNABORTED") console.error("time out");
         else if (err.code == "ERR_NETWORK")
           console.error("bad internet connection");
         else console.error(err);
-        this.allVendors = vendors;
+        // this.allVendors = vendors;
+        this.queryStatus = false;
+        return false;
       }
     },
     async fetchVendorProducts(storeId) {
@@ -37,18 +43,18 @@ export const useVendor = defineStore("vendors", {
         const res = await axios.get(
           `/wcfmmp/v1/store-vendors/${storeId}/products`
         );
-        if (res.status == 200) {
+        if (res.data) {
           this.vendorProducts = res.data;
           console.log({ data: res.data, vendorProducts: this.vendorProducts });
           return res.data;
-        } else console.log({ status: res.status });
+        }
       } catch (err) {
         if (err.code == "ECONNABORTED") console.error("time out");
         else if (err.code == "ERR_NETWORK")
           console.error("bad internet connection");
         else console.error(err);
         this.vendorProducts = products;
-        return products;
+        return false;
       }
     },
   },

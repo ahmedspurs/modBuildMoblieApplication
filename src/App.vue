@@ -1,27 +1,42 @@
 <script setup>
   import { IonApp, IonRouterOutlet } from "@ionic/vue";
+  import { onMounted, watch } from "vue";
+  import { useRoute } from "vue-router";
+  import { useRouter } from "vue-router";
   import { useCart } from "@/store/cart";
-  import { onMounted } from "vue";
+  import { useStore } from "@/store";
+  import { useCategory } from "@/store/categories";
+  import { useVendor } from "@/store/vendors";
+  import { useProduct } from "@/store/products";
 
   const cartStore = useCart();
+  const route = useRoute();
+  const router = useRouter();
+  const store = useStore();
+  const vendorStore = useVendor();
+  const categoryStore = useCategory();
+  const productStore = useProduct();
 
   onMounted(() => {
     if (localStorage["cartItems"]) cartStore.setCartFromLocalStorage();
   });
 
-  // import { onMounted } from "vue";
-  // import { useUser } from "./store/user";
-
-  // const userStore = useUser();
-
-  // onMounted(async () => {
-  //   const loginStatus = await userStore.login(
-  //     "amnnn80@gmail.com",
-  //     "09123123Aa@",
-  //     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJod…n19fQ.K62QP-rThi4BdEZervumkkmuQL-R05CW3g6Xc0r-BdM"
-  //   );
-  //   console.log({ loginStatus });
-  // });
+  // watch routes
+  watch(
+    () => route.path,
+    async (newRoute) => {
+      console.log({ newRoute });
+      if (newRoute == "/tabs/home") {
+        await store.homePageSetup();
+        if (
+          !vendorStore.getQueryStatus ||
+          !categoryStore.getQueryStatus ||
+          !productStore.getQueryStatus
+        )
+          router.push("/error");
+      }
+    }
+  );
 </script>
 
 <template>

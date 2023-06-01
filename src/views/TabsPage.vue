@@ -1,9 +1,26 @@
 <script setup>
+  import {
+    IonTabBar,
+    IonTabButton,
+    IonTabs,
+    IonPage,
+    IonRouterOutlet,
+    IonLabel,
+  } from "@ionic/vue";
   import { useCart } from "@/store/cart";
   import { computed } from "vue";
+  import { useRouter } from "vue-router";
 
+  const router = useRouter();
   const cartStore = useCart();
   const count = computed(() => cartStore.getCartItems.length);
+  const push = () => {
+    if (localStorage.getItem("mod_token")) {
+      router.push("/tabs/ProfilePage");
+    } else if (localStorage.getItem("mod_token") == null) {
+      router.push("/tabs/login");
+    }
+  };
 </script>
 
 <template>
@@ -114,39 +131,6 @@
     </ion-tabs>
   </ion-page>
 </template>
-
-<script>
-  import { defineComponent } from "vue";
-  import {
-    IonTabBar,
-    IonTabButton,
-    IonTabs,
-    IonPage,
-    IonRouterOutlet,
-    IonLabel,
-  } from "@ionic/vue";
-
-  export default defineComponent({
-    name: "TabsPage",
-    components: {
-      IonTabs,
-      IonTabBar,
-      IonTabButton,
-      IonPage,
-      IonRouterOutlet,
-      IonLabel,
-    },
-    methods: {
-      push() {
-        if (localStorage.getItem("mod_user_token")) {
-          this.$router.push("/tabs/ProfilePage");
-        } else if (localStorage.getItem("mod_user_token") == null) {
-          this.$router.push("/tabs/login");
-        }
-      },
-    },
-  });
-</script>
 
 <style scoped>
   ion-tab-bar {

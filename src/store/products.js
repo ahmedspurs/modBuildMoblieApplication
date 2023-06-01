@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
 import axios from "@/services/axios";
-import { products } from "../data/products";
+// import { products } from "../data/products";
 
 export const useProduct = defineStore("products", {
   state: () => ({
     allProducts: [],
     filteredProducts: [],
+    queryStatus: null,
     singleProduct: {
       id: 1,
       name: "Single Product",
@@ -36,6 +37,7 @@ export const useProduct = defineStore("products", {
   getters: {
     getAllProducts: (state) => state.allProducts,
     getFilteredProducts: (state) => state.filteredProducts,
+    getQueryStatus: (state) => state.queryStatus,
     getSingleProduct: (state) => state.singleProduct,
   },
   actions: {
@@ -44,16 +46,20 @@ export const useProduct = defineStore("products", {
         const res = await axios.get(
           "/wc/v3/products?_fields=id,name,price,regular_price,store,description,images,on_sale,rating_count,stock_quantity"
         );
-        if (res.status == 200) {
+        if (res.data) {
           this.allProducts = res.data;
+          this.queryStatus = true;
           console.log({ data: res.data, allProducts: this.allProducts });
-        } else console.log({ status: res.status });
+          return true;
+        }
       } catch (err) {
         if (err.code == "ECONNABORTED") console.error("time out");
         else if (err.code == "ERR_NETWORK")
           console.error("bad internet connection");
         else console.error(err);
-        this.allProducts = products;
+        // this.allProducts = products;
+        this.queryStatus = false;
+        return false;
       }
     },
     async fetchSingleProduct(id) {
@@ -61,10 +67,10 @@ export const useProduct = defineStore("products", {
         const res = await axios.get(
           `/wc/v3/products/${id}?_fields=id,name,price,regular_price,store,description,images,on_sale,rating_count,stock_quantity`
         );
-        if (res.status == 200) {
+        if (res.data) {
           console.log({ singleProduct: res.data });
           return res.data;
-        } else console.log({ status: res.status });
+        }
       } catch (err) {
         if (err.code == "ECONNABORTED") console.error("time out");
         else if (err.code == "ERR_NETWORK")

@@ -11,14 +11,16 @@
 
   import { IonPage, IonContent } from "@ionic/vue";
 
-  import { onMounted, computed } from "vue";
+  import { computed, onMounted } from "vue";
   import { ads } from "@/data/index.js";
   import { cities } from "@/data/cities";
   import { useStore } from "@/store";
   import { useVendor } from "@/store/vendors";
   import { useCategory } from "@/store/categories";
   import { useProduct } from "@/store/products";
+  import { useRouter } from "vue-router";
 
+  const router = useRouter();
   const store = useStore();
   const vendorStore = useVendor();
   const categoryStore = useCategory();
@@ -31,17 +33,14 @@
 
   onMounted(async () => {
     store.loading = true;
-    setTimeout(() => (store.loading = false), 1000);
-
-    if (allVendors.value.length == 0) {
-      vendorStore.fetchAllVendors();
-    }
-    if (allCategories.value.length == 0) {
-      categoryStore.fetchAllCategories();
-    }
-    if (allProducts.value.length == 0) {
-      productStore.fetchAllProducts();
-    }
+    await store.homePageSetup();
+    store.loading = false;
+    if (
+      !vendorStore.getQueryStatus ||
+      !categoryStore.getQueryStatus ||
+      !productStore.getQueryStatus
+    )
+      router.push("/error");
   });
 </script>
 

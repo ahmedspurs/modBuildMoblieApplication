@@ -18,12 +18,11 @@ export const useUser = defineStore("user", {
           password,
         });
 
-        // const { token } = response.data;
-        // Save the token to local storage or a secure storage mechanism
-        // localStorage.setItem("token", token);
-        console.log({ data: response.data });
-
-        // Return true to indicate successful login
+        const { token } = response.data;
+        localStorage.setItem("mod_token", token);
+        const { user_display_name } = response.data;
+        this.user = { user_display_name };
+        console.log({ data: response.data, user: this.user });
         return true;
       } catch (error) {
         // Handle login error

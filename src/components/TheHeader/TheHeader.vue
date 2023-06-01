@@ -10,7 +10,7 @@
   const token = ref(true);
 
   onMounted(() => {
-    if (localStorage.getItem("mod_user_token")) {
+    if (localStorage.getItem("mod_token")) {
       token.value = false;
     } else {
       token.value = true;

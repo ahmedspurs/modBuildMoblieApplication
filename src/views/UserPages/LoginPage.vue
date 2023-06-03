@@ -3,17 +3,38 @@
   import { useUser } from "@/store/user";
   import { ref } from "vue";
   import { useRouter } from "vue-router";
+import toast from "@/services/toast";
+  
 
   const userStore = useUser();
   const router = useRouter();
 
+    var validationInputs = ref({
+    username_email : false,
+    password : false,
+  } )
+
   const login = async () => {
     disableBtn.value = true;
-    const loginStatus = await userStore.login(
+    if(
+          username_email.value == "" ||
+      password.value == ""
+    ){
+      toast("top" , "danger" , "الرجاء ملء كل الحقول")
+      validationInputs.value.username_email = true
+      validationInputs.value.password = true
+    }else{
+
+     const loginStatus = await userStore.login(
       username_email.value,
       password.value
     );
-    if (loginStatus) router.push("/");
+    if (loginStatus){ router.push("/");
+      toast("top" , "success" , "تم تسجيل الدخول بنجاح")
+    } else {
+      toast("top" , "danger" , "اسم المستخدم او كلمة السر خاطئة")
+    }
+    }
     disableBtn.value = false;
   };
 
@@ -47,38 +68,48 @@
               <div>
                 <label
                   for="username_email"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.username_email }"
+
                   class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
                   >إسم المستخدم أو البريد الإلكتروني</label
                 >
                 <input
                   v-model="username_email"
+                :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.username_email }"
+                  @focus="validationInputs.username_email=false"
+
                   type="text"
                   name="username_email"
                   id="username_email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                   placeholder="name@company.com"
                   minlength="3"
-                  errorText="جميع الحقول مطلوبة"
-                  required
                 />
+  <p  v-show="validationInputs.username_email" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> الرجاء ادخال الايميل او اسم المستخدم</p>
+
+                
               </div>
               <div>
                 <label
                   for="password"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.password }"
+
                   class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
                   >كلمه السر</label
                 >
                 <input
+                        :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.password }"
+                  @focus="validationInputs.password=false"
                   v-model="password"
                   type="password"
                   name="password"
                   id="password"
                   placeholder="••••••••"
                   minlength="6"
-                  errorText="جميع الحقول مطلوبة"
-                  required
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                 />
+  <p  v-show="validationInputs.password" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> الرجاء ادخال كلمة السر</p>
+
               </div>
 
               <button

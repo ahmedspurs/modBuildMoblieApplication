@@ -2,7 +2,7 @@
   import { IonApp, IonRouterOutlet } from "@ionic/vue";
   import { onMounted, watch } from "vue";
   import { useRoute } from "vue-router";
-  import { useRouter } from "vue-router";
+  // import { useRouter } from "vue-router";
   import { useCart } from "@/store/cart";
   import { useStore } from "@/store";
   import { useCategory } from "@/store/categories";
@@ -11,7 +11,7 @@
 
   const cartStore = useCart();
   const route = useRoute();
-  const router = useRouter();
+  // const router = useRouter();
   const store = useStore();
   const vendorStore = useVendor();
   const categoryStore = useCategory();
@@ -32,8 +32,8 @@
           !vendorStore.getQueryStatus ||
           !categoryStore.getQueryStatus ||
           !productStore.getQueryStatus
-        )
-          router.push("/error");
+        ) console.log("error");
+          // router.push("/error");
       }
     }
   );

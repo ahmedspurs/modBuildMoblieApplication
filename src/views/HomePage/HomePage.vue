@@ -18,9 +18,9 @@
   import { useVendor } from "@/store/vendors";
   import { useCategory } from "@/store/categories";
   import { useProduct } from "@/store/products";
-  import { useRouter } from "vue-router";
+  // import { useRouter } from "vue-router";
 
-  const router = useRouter();
+  // const router = useRouter();
   const store = useStore();
   const vendorStore = useVendor();
   const categoryStore = useCategory();
@@ -39,8 +39,8 @@
       !vendorStore.getQueryStatus ||
       !categoryStore.getQueryStatus ||
       !productStore.getQueryStatus
-    )
-      router.push("/error");
+    )console.log("error");
+      // router.push("/error");
   });
 </script>
 

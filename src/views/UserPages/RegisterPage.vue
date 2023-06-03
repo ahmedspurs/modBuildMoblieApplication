@@ -2,17 +2,117 @@
   import { IonPage, IonContent } from "@ionic/vue";
   import { useUser } from "@/store/user";
   import { ref } from "vue";
+import toast from "@/services/toast";
 
   const name = ref("");
   const email = ref("");
   const username = ref("");
   const password = ref("");
+  const rePassword = ref("");
   const tel = ref("");
   const file = ref();
 
   const userStore = useUser();
 
+  var validationInputs = ref({
+    userName : false,
+    name:false,
+    password : false,
+    rePassword : false,
+    email : false,
+    tel : false
+  } )
+
+
+
+  const checkPassword = () => {
+      if(
+    password.value == rePassword.value
+  ){
+   validationInputs.value.rePassword = false
+  }else{
+   validationInputs.value.rePassword = true
+
+  }
+  }
+
   const register = async () => {
+if(
+        name.value == "" &&
+      email.value == "" &&
+      tel.value == "" &&
+      password.value =="" &&
+      rePassword.value == ""
+){
+  toast("top" , "danger" , "الرجاء ملء كل الحقول")
+  console.log("error");
+} 
+else if(
+       name.value == "" ||
+      email.value == "" ||
+      password.value =="" ||
+      tel.value == "" ||
+      rePassword.value == ""
+
+){
+  if(
+  name.value == ""
+){
+   validationInputs.value.name = true
+   console.log(validationInputs.value.name);
+   console.log("please add a name");
+}
+if(
+  email.value == ""
+){
+  console.log("please add a email");
+   validationInputs.value.email = true
+
+}
+if(
+  password.value == ""
+){
+  console.log("please add a password");
+   validationInputs.value.password = true
+   validationInputs.value.rePassword = true
+
+}
+
+if(
+  tel.value == ""
+){
+  console.log("please add a password");
+   validationInputs.value.tel = true
+
+}
+
+ 
+
+}
+
+   if(
+    password.value == rePassword.value && email.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+  ){
+    console.log("success")
+  }else{
+    if(email.value.match(mailformat))
+{
+   validationInputs.value.email = true
+}
+else
+{
+    toast("top" , "danger" , "كلمة السر غير متطابقة")
+   validationInputs.value.rePassword = true
+   }
+
+
+
+
+}
+
+
+
+    
     const user = await userStore.register(
       username.value,
       email.value,
@@ -25,6 +125,7 @@
     file.value = e.target.files[0];
   };
 </script>
+
 
 <template>
   <ion-page>
@@ -53,47 +154,43 @@
               @submit.prevent="register"
             >
               <!-- name section -->
-              <div>
+
+              <!-- default input -->
+              <div >
                 <label
                   for="name"
                   class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.name }"
+
                   >الإسم</label
                 >
                 <input
+                :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.name }"
                   type="text"
                   name="name"
                   v-model="name"
                   id="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                   placeholder=" إسمك"
+                  @focus="validationInputs.name=false"
                 />
+  <p  v-show="validationInputs.name" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> الرجاء ادخال الاسم</p>
+
               </div>
 
-              <!-- username section -->
-              <div>
-                <label
-                  for="name"
-                  class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
-                  >إسم المستخدم</label
-                >
-                <input
-                  type="text"
-                  name="username"
-                  v-model="username"
-                  id="username"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
-                  placeholder=" إسم المستخدم"
-                />
-              </div>
+           
 
               <!-- email section -->
               <div>
                 <label
                   for="email"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.email }"
                   class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
                   >الايميل</label
                 >
                 <input
+                :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.email }"
+                  @focus="validationInputs.email=false"
                   type="email"
                   name="email"
                   v-model="email"
@@ -101,16 +198,21 @@
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                   placeholder="name@company.com"
                 />
+  <p  v-show="validationInputs.email" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> ايميل غير صالح</p>
+
               </div>
 
               <!-- tel section -->
               <div>
                 <label
                   for="tel"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.tel }"
                   class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
                   >رقم الهاتف</label
                 >
                 <input
+                :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.tel }"
+                  @focus="validationInputs.tel=false"
                   type="tel"
                   name="tel"
                   v-model="tel"
@@ -118,15 +220,20 @@
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                   placeholder="+1423456789"
                 />
+  <p  v-show="validationInputs.tel" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> الرجاء ادخال رقم الهاتف</p>
+
               </div>
               <!-- password section -->
               <div>
                 <label
                   for="password"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.password }"
                   class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
                   >كلمه السر</label
                 >
                 <input
+                :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.password}"
+                  @focus="validationInputs.password=false"
                   type="password"
                   name="password"
                   id="password"
@@ -134,6 +241,32 @@
                   placeholder="••••••••"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
                 />
+  <p  v-show="validationInputs.password" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> الرجاء ادخال كلمة السر</p>
+
+              </div>
+
+                   <!-- password section -->
+              <div>
+                <label
+                  for="rePassword"
+                :class="{  'block mb-2 text-sm font-medium text-red-700 dark:text-red-500': validationInputs.rePassword }"
+                  class="block mb-2 text-sm font-medium text-gray-900 non:text-white"
+                  > تأكيد كلمة السر</label
+                >
+                <input
+                :class="{  'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500': validationInputs.rePassword }"
+                  @keyup="checkPassword"
+                  @focus="validationInputs.rePassword=false"
+
+                  type="password"
+                  name="password"
+                  id="rePassword"
+                  v-model="rePassword"
+                  placeholder="••••••••"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 non:bg-gray-700 non:border-gray-600 non:placeholder-gray-400 non:text-white non:focus:ring-blue-500 non:focus:border-blue-500"
+                />
+  <p  v-show="validationInputs.rePassword" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> كلمة السر غير متطابقة</p>
+
               </div>
 
               <!-- image upload -->

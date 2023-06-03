@@ -64,14 +64,16 @@
           await vendorStore.fetchVendorProducts(route.query.id);
       };
       const fetchCategoryProducts = async () => {
-        console.log("category products");
+        await categoryStore.fetchCategoryProducts(route.query?.id);
       };
       if (newRoute == "/tabs/products-listing") {
         const type = route.query?.type;
         store.loading = true;
         if (type == "stores") await fetchStoreProducts();
         else await fetchCategoryProducts(route.query?.id);
-        console.log({ products: storeProducts.value || categoryProducts });
+        console.log({
+          products: storeProducts.value || categoryProducts.value,
+        });
         store.loading = false;
       }
     }

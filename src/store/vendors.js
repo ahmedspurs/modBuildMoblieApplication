@@ -4,17 +4,17 @@ import axios from "@/services/axios";
 export const useVendor = defineStore("vendors", {
   state: () => ({
     allVendors: [],
-    filteredVendors: [],
     queryStatus: false,
     vendorProductsQueryStatus: false,
+    filteredQueryStatus: false,
     vendorProducts: [],
     loadingLocal: false,
   }),
   getters: {
     getAllVendors: (state) => state.allVendors,
-    getFilteredVendors: (state) => state.filteredVendors,
     getQueryStatus: (state) => state.queryStatus,
     getVendorProductsQueryStatus: (state) => state.vendorProductsQueryStatus,
+    getFilteredQueryStatus: (state) => state.filteredQueryStatus,
     getVendorProducts: (state) => state.vendorProducts,
     getLoadingLocal: (state) => state.loadingLocal,
   },

@@ -1,20 +1,22 @@
 import { defineStore } from "pinia";
 import axios from "@/services/axios";
-// import { vendors } from "../data/vendors";
-import { products } from "../data/products";
 
 export const useVendor = defineStore("vendors", {
   state: () => ({
     allVendors: [],
     filteredVendors: [],
-    queryStatus: null,
+    queryStatus: false,
+    vendorProductsQueryStatus: false,
     vendorProducts: [],
+    loadingLocal: false,
   }),
   getters: {
     getAllVendors: (state) => state.allVendors,
     getFilteredVendors: (state) => state.filteredVendors,
     getQueryStatus: (state) => state.queryStatus,
+    getVendorProductsQueryStatus: (state) => state.vendorProductsQueryStatus,
     getVendorProducts: (state) => state.vendorProducts,
+    getLoadingLocal: (state) => state.loadingLocal,
   },
   actions: {
     async fetchAllVendors() {
@@ -45,6 +47,7 @@ export const useVendor = defineStore("vendors", {
         );
         if (res.data) {
           this.vendorProducts = res.data;
+          this.vendorProductsQueryStatus = true;
           console.log({ data: res.data, vendorProducts: this.vendorProducts });
           return res.data;
         }
@@ -53,7 +56,7 @@ export const useVendor = defineStore("vendors", {
         else if (err.code == "ERR_NETWORK")
           console.error("bad internet connection");
         else console.error(err);
-        this.vendorProducts = products;
+        this.vendorProductsQueryStatus = false;
         return false;
       }
     },

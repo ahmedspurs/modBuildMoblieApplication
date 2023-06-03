@@ -8,7 +8,9 @@
 <template>
   <div v-if="stores && stores.length > 0" class="items-list-container">
     <div v-for="item in stores" :key="item?.id">
-      <router-link :to="`/tabs/products-listing?type=stores&id=${item?.id}`">
+      <router-link
+        :to="`/tabs/products-listing?type=stores&id=${item?.vendor_id}`"
+      >
         <list-item-card :item="item" :item-type="'stores'"></list-item-card>
       </router-link>
     </div>

@@ -9,7 +9,7 @@ export const useCategory = defineStore("categories", {
     categoryProducts: [],
     queryStatus: false,
     categoryProductsQueryStatus: false,
-    loadingLocal: false,
+    loadingLocal: true,
   }),
   getters: {
     getAllCategories: (state) => state.allCategories,
@@ -23,12 +23,14 @@ export const useCategory = defineStore("categories", {
   actions: {
     async fetchAllCategories() {
       try {
+        this.loadingLocal = true;
         const res = await axios.get(
           "/wc/v3/products/categories?_fields=id,image,name"
         );
         if (res.data) {
           this.allCategories = res.data;
           this.queryStatus = true;
+          this.loadingLocal = false;
           console.log({ data: res.data, allCategories: this.allCategories });
           return true;
         }
@@ -39,6 +41,7 @@ export const useCategory = defineStore("categories", {
         else console.error(err);
         // this.allCategories = categories;
         this.queryStatus = false;
+        this.loadingLocal = false;
         return false;
       }
     },

@@ -20,7 +20,7 @@
     () => categoryStore.getCurrentCategoryProducts
   );
 
-  onMounted(() => {
+  onMounted(async () => {
     if (localStorage["cartItems"]) cartStore.setCartFromLocalStorage();
   });
 

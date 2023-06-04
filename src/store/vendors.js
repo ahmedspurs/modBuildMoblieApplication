@@ -8,7 +8,7 @@ export const useVendor = defineStore("vendors", {
     vendorProductsQueryStatus: false,
     filteredQueryStatus: false,
     vendorProducts: [],
-    loadingLocal: false,
+    loadingLocal: true,
   }),
   getters: {
     getAllVendors: (state) => state.allVendors,
@@ -21,12 +21,14 @@ export const useVendor = defineStore("vendors", {
   actions: {
     async fetchAllVendors() {
       try {
+        this.loadingLocal = true;
         const res = await axios.get(
           "/wcfmmp/v1/store-vendors?_fields=vendor_id,vendor_shop_name,vendor_shop_logo"
         );
         if (res.data) {
           this.allVendors = res.data;
           this.queryStatus = true;
+          this.loadingLocal = false;
           console.log({ data: res.data, allVendors: this.allVendors });
           return true;
         }
@@ -35,8 +37,8 @@ export const useVendor = defineStore("vendors", {
         else if (err.code == "ERR_NETWORK")
           console.error("bad internet connection");
         else console.error(err);
-        // this.allVendors = vendors;
         this.queryStatus = false;
+        this.loadingLocal = false;
         return false;
       }
     },

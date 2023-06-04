@@ -13,7 +13,6 @@
   import { IonPage, IonContent } from "@ionic/vue";
 
   import { computed, onMounted } from "vue";
-  import { ads } from "@/data/index.js";
   import { cities } from "@/data/cities";
   import { useStore } from "@/store";
   import { useVendor } from "@/store/vendors";
@@ -32,26 +31,24 @@
 
   onMounted(async () => {
     store.loading = true;
-    await store.homePageSetup();
-    store.loading = false;
+    setTimeout(() => (store.loading = false), 3000);
+    store.homePageSetup();
   });
 
   const fetchAllVendors = async () => {
-    vendorStore.loadingLocal = true;
     await vendorStore.fetchAllVendors();
-    vendorStore.loadingLocal = false;
+  };
+
+  const fetchAllAds = async () => {
+    await store.fetchAllAds();
   };
 
   const fetchAllCategories = async () => {
-    categoryStore.loadingLocal = true;
     await categoryStore.fetchAllCategories();
-    categoryStore.loadingLocal = false;
   };
 
   const fetchAllProducts = async () => {
-    productStore.loadingLocal = true;
     await productStore.fetchAllProducts();
-    productStore.loadingLocal = false;
   };
 </script>
 
@@ -84,7 +81,26 @@
           <!-- ***** stores section ***** --><!-- end -->
 
           <!-- ***** ads section ***** --><!-- start -->
-          <ads-slider class="mt-5" :slides="ads"></ads-slider>
+          <div
+            style="min-height: 170px"
+            :class="
+              store.getAllAds.length == 0 ? 'bg-slate-300 rounded-lg' : ''
+            "
+            class="mt-5"
+          >
+            <ads-slider
+              v-if="store.getAdsQueryStatus && store.getAllAds.length > 0"
+            ></ads-slider>
+            <error-section-local
+              v-else-if="
+                !store.getAdsQueryStatus &&
+                store.getAllAds.length == 0 &&
+                !store.getAdsLoading
+              "
+              @on-reload="fetchAllAds"
+              :height="170"
+            ></error-section-local>
+          </div>
           <!-- ***** ads section ***** --><!-- end -->
 
           <!-- ***** categoris section ***** --><!-- start -->

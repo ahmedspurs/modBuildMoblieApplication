@@ -1,5 +1,6 @@
 <script setup>
-  import { defineProps } from "vue";
+  import { computed } from "vue";
+  import { useStore } from "@/store";
   import { Swiper, SwiperSlide } from "swiper/vue";
   import {
     Navigation,
@@ -18,7 +19,9 @@
   import "swiper/css/autoplay";
   import "swiper/css/effect-fade";
 
-  defineProps(["slides"]);
+  const store = useStore();
+
+  const slides = computed(() => store.getAllAds);
 
   const modules = [
     Navigation,
@@ -39,12 +42,14 @@
     :pagination="true"
     :modules="modules"
     effect="fade"
-    v-if="slides && slides.length > 0"
+    v-if="slides?.length > 0"
   >
     <swiper-slide v-for="slide in slides" :key="slide?.id">
       <div
         class="ads-slider-container"
-        :style="{ backgroundImage: 'url(' + `${slide?.img}` + ')' }"
+        :style="{
+          backgroundImage: 'url(' + `${slide?.x_featured_media}` + ')',
+        }"
       ></div>
     </swiper-slide>
   </swiper>

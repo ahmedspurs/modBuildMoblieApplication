@@ -7,7 +7,7 @@ export const useProduct = defineStore("products", {
     filteredProducts: [],
     queryStatus: false,
     singleQueryStatus: false,
-    loadingLocal: false,
+    loadingLocal: true,
   }),
   getters: {
     getAllProducts: (state) => state.allProducts,
@@ -19,12 +19,14 @@ export const useProduct = defineStore("products", {
   actions: {
     async fetchAllProducts() {
       try {
+        this.loadingLocal = true;
         const res = await axios.get(
           "/wc/v3/products?_fields=id,name,price,regular_price,store,description,images,on_sale,rating_count,stock_quantity"
         );
         if (res.data) {
           this.allProducts = res.data;
           this.queryStatus = true;
+          this.loadingLocal = false;
           console.log({ data: res.data, allProducts: this.allProducts });
           return true;
         }
@@ -35,6 +37,7 @@ export const useProduct = defineStore("products", {
         else console.error(err);
         // this.allProducts = products;
         this.queryStatus = false;
+        this.loadingLocal = false;
         return false;
       }
     },

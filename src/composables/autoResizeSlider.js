@@ -15,3 +15,9 @@ export const autoResizeCityChips = (screenWidth) => {
   else if (screenWidth > 320) return 4;
   else return 3;
 };
+
+export const autoResizePartners = (screenWidth) => {
+  if (screenWidth > 450) return 4;
+  else if (screenWidth > 320) return 3;
+  else return 2;
+};

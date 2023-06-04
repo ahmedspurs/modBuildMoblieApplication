@@ -4,8 +4,9 @@
   import { useSearch } from "@/store/search";
 
   const route = useRoute();
+
   const placeholderText = computed(() => {
-    if (route.fullPath == "/tabs/home") return "إبحث عن منتج أو مغلق أو قسم";
+    if (route.fullPath == "/tabs/home") return "إبحث عن منتج";
     else if (route.fullPath == "/tabs/stores") return "إبحث عن مغلق";
     else if (route.path == "/tabs/products-listing") return "إبحث عن منتج";
     else if (route.fullPath == "/tabs/categories") return "إبحث عن قسم أو صنف";
@@ -15,13 +16,13 @@
   // handle search
   const searchStore = useSearch();
   const inputIsFocused = ref(false);
-  const searchTerm = ref("");
+  const searchQuery = ref("");
   const searchTimer = ref();
   // watching search term
   watch(
-    () => searchTerm.value,
+    () => searchQuery.value,
     (newVal) => {
-      searchStore.searchTerm = newVal;
+      searchStore.searchQuery = newVal;
     }
   );
   // watching focus status
@@ -33,32 +34,43 @@
   );
   // two way data binding
   watch(
-    () => searchStore.searchTerm,
+    () => searchStore.searchQuery,
     (newVal) => {
-      searchTerm.value = newVal;
+      searchQuery.value = newVal;
     }
   );
 
   const fetchData = () => {
     searchStore.loading = true;
-    if (searchTerm.value == "") return;
+    if (searchQuery.value == "") return;
     else clearTimeout(searchTimer.value);
-    searchTimer.value = setTimeout(() => {
-      // We need to check which route are we in now
-      // then send a different query based on the route
-      console.log("fetch some data");
+    searchTimer.value = setTimeout(async () => {
+      // search for stores
+      if (route.fullPath == "/tabs/stores") {
+        const res = await searchStore.fetchVendorsBySearchQuery(
+          searchQuery.value
+        );
+        searchStore.searchData = res;
+      }
+      // search for categories
+      if (route.fullPath == "/tabs/categories") {
+        const res = await searchStore.fetchCategoriesBySearchQuery(
+          searchQuery.value
+        );
+        searchStore.searchData = res;
+      }
+      // search for products
+      if (
+        route.path == "/tabs/products-listing" ||
+        route.path == "/tabs/home"
+      ) {
+        const res = await searchStore.fetchProductsBySearchQuery(
+          searchQuery.value
+        );
+        searchStore.searchData = res;
+      }
       searchStore.loading = false;
-      searchStore.searchData = [
-        {
-          id: 1,
-          name: "product1",
-        },
-        {
-          id: 2,
-          name: "product2",
-        },
-      ];
-    }, 500);
+    }, 800);
   };
 </script>
 
@@ -84,7 +96,7 @@
         type="text"
         class="rounded-2xl w-full outline-none shadow-md text-sm pl-2 pr-12"
         :placeholder="placeholderText"
-        v-model="searchTerm"
+        v-model="searchQuery"
         @focus="inputIsFocused = true"
         @keyup="fetchData"
       />

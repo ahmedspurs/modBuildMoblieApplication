@@ -21,7 +21,7 @@
   import "swiper/css/effect-fade";
   // import { computed } from 'vue';
 
-  const props = defineProps(["slides", "showAll", "allColor"]);
+  const props = defineProps(["slides", "showAll"]);
 
   const modules = [
     Navigation,

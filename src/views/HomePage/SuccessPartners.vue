@@ -1,6 +1,11 @@
+<script setup>
+  import PartnersSlider from "@/components/sliders/PartnersSlider.vue";
+</script>
+
 <template>
   <div class="partners-container p-4">
     <h2 class="text-white text-xl mt-0">شركاء النجاح</h2>
+    <partners-slider></partners-slider>
   </div>
 </template>
 

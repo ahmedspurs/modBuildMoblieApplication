@@ -47,6 +47,10 @@
     await categoryStore.fetchAllCategories();
   };
 
+  // const fetchAllPartners = async () => {
+  //   await store.fetchAllPartners();
+  // }
+
   const fetchAllProducts = async () => {
     await productStore.fetchAllProducts();
   };

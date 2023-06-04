@@ -11,6 +11,7 @@ export const useStore = defineStore("store", {
   state: () => ({
     loading: false,
     adsLoading: true,
+    partnersLoading: true,
     allAds: [],
     allPartners: [],
     adsQueryStatus: false,
@@ -19,6 +20,7 @@ export const useStore = defineStore("store", {
   getters: {
     getLoading: (state) => state.loading,
     getAdsLoading: (state) => state.adsLoading,
+    getPartnersLoading: (state) => state.partnersLoading,
     getAllAds: (state) => state.allAds,
     getAllPartners: (state) => state.allPartners,
     getAdsQueryStatus: (state) => state.adsQueryStatus,
@@ -31,19 +33,22 @@ export const useStore = defineStore("store", {
       const productStore = useProduct();
 
       store.loading = true;
+      setTimeout(() => (store.loading = false), 3000);
       if (vendorStore.getAllVendors.length == 0) {
-        await vendorStore.fetchAllVendors();
+        vendorStore.fetchAllVendors();
       }
       if (this.getAllAds.length == 0) {
-        await this.fetchAllAds();
+        this.fetchAllAds();
       }
       if (categoryStore.getAllCategories.length == 0) {
-        await categoryStore.fetchAllCategories();
+        categoryStore.fetchAllCategories();
+      }
+      if (this.getAllPartners.length == 0) {
+        this.fetchAllPartners();
       }
       if (productStore.getAllProducts.length == 0) {
-        await productStore.fetchAllProducts();
+        productStore.fetchAllProducts();
       }
-      store.loading = false;
     },
     async fetchAllAds() {
       try {
@@ -70,12 +75,14 @@ export const useStore = defineStore("store", {
     },
     async fetchAllPartners() {
       try {
+        this.partnersLoading = true;
         const res = await axios.get(
           "/wp/v2/partners?id,title,featured_media,x_featured_media"
         );
         if (res.data) {
           this.allPartners = res.data;
           this.partnersQueryStatus = true;
+          this.partnersLoading = false;
           console.log({ data: res.data, allPartners: this.allPartners });
           return this.allPartners;
         }
@@ -85,6 +92,7 @@ export const useStore = defineStore("store", {
           console.error("bad internet connection");
         else console.error(err);
         this.partnersQueryStatus = false;
+        this.partnersLoading = false;
         return false;
       }
     },

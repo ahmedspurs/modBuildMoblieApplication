@@ -19,9 +19,6 @@ import CheckoutPage from "@/views/ProductPurchasePages/CheckoutPage.vue";
 import OrderDetails from "@/views/ProductPurchasePages/OrderDetails.vue";
 import LastOrder from "@/views/ProductPurchasePages/LastOrder.vue";
 
-// error route
-import ErrorPage from "@/views/ErrorPage.vue";
-
 const routes = [
   {
     path: "/payment",
@@ -32,10 +29,6 @@ const routes = [
   {
     path: "/",
     redirect: "/tabs/home",
-  },
-  {
-    path: "/error",
-    component: ErrorPage,
   },
   {
     path: "/tabs/",

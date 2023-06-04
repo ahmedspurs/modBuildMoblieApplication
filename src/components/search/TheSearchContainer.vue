@@ -1,7 +1,12 @@
 <script setup>
   import { computed, defineEmits } from "vue";
   import { useSearch } from "@/store/search";
+  import { useRoute } from "vue-router";
+  import FilteredVendorCard from "@/components/cards/FilteredVendorCard.vue";
+  import FilteredCategoryCard from "@/components/cards/FilteredCategoryCard.vue";
+  import FilteredProductCard from "@/components/cards/FilteredProductCard.vue";
 
+  const route = useRoute();
   const searchStore = useSearch();
   const loading = computed(() => searchStore.getLoading);
   const data = computed(() => searchStore.getSearchData);
@@ -9,7 +14,7 @@
   const emit = defineEmits(["onClear"]);
 
   const closeSearchContainer = () => {
-    searchStore.searchTerm = "";
+    searchStore.searchQuery = "";
     searchStore.loading = true;
     searchStore.searchData = [];
     emit("onClear");
@@ -22,35 +27,80 @@
     <span class="close-icon" @click="closeSearchContainer">X</span>
 
     <!-- loading component -->
-    <div v-if="loading" style="min-height: 300px">
+    <div
+      v-if="loading"
+      style="min-height: 140px"
+      class="flex justify-center items-center"
+    >
       <!-- <add-to-cart-loader></add-to-cart-loader> -->
       Loading...
     </div>
     <!-- data component -->
-    <div style="min-height: 300px" v-else-if="!loading && data.length > 0">
-      Data...
-
-      <!-- <add-to-cart
-        v-for="(item, index) in data"
-        :key="index"
-        :item="item"
-        :is-added-to-cart="isAddedToCart(item.product)"
-        class="q-mt-md"
-        @on-toggle="(colors) => toggleSelectedColors(colors, item.id)"
-        @add-to-cart="addProductToCart(item)"
-        :loading="adding"
-      ></add-to-cart> -->
+    <div
+      style="min-height: 140px"
+      v-else-if="!loading && data?.length > 0 && searchStore.getQueryStatus"
+      class="mt-6"
+    >
+      <!-- vendors data -->
+      <div
+        class="flex flex-col items-center"
+        v-if="route.path == '/tabs/stores'"
+      >
+        <FilteredVendorCard
+          v-for="(item, i) in data"
+          :key="i"
+          :item="item"
+        ></FilteredVendorCard>
+      </div>
+      <!-- categories data -->
+      <div
+        class="flex flex-col items-center"
+        v-else-if="route.path == '/tabs/categories'"
+      >
+        <FilteredCategoryCard
+          v-for="(item, i) in data"
+          :key="i"
+          :item="item"
+        ></FilteredCategoryCard>
+      </div>
+      <!-- products data -->
+      <div
+        class="flex flex-col items-center"
+        v-else-if="
+          route.path == '/tabs/products-listing' || route.path == '/tabs/home'
+        "
+      >
+        <FilteredProductCard
+          v-for="(item, i) in data"
+          :key="i"
+          :item="item"
+        ></FilteredProductCard>
+      </div>
     </div>
-    <!-- empty cart components -->
-    <div style="min-height: 300px" v-else>
-      NoData...
-      <!-- <data-empty
-        style="color: #d7dadc"
-        message="searchEmpty"
-        :min-height="350"
-        :show-btn="false"
-        :img-w-h="100"
-      ></data-empty> -->
+    <!-- empty data components -->
+    <div
+      style="min-height: 140px"
+      v-else-if="!loading && data?.length == 0 && searchStore.getQueryStatus"
+      class="flex flex-col justify-center items-center"
+    >
+      <img
+        src="/assets/images/empty-folder.png"
+        alt="empty-folder"
+        loading="lazy"
+        class="w-24 h-24"
+      />
+      <p class="text-slate-500 text-base mt-1">لا توجد نتائج</p>
+    </div>
+    <!-- error search component -->
+    <div
+      style="min-height: 140px"
+      v-else
+      class="flex flex-col justify-center items-center"
+    >
+      <p class="text-slate-600 text-lg">حدث خطأ ما</p>
+      <p class="text-slate-400 text-sm mb-4">
+        راجع إتصالك بالشبكة ثم حاول مجددا
+      </p>
     </div>
   </div>
 </template>

@@ -20,7 +20,7 @@
   // handle search
   const searchStore = useSearch();
   const inputIsFocused = computed(() => searchStore.getInputIsFocused);
-  const searchTerm = computed(() => searchStore.getSearchTerm);
+  const searchQuery = computed(() => searchStore.getSearchQuery);
 </script>
 
 <template>
@@ -38,6 +38,6 @@
   <!-- search input -->
   <search-input></search-input>
   <the-search-container
-    v-if="inputIsFocused && searchTerm.length > 0"
+    v-if="inputIsFocused && searchQuery?.length > 0"
   ></the-search-container>
 </template>

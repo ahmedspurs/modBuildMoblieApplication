@@ -1,7 +1,7 @@
 <script setup>
   import { defineProps, defineEmits, ref } from "vue";
 
-  defineProps(["height"]);
+  defineProps(["height", "showText"]);
   const emit = defineEmits(["onReload"]);
 
   const disabled = ref(false);
@@ -27,6 +27,6 @@
       alt="reload-icon"
       class="block mb-2"
     />
-    <p class="text-slate-600 text-sm">إعادة تحميل</p>
+    <p v-if="showText" class="text-slate-600 text-sm">إعادة تحميل</p>
   </div>
 </template>

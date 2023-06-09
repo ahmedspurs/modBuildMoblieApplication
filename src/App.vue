@@ -23,7 +23,7 @@
   onMounted(async () => {
     if (localStorage["cartItems"]) cartStore.setCartFromLocalStorage();
   });
-
+false
   // watch routes
   watch(
     () => route.path,

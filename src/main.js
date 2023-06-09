@@ -30,10 +30,16 @@ import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 import "intl-tel-input/build/css/intlTelInput.css";
+
+// loader
+import {LoadingPlugin} from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(VueSweetalert2)
+  .use(LoadingPlugin)
   .use(store);
 
 router.isReady().then(() => {

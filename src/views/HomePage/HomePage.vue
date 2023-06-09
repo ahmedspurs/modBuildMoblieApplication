@@ -18,13 +18,6 @@
   import { useVendor } from "@/store/vendors";
   import { useCategory } from "@/store/categories";
   import { useProduct } from "@/store/products";
-<<<<<<< HEAD
-  // import { useRouter } from "vue-router";
-
-  // const router = useRouter();
-=======
-
->>>>>>> da65bdf68f3a3de34ad1eafb566296bd2872b686
   const store = useStore();
   const vendorStore = useVendor();
   const categoryStore = useCategory();
@@ -37,19 +30,8 @@
 
   onMounted(async () => {
     store.loading = true;
-<<<<<<< HEAD
-    await store.homePageSetup();
-    store.loading = false;
-    if (
-      !vendorStore.getQueryStatus ||
-      !categoryStore.getQueryStatus ||
-      !productStore.getQueryStatus
-    )console.log("error");
-      // router.push("/error");
-=======
     setTimeout(() => (store.loading = false), 3000);
     store.homePageSetup();
->>>>>>> da65bdf68f3a3de34ad1eafb566296bd2872b686
   });
 
   const fetchAllVendors = async () => {

@@ -2,10 +2,6 @@
   import { IonApp, IonRouterOutlet } from "@ionic/vue";
   import { onMounted, watch, computed } from "vue";
   import { useRoute } from "vue-router";
-<<<<<<< HEAD
-  // import { useRouter } from "vue-router";
-=======
->>>>>>> da65bdf68f3a3de34ad1eafb566296bd2872b686
   import { useCart } from "@/store/cart";
   import { useStore } from "@/store";
   import { useCategory } from "@/store/categories";
@@ -14,10 +10,6 @@
 
   const cartStore = useCart();
   const route = useRoute();
-<<<<<<< HEAD
-  // const router = useRouter();
-=======
->>>>>>> da65bdf68f3a3de34ad1eafb566296bd2872b686
   const store = useStore();
   const vendorStore = useVendor();
   const categoryStore = useCategory();
@@ -31,7 +23,7 @@
   onMounted(async () => {
     if (localStorage["cartItems"]) cartStore.setCartFromLocalStorage();
   });
-
+false
   // watch routes
   watch(
     () => route.path,
@@ -41,14 +33,6 @@
       if (newRoute == "/tabs/home") {
         store.loading = true;
         await store.homePageSetup();
-<<<<<<< HEAD
-        if (
-          !vendorStore.getQueryStatus ||
-          !categoryStore.getQueryStatus ||
-          !productStore.getQueryStatus
-        ) console.log("error");
-          // router.push("/error");
-=======
         store.loading = false;
       }
       // vendors route
@@ -91,7 +75,6 @@
           products: storeProducts.value || categoryProducts.value,
         });
         store.loading = false;
->>>>>>> da65bdf68f3a3de34ad1eafb566296bd2872b686
       }
     }
   );

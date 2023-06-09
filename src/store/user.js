@@ -3,7 +3,7 @@ import axios from "@/services/axios";
 
 export const useUser = defineStore("user", {
   state: () => ({
-    user: {},
+    user: JSON.parse(localStorage["mod_user"]),
     token: "",
   }),
   getters: {
